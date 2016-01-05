@@ -1,0 +1,1 @@
+cmsRun runMakeTreeFromMiniAOD_cfg.py outfile=test inputFilesConfig=Spring15v2.GJets_HT-600ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8 nstart=0 nfiles=1 scenario=Spring15v2
