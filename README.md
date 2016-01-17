@@ -9,9 +9,9 @@ cmsrel CMSSW_7_4_15
 cd CMSSW_7_4_15/src/
 cmsenv
 git cms-merge-topic -u kpedro88:METfix7415
-git clone git@github.com:TreeMaker/TreeMaker.git -b Run2
+git clone https://github.com/bmahakud/LeptoQuarkTreeMaker
 scram b -j 8
-cd TreeMaker/Production/test
+cd LeptoQuarkTreeMaker/Production/test
 ```
 
 Several predefined scenarios are available for ease of production.
