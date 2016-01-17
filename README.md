@@ -1,4 +1,4 @@
-# TreeMaker
+# LeptoQuarkTreeMaker, informations Copied from RA2b SUSY TreeMaker
 
 ## Instructions
 
