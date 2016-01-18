@@ -7,20 +7,28 @@ scenarioName=parameters.value("scenario","")
 outfile=parameters.value("outfile","test_run")
 dataset=parameters.value("dataset",[])
 nstart = parameters.value("nstart",0)
-nfiles = parameters.value("nfiles",-1)
-#numevents=parameters.value("numevents",-1)
+nfiles = parameters.value("nfiles",1)
+#numevents=parameters.value("numevents",100)
 #reportfreq=parameters.value("reportfreq",10)
 
 
 
 from LeptoQuarkTreeMaker.Production.scenarios import Scenario
 scenario = Scenario(scenarioName)
+globaltag=parameters.value("globaltag",scenario.globaltag)
+tagname=parameters.value("tagname",scenario.tagname)
+geninfo=parameters.value("geninfo",scenario.geninfo)
+fastsim=parameters.value("fastsim",scenario.fastsim)
+signal=parameters.value("signal",scenario.signal)
+jsonfile=parameters.value("jsonfile",scenario.jsonfile)
 jecfile=parameters.value("jecfile",scenario.jecfile)
 residual=parameters.value("residual",scenario.residual)
-geninfo=parameters.value("geninfo",scenario.geninfo)
-tagname=parameters.value("tagname",scenario.tagname)
-jsonfile=parameters.value("jsonfile",scenario.jsonfile)
-globaltag=parameters.value("globaltag",scenario.globaltag)
+#jecfile=parameters.value("jecfile",scenario.jecfile)
+#residual=parameters.value("residual",scenario.residual)
+#geninfo=parameters.value("geninfo",scenario.geninfo)
+#tagname=parameters.value("tagname",scenario.tagname)
+#jsonfile=parameters.value("jsonfile",scenario.jsonfile)
+#globaltag=parameters.value("globaltag",scenario.globaltag)
 
 
 import FWCore.ParameterSet.Config as cms
@@ -69,15 +77,6 @@ process = makeTreeFromMiniAOD(process,
 )
 
 
-#process.source = cms.Source("PoolSource",
-    # replace 'myfile.root' with the source file you want to use
-#    fileNames = cms.untracked.vstring(
-#        'file:2AC9FDED-4319-E511-AAF9-02163E011C20.root'
-#    )
-#)
-
-
-#process.p = cms.Path()
 
 
 # final tweaks to process
