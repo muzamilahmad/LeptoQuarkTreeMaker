@@ -173,7 +173,7 @@ GoodJetsProducer::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
                 for(unsigned ih=0; ih<excludeHandles[h]->size(); ++ih){
                     if(std::abs(Jets->at(i).pt() - excludeHandles[h]->at(ih).pt() ) / excludeHandles[h]->at(ih).pt() < 1 && 
                        deltaR(Jets->at(i).eta(),Jets->at(i).phi(),excludeHandles[h]->at(ih).eta(),excludeHandles[h]->at(ih).phi()) < JetConeSize_ )
-                    {
+                    {std::cout<<"Hii I am testing the code"<<std::endl;
                        skip=true;
                        break;
                     }
@@ -197,9 +197,10 @@ GoodJetsProducer::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
 
         //save all good jets regardless of pt
         if (good || saveAll_) {
+        if( Jets->at(i).pt() > 25.0){
            prodJets->push_back(Jet(Jets->at(i)));
            jetsMask->push_back(good);
-        } 
+        } }
         //calculate event filter only for jets that pass pT cut
         if (Jets->at(i).pt() > jetPtFilter_) {
            //std::cout << "Filtered jet pT, eta: " << Jets->at(i).pt() << ", " << Jets->at(i).eta() << std::endl;

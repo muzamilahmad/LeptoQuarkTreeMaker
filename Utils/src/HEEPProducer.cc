@@ -97,13 +97,13 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig)
     produces<std::vector<double>>( "ePy");
     produces<std::vector<double>>( "normalizedChi2");
    //produces< std::vector< TLorentzVector > >("genParticle");
-   /* produces< std::vector< int > >("PDGID");
+    produces< std::vector< int > >("PDGID");
     produces< std::vector< int > >("gencharge");
     produces< std::vector< double > >("genPt");
     produces< std::vector< double > >("genEta");
     produces< std::vector< double > >("genPhi");
     produces< std::vector< double > >("genEnergy");
-    */
+    
     /*
     produces< std::vector< int > >("refpdgid");
     produces< std::vector< double > >("refe");
@@ -112,8 +112,8 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig)
     produces< std::vector< double > >("refphi");
    */
  
-    //produces< std::vector< int > >("motherPDGID");
-    //produces< std::vector< int > >("elstatus");
+    produces< std::vector< int > >("motherPDGID");
+    produces< std::vector< int > >("elstatus");
     /* produces< std::vector< double > >("refm");
     produces< std::vector< double > >("refy");
     produces< std::vector< double > >(" refarea");
@@ -189,7 +189,7 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::auto_ptr<std::vector<double > >normalizedChi2 (new std::vector<double>());
     //std::auto_ptr<std::vector<double > >Phi (new std::vector<double>());
     //std::auto_ptr< std::vector< TLorentzVector > > genParticle( new std::vector< TLorentzVector > () );
-    /*
+    
     std::auto_ptr< std::vector< int > > PDGID( new std::vector< int > () );
     std::auto_ptr< std::vector< int > >gencharge( new std::vector< int > () );
     std::auto_ptr<std::vector<double > >genPt (new std::vector<double>());
@@ -198,7 +198,7 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::auto_ptr<std::vector<double > >genEnergy (new std::vector<double>());
     std::auto_ptr< std::vector< int > > motherPDGID( new std::vector< int > () );
     std::auto_ptr< std::vector< int > > elstatus( new std::vector< int > () );
-    */
+    
 
     /*
     std::auto_ptr<std::vector<double > >refpt (new std::vector<double>());
@@ -217,6 +217,8 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     iEvent.getByLabel( eletag_, electron );
 
     for(std::vector<pat::Electron>::const_iterator elect=electron->begin(); elect!=electron->end(); ++elect){
+
+if(elect->pt() > 10.0){//pt cut
 
      Eta->push_back(elect->eta());
      //Phi->push_back(elect->phi());
@@ -254,7 +256,7 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      ePx->push_back(elect->px());
      ePy->push_back(elect->py());
      normalizedChi2->push_back(elect->gsfTrack()->normalizedChi2());
-
+}//pt cut
 }
 
      rho->push_back(rh);  
@@ -262,9 +264,11 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 
 
 
-    /*
+    
     edm::Handle< View<reco::GenParticle> > genParticles;
     iEvent.getByLabel( "prunedGenParticles" ,genParticles);
+ 
+if(genParticles.isValid()) {//gen level stuff
 
      for(View<reco::GenParticle>::const_iterator iPart = genParticles->begin();
          iPart != genParticles->end();
@@ -290,8 +294,8 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     //motherPDGID->push_back(iPart->mother()->pdgId());
     }
     }
-
-    */
+}//gen level stuff
+    
 
 
     //edm::Handle<std::vector<pat::Jet> >  jets;
@@ -392,7 +396,7 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       iEvent.put(ePy ,"ePy");
       iEvent.put(normalizedChi2, "normalizedChi2");
       //iEvent.put(genParticle, "genParticle");
-      /*iEvent.put(PDGID , "PDGID" );
+      iEvent.put(PDGID , "PDGID" );
       iEvent.put(gencharge , "gencharge" );
       iEvent.put(genPt, "genPt");
       iEvent.put(genEta, "genEta");
@@ -400,7 +404,7 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       iEvent.put(genEnergy, "genEnergy");
       iEvent.put(motherPDGID, "motherPDGID");
       iEvent.put( elstatus, "elstatus");
-      */
+      
       /*
       iEvent.put(refpdgid, "refpdgid");
       iEvent.put(  refe, "  refe");
