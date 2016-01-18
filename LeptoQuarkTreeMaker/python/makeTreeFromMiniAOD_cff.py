@@ -10,10 +10,12 @@ outfile,
 dataset="",
 globaltag="",
 geninfo=False,
-tagname="RECO",
+tagname="PAT",
 jsonfile="",
 jecfile="",
-residual=False
+doPDFs=False,
+residual=False,
+#numevents=100
 ):
 
     #process = cms.Process("RA2EventSelection")
@@ -30,7 +32,7 @@ residual=False
     # log output
     # log output
     process.load("FWCore.MessageService.MessageLogger_cfi")
-    process.MessageLogger.cerr.FwkReport.reportEvery = 1000
+    process.MessageLogger.cerr.FwkReport.reportEvery = 10
     process.options = cms.untracked.PSet(
         allowUnscheduled = cms.untracked.bool(True),
         wantSummary = cms.untracked.bool(True)
@@ -86,6 +88,25 @@ residual=False
     # get the JECs (disabled by default)
     # this requires the user to download the .db file from this twiki
     # https://twiki.cern.ch/twiki/bin/viewauth/CMS/JECDataMC    
+    if geninfo:
+       from LeptoQuarkTreeMaker.WeightProducer.getWeightProducer_cff import getWeightProducer
+       process.WeightProducer = getWeightProducer(process.source.fileNames[0])
+       process.WeightProducer.Lumi                       = cms.double(1) #default: 1 pb-1 (unit value)
+       process.WeightProducer.FileNamePUDataDistribution = cms.string("LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_1117.root")
+       process.Baseline += process.WeightProducer
+       VarsDouble.extend(['WeightProducer:weight(Weight)','WeightProducer:xsec(CrossSection)','WeightProducer:nevents(NumEvents)',
+                          'WeightProducer:TrueNumInteractions','WeightProducer:PUweight(puWeight)','WeightProducer:PUSysUp(puSysUp)','WeightProducer:PUSysDown(puSysDown)'])
+       VarsInt.extend(['WeightProducer:NumInteractions'])
+
+    ## ----------------------------------------------------------------------------------------------
+    ## PDF weights for PDF systematics
+    ## ----------------------------------------------------------------------------------------------
+    if doPDFs:
+       process.PDFWeights = cms.EDProducer('PDFWeightProducer')
+       process.Baseline += process.PDFWeights
+       VectorDouble.extend(['PDFWeights:PDFweights','PDFWeights:ScaleWeights'])
+       VectorInt.extend(['PDFWeights:PDFids'])
+   
     JetTag = cms.InputTag('slimmedJets')
     METTag = cms.InputTag('slimmedMETs')
     if len(jecfile)>0:
@@ -154,6 +175,37 @@ residual=False
             delattr(getattr(process,"slimmedMETsUpdate"),"caloMET")
         METTag = cms.InputTag('slimmedMETsUpdate','',process.name_())
 
+    
+
+
+    process.goodPhotons = cms.EDProducer("PhotonIDisoProducer",
+        photonCollection       = cms.untracked.InputTag("slimmedPhotons"),
+        electronCollection     = cms.untracked.InputTag("slimmedElectrons"),
+        conversionCollection   = cms.untracked.InputTag("reducedEgamma","reducedConversions",tagname),
+        beamspotCollection     = cms.untracked.InputTag("offlineBeamSpot"),
+        ecalRecHitsInputTag_EE = cms.InputTag("reducedEgamma","reducedEERecHits"),
+        ecalRecHitsInputTag_EB = cms.InputTag("reducedEgamma","reducedEBRecHits"),
+        rhoCollection          = cms.untracked.InputTag("fixedGridRhoFastjetAll"),
+        genParCollection = cms.untracked.InputTag("prunedGenParticles"),
+        debug                  = cms.untracked.bool(False)
+    )
+    process.Baseline += process.goodPhotons
+    # good photon tag is InputTag('goodPhotons','bestPhoton')
+    VectorRecoCand.append("goodPhotons:bestPhoton")
+    VarsInt.append("goodPhotons:NumPhotons")
+
+
+
+    process.load('CommonTools.RecoAlgos.HBHENoiseFilterResultProducer_cfi')
+    process.HBHENoiseFilterResultProducer.minZeros = cms.int32(99999)
+    process.HBHENoiseFilterResultProducer.IgnoreTS4TS5ifJetInLowBVRegion = cms.bool(False)
+    process.HBHENoiseFilterResultProducer.defaultDecision = cms.string("HBHENoiseFilterResultRun2Loose")
+    process.Baseline += process.HBHENoiseFilterResultProducer
+    VarsBool.extend(['HBHENoiseFilterResultProducer:HBHENoiseFilterResult(HBHENoiseFilter)'])
+        #add HBHE iso noise filter
+    VarsBool.extend(['HBHENoiseFilterResultProducer:HBHEIsoNoiseFilterResult(HBHEIsoNoiseFilter)'])
+
+
 
 
     from LeptoQuarkTreeMaker.Utils.HEEPProducer_cfi import HEEPProducer
@@ -197,6 +249,14 @@ residual=False
     VectorDouble.extend(['HEEPProducer:ePx(Electron_Px)'])
     VectorDouble.extend(['HEEPProducer:ePy(Electron_Py)'])
     VectorDouble.extend(['HEEPProducer:normalizedChi2(Electron_normalizedChi2)'])
+    VectorInt.extend(['HEEPProducer:PDGID(PDGID)'])
+    VectorInt.extend(['HEEPProducer:gencharge(gencharge)'])
+    VectorDouble.extend(['HEEPProducer:genPt(genPt)'])
+    VectorDouble.extend(['HEEPProducer:genEta(genEta)'])
+    VectorDouble.extend(['HEEPProducer:genPhi(genPhi)'])
+    VectorDouble.extend(['HEEPProducer:genEnergy(genEnergy)'])
+    VectorInt.extend(['HEEPProducer:motherPDGID(motherPDGID)'])
+    VectorInt.extend(['HEEPProducer:elstatus(elstatus)'])
 
     from LeptoQuarkTreeMaker.Utils.triggerproducer_cfi import triggerProducer
     process.TriggerProducer = triggerProducer.clone(
@@ -207,16 +267,26 @@ residual=False
         prescaleTagArg2  = cms.string(''),
         prescaleTagArg3  = cms.string(''),
         triggerNameList = cms.vstring( # list of trigger names
-            'HLT_PFHT350_v',
-            'HLT_PFHT800_v',
-            'HLT_PFHT900_v',
-            'HLT_Ele27_eta2p1_WPLoose_Gsf_v',
-            'HLT_DoubleEle24_22_eta2p1_WPLoose_Gsf_v',
-            'HLT_Ele15_IsoVVVL_PFHT350_PFMET50_v',
-            'HLT_Ele15_IsoVVVL_PFHT350_PFMET70_v',
-            'HLT_Ele15_IsoVVVL_PFHT400_PFMET70_v',
-            'HLT_Ele15_IsoVVVL_PFHT600_v',
-            'HLT_Ele15_IsoVVVL_PFHT600_v',
+            'HLT_Photon135_PFMET100_JetIdCleaned_v',
+            'HLT_Photon22_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon22_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon250_NoHE_v',
+            'HLT_Photon300_NoHE_v',
+            'HLT_Photon26_R9Id85_OR_CaloId24b40e_Iso50T80L_Photon16_AND_HE10_R9Id65_Eta2_Mass60_v',
+            'HLT_Photon36_R9Id85_OR_CaloId24b40e_Iso50T80L_Photon22_AND_HE10_R9Id65_Eta2_Mass15_v',
+            'HLT_Photon36_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon36_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon50_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon50_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon75_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon75_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon90_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon90_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon120_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon120_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon90_CaloIdL_PFHT500_v',
+            'HLT_Photon42_R9Id85_OR_CaloId24b40e_Iso50T80L_Photon25_AND_HE10_R9Id65_Eta2_Mass15_v',
+            'HLT_Photon90_CaloIdL_PFHT600_v',
             'HLT_Photon500_v',
             'HLT_Photon600_v',
             'HLT_Photon22_v',
@@ -228,16 +298,60 @@ residual=False
             'HLT_Photon120_v',
             'HLT_Photon175_v',
             'HLT_Photon165_HE10_v',
-            'HLT_Photon90_CaloIdL_PFHT500_v',
-            'HLT_Ele27_eta2p1_WP85_Gsf_v',
-            'HLT_Ele27_WP85_Gsf_v',
-            'HLT_Ele17_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v',
-            'HLT_DoubleMu18NoFiltersNoVtx_v',
-            'HLT_Ele15_IsoVVVL_PFHT350_v',
-            'HLT_Mu15_IsoVVVL_PFHT350_v',
+            'HLT_Photon22_R9Id90_HE10_IsoM_v',
+            'HLT_Photon30_R9Id90_HE10_IsoM_v',
+            'HLT_Photon36_R9Id90_HE10_IsoM_v',
+            'HLT_Photon50_R9Id90_HE10_IsoM_v',
+            'HLT_Photon75_R9Id90_HE10_IsoM_v',
+            'HLT_Photon90_R9Id90_HE10_IsoM_v',
+            'HLT_Photon120_R9Id90_HE10_IsoM_v',
+            'HLT_Photon165_R9Id90_HE10_IsoM_v',
+            'HLT_Ele22_eta2p1_WPLoose_Gsf_v',
+            'HLT_Ele22_eta2p1_WPTight_Gsf_v',
+            'HLT_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_v',
+            'HLT_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v',
+            'HLT_Ele30WP60_SC4_Mass55_v',
+            'HLT_Ele30WP60_Ele8_Mass55_v',
             'HLT_Ele23_WPLoose_Gsf_v',
-            'HLT_DoubleMu8_Mass8_PFHT250_v',
-            'HLT_PFHT750_4JetPt50_v',
+            'HLT_Ele23_WPLoose_Gsf_TriCentralPFJet50_40_30_v',
+            'HLT_Ele23_WPLoose_Gsf_CentralPFJet30_BTagCSV07_v',
+            'HLT_Ele23_WPLoose_Gsf_WHbbBoost_v',
+            'HLT_Ele27_WPLoose_Gsf_v',
+            'HLT_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_v',
+            'HLT_Ele27_eta2p1_WPLoose_Gsf_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v',
+            'HLT_Ele27_eta2p1_WPLoose_Gsf_DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg_v',
+            'HLT_Ele27_WPLoose_Gsf_CentralPFJet30_BTagCSV07_v',
+            'HLT_Ele27_WPLoose_Gsf_TriCentralPFJet50_40_30_v',
+            'HLT_Ele27_WPLoose_Gsf_WHbbBoost_v',
+            'HLT_Ele27_eta2p1_WPLoose_Gsf_v',
+            'HLT_Ele27_eta2p1_WPTight_Gsf_v',
+            'HLT_Ele32_eta2p1_WPTight_Gsf_v',
+            'HLT_Ele35_CaloIdVT_GsfTrkIdT_PFJet150_PFJet50_v',
+            'HLT_Ele45_CaloIdVT_GsfTrkIdT_PFJet200_PFJet50_v',
+            'HLT_Ele105_CaloIdVT_GsfTrkIdT_v',
+            'HLT_Ele12_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
+            'HLT_Ele23_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
+            'HLT_Ele33_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
+            'HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v',
+            'HLT_Ele17_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v',
+            'HLT_Ele16_Ele12_Ele8_CaloIdL_TrackIdL_v',
+            'HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele17_Ele12_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele23_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele17_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele12_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele27_eta2p1_WPLoose_Gsf_HT200_v',
+            'HLT_Ele10_CaloIdM_TrackIdM_CentralPFJet30_BTagCSV0p54PF_v',
+            'HLT_Ele15_IsoVVVL_BTagCSV0p72_PFHT400_v',
+            'HLT_Ele15_IsoVVVL_PFHT350_PFMET50_v',
+            'HLT_Ele15_IsoVVVL_PFHT600_v',
+            'HLT_Ele15_IsoVVVL_PFHT350_v',
+            'HLT_Ele8_CaloIdM_TrackIdM_PFJet30_v',
+            'HLT_Ele12_CaloIdM_TrackIdM_PFJet30_v',
+            'HLT_Ele23_CaloIdM_TrackIdM_PFJet30_v',
+            'HLT_Ele33_CaloIdM_TrackIdM_PFJet30_v',
+            'HLT_Ele115_CaloIdVT_GsfTrkIdT_v',
+            'HLT_DoubleEle33_CaloIdL_GsfTrkIdVL_v',
         )
     )
     process.Baseline += process.TriggerProducer
