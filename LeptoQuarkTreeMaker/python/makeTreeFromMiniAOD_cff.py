@@ -6,7 +6,6 @@ import sys,os
 def makeTreeFromMiniAOD(
 process,
 outfile,
-#reportfreq=10,
 dataset="",
 globaltag="",
 geninfo=False,
@@ -15,7 +14,7 @@ jsonfile="",
 jecfile="",
 doPDFs=False,
 residual=False,
-#numevents=100
+fastsim=False
 ):
 
     #process = cms.Process("RA2EventSelection")
@@ -32,7 +31,7 @@ residual=False,
     # log output
     # log output
     process.load("FWCore.MessageService.MessageLogger_cfi")
-    process.MessageLogger.cerr.FwkReport.reportEvery = 10
+    process.MessageLogger.cerr.FwkReport.reportEvery = 1000
     process.options = cms.untracked.PSet(
         allowUnscheduled = cms.untracked.bool(True),
         wantSummary = cms.untracked.bool(True)
@@ -192,18 +191,83 @@ residual=False,
     process.Baseline += process.goodPhotons
     # good photon tag is InputTag('goodPhotons','bestPhoton')
     VectorRecoCand.append("goodPhotons:bestPhoton")
+    #VectorRecoCand.append("goodPhotons:bestPhotonLoose")
+    VectorRecoCand.append("goodPhotons:SimplePhoton")
+ 
     VarsInt.append("goodPhotons:NumPhotons")
 
 
 
-    process.load('CommonTools.RecoAlgos.HBHENoiseFilterResultProducer_cfi')
-    process.HBHENoiseFilterResultProducer.minZeros = cms.int32(99999)
-    process.HBHENoiseFilterResultProducer.IgnoreTS4TS5ifJetInLowBVRegion = cms.bool(False)
-    process.HBHENoiseFilterResultProducer.defaultDecision = cms.string("HBHENoiseFilterResultRun2Loose")
-    process.Baseline += process.HBHENoiseFilterResultProducer
-    VarsBool.extend(['HBHENoiseFilterResultProducer:HBHENoiseFilterResult(HBHENoiseFilter)'])
+
+    if not fastsim: # MET filters are not run for fastsim samples
+
+        from LeptoQuarkTreeMaker.Utils.filterdecisionproducer_cfi import filterDecisionProducer
+        process.METFilters = filterDecisionProducer.clone(
+            trigTagArg1 = cms.string('TriggerResults'),
+            trigTagArg2 = cms.string(''),
+            trigTagArg3 = cms.string(tagname),
+            filterName  = cms.string("Flag_METFilters"),
+        )
+        process.Baseline += process.METFilters
+        VarsInt.extend(['METFilters'])
+        
+        #process.CSCTightHaloFilter = filterDecisionProducer.clone(
+        #    trigTagArg1 = cms.string('TriggerResults'),
+        #    trigTagArg2 = cms.string(''),
+        #    trigTagArg3 = cms.string(tagname),
+        #    filterName  = cms.string("Flag_CSCTightHaloFilter"),
+        #)
+        #process.Baseline += process.CSCTightHaloFilter
+        #VarsInt.extend(['CSCTightHaloFilter'])
+        
+        #run beam halo filter from text list of events
+        from LeptoQuarkTreeMaker.Utils.getEventListFilter_cff import getEventListFilter
+        process.CSCTightHaloFilter = getEventListFilter(process.source.fileNames[0],"Dec01","csc2015")
+        process.Baseline += process.CSCTightHaloFilter
+        VarsBool.extend(['CSCTightHaloFilter'])
+        
+        #process.HBHENoiseFilter = filterDecisionProducer.clone(
+        #    trigTagArg1 = cms.string('TriggerResults'),
+        #    trigTagArg2 = cms.string(''),
+        #    trigTagArg3 = cms.string(tagname),
+        #    filterName  = cms.string("Flag_HBHENoiseFilter"),
+        #)
+        #process.Baseline += process.HBHENoiseFilter
+        #VarsInt.extend(['HBHENoiseFilter'])
+        
+        #rerun HBHE noise filter manually
+        process.load('CommonTools.RecoAlgos.HBHENoiseFilterResultProducer_cfi')
+        process.HBHENoiseFilterResultProducer.minZeros = cms.int32(99999)
+        process.HBHENoiseFilterResultProducer.IgnoreTS4TS5ifJetInLowBVRegion = cms.bool(False) 
+        process.HBHENoiseFilterResultProducer.defaultDecision = cms.string("HBHENoiseFilterResultRun2Loose")
+        process.Baseline += process.HBHENoiseFilterResultProducer
+        VarsBool.extend(['HBHENoiseFilterResultProducer:HBHENoiseFilterResult(HBHENoiseFilter)'])
         #add HBHE iso noise filter
-    VarsBool.extend(['HBHENoiseFilterResultProducer:HBHEIsoNoiseFilterResult(HBHEIsoNoiseFilter)'])
+        VarsBool.extend(['HBHENoiseFilterResultProducer:HBHEIsoNoiseFilterResult(HBHEIsoNoiseFilter)'])
+
+        process.EcalDeadCellTriggerPrimitiveFilter = filterDecisionProducer.clone(
+            trigTagArg1 = cms.string('TriggerResults'),
+            trigTagArg2 = cms.string(''),
+            trigTagArg3 = cms.string(tagname),
+            filterName  = cms.string("Flag_EcalDeadCellTriggerPrimitiveFilter"),
+        )
+        process.Baseline += process.EcalDeadCellTriggerPrimitiveFilter
+        VarsInt.extend(['EcalDeadCellTriggerPrimitiveFilter'])
+        
+        process.eeBadScFilter = filterDecisionProducer.clone(
+            trigTagArg1  = cms.string('TriggerResults'),
+            trigTagArg2  = cms.string(''),
+            trigTagArg3  = cms.string(tagname),
+            filterName  =   cms.string("Flag_eeBadScFilter"),
+            )
+        process.Baseline += process.eeBadScFilter
+        VarsInt.extend(['eeBadScFilter'])
+        
+        #run eeBadSc4 filter from text list of events
+        process.eeBadSc4Filter = getEventListFilter(process.source.fileNames[0],"Dec01","ecalscn1043093")
+        process.Baseline += process.eeBadSc4Filter
+        VarsBool.extend(['eeBadSc4Filter'])
+
 
 
 
@@ -267,28 +331,6 @@ residual=False,
         prescaleTagArg2  = cms.string(''),
         prescaleTagArg3  = cms.string(''),
         triggerNameList = cms.vstring( # list of trigger names
-            'HLT_Photon135_PFMET100_JetIdCleaned_v',
-            'HLT_Photon22_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
-            'HLT_Photon22_R9Id90_HE10_Iso40_EBOnly_VBF_v',
-            'HLT_Photon250_NoHE_v',
-            'HLT_Photon300_NoHE_v',
-            'HLT_Photon26_R9Id85_OR_CaloId24b40e_Iso50T80L_Photon16_AND_HE10_R9Id65_Eta2_Mass60_v',
-            'HLT_Photon36_R9Id85_OR_CaloId24b40e_Iso50T80L_Photon22_AND_HE10_R9Id65_Eta2_Mass15_v',
-            'HLT_Photon36_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
-            'HLT_Photon36_R9Id90_HE10_Iso40_EBOnly_VBF_v',
-            'HLT_Photon50_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
-            'HLT_Photon50_R9Id90_HE10_Iso40_EBOnly_VBF_v',
-            'HLT_Photon75_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
-            'HLT_Photon75_R9Id90_HE10_Iso40_EBOnly_VBF_v',
-            'HLT_Photon90_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
-            'HLT_Photon90_R9Id90_HE10_Iso40_EBOnly_VBF_v',
-            'HLT_Photon120_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
-            'HLT_Photon120_R9Id90_HE10_Iso40_EBOnly_VBF_v',
-            'HLT_Photon90_CaloIdL_PFHT500_v',
-            'HLT_Photon42_R9Id85_OR_CaloId24b40e_Iso50T80L_Photon25_AND_HE10_R9Id65_Eta2_Mass15_v',
-            'HLT_Photon90_CaloIdL_PFHT600_v',
-            'HLT_Photon500_v',
-            'HLT_Photon600_v',
             'HLT_Photon22_v',
             'HLT_Photon30_v',
             'HLT_Photon36_v',
@@ -297,32 +339,9 @@ residual=False,
             'HLT_Photon90_v',
             'HLT_Photon120_v',
             'HLT_Photon175_v',
-            'HLT_Photon165_HE10_v',
-            'HLT_Photon22_R9Id90_HE10_IsoM_v',
-            'HLT_Photon30_R9Id90_HE10_IsoM_v',
-            'HLT_Photon36_R9Id90_HE10_IsoM_v',
-            'HLT_Photon50_R9Id90_HE10_IsoM_v',
-            'HLT_Photon75_R9Id90_HE10_IsoM_v',
-            'HLT_Photon90_R9Id90_HE10_IsoM_v',
-            'HLT_Photon120_R9Id90_HE10_IsoM_v',
-            'HLT_Photon165_R9Id90_HE10_IsoM_v',
             'HLT_Ele22_eta2p1_WPLoose_Gsf_v',
             'HLT_Ele22_eta2p1_WPTight_Gsf_v',
-            'HLT_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_v',
-            'HLT_Ele22_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_SingleL1_v',
-            'HLT_Ele30WP60_SC4_Mass55_v',
-            'HLT_Ele30WP60_Ele8_Mass55_v',
             'HLT_Ele23_WPLoose_Gsf_v',
-            'HLT_Ele23_WPLoose_Gsf_TriCentralPFJet50_40_30_v',
-            'HLT_Ele23_WPLoose_Gsf_CentralPFJet30_BTagCSV07_v',
-            'HLT_Ele23_WPLoose_Gsf_WHbbBoost_v',
-            'HLT_Ele27_WPLoose_Gsf_v',
-            'HLT_Ele27_eta2p1_WPLoose_Gsf_LooseIsoPFTau20_v',
-            'HLT_Ele27_eta2p1_WPLoose_Gsf_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v',
-            'HLT_Ele27_eta2p1_WPLoose_Gsf_DoubleMediumIsoPFTau40_Trk1_eta2p1_Reg_v',
-            'HLT_Ele27_WPLoose_Gsf_CentralPFJet30_BTagCSV07_v',
-            'HLT_Ele27_WPLoose_Gsf_TriCentralPFJet50_40_30_v',
-            'HLT_Ele27_WPLoose_Gsf_WHbbBoost_v',
             'HLT_Ele27_eta2p1_WPLoose_Gsf_v',
             'HLT_Ele27_eta2p1_WPTight_Gsf_v',
             'HLT_Ele32_eta2p1_WPTight_Gsf_v',
@@ -332,31 +351,23 @@ residual=False,
             'HLT_Ele12_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
             'HLT_Ele23_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
             'HLT_Ele33_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
-            'HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v',
-            'HLT_Ele17_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v',
-            'HLT_Ele16_Ele12_Ele8_CaloIdL_TrackIdL_v',
-            'HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_v',
-            'HLT_Ele17_Ele12_CaloIdL_TrackIdL_IsoVL_v',
-            'HLT_Ele23_CaloIdL_TrackIdL_IsoVL_v',
-            'HLT_Ele17_CaloIdL_TrackIdL_IsoVL_v',
-            'HLT_Ele12_CaloIdL_TrackIdL_IsoVL_v',
-            'HLT_Ele27_eta2p1_WPLoose_Gsf_HT200_v',
-            'HLT_Ele10_CaloIdM_TrackIdM_CentralPFJet30_BTagCSV0p54PF_v',
-            'HLT_Ele15_IsoVVVL_BTagCSV0p72_PFHT400_v',
-            'HLT_Ele15_IsoVVVL_PFHT350_PFMET50_v',
-            'HLT_Ele15_IsoVVVL_PFHT600_v',
-            'HLT_Ele15_IsoVVVL_PFHT350_v',
-            'HLT_Ele8_CaloIdM_TrackIdM_PFJet30_v',
             'HLT_Ele12_CaloIdM_TrackIdM_PFJet30_v',
             'HLT_Ele23_CaloIdM_TrackIdM_PFJet30_v',
             'HLT_Ele33_CaloIdM_TrackIdM_PFJet30_v',
             'HLT_Ele115_CaloIdVT_GsfTrkIdT_v',
-            'HLT_DoubleEle33_CaloIdL_GsfTrkIdVL_v',
+            'HLT_DoubleEle33_CaloIdL_GsfTrkIdVL_v'
         )
     )
     process.Baseline += process.TriggerProducer
     VectorInt.extend(['TriggerProducer:TriggerPass','TriggerProducer:TriggerPrescales'])
     VectorString.extend(['TriggerProducer:TriggerNames'])
+    VectorDouble.extend(['TriggerProducer:objectPt'])
+    VectorDouble.extend(['TriggerProducer:objecteta'])
+    VectorDouble.extend(['TriggerProducer:objectphi'])
+    VectorDouble.extend(['TriggerProducer:objectE'])
+     
+   
+   
     ''' 
     SkipTag = cms.VInputTag(
         cms.InputTag('LeptonsNew:IdIsoMuon'),
