@@ -72,6 +72,9 @@ PhotonIDisoProducer::PhotonIDisoProducer(const edm::ParameterSet& iConfig):
   produces< std::vector< double > >("passElectronVeto"); 
   produces< std::vector< bool > >("hadronization");
   produces< std::vector< bool > >("nonPrompt");
+  produces< std::vector< pat::Photon > >("SimplePhoton"); 
+
+
 }
 
 
@@ -98,7 +101,8 @@ PhotonIDisoProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   std::auto_ptr< std::vector< pat::Photon > > photons ( new std::vector< pat::Photon >() );
   std::auto_ptr< std::vector< pat::Photon > > bestPhoton ( new std::vector< pat::Photon >() );
   std::auto_ptr< std::vector< pat::Photon > > bestPhotonLoose ( new std::vector< pat::Photon >() );
-  
+  std::auto_ptr< std::vector< pat::Photon > > SimplePhoton ( new std::vector< pat::Photon >() );
+ 
   std::auto_ptr< int > NumPhotons ( new int(0) );
   std::auto_ptr< int > NumPhotonsLoose ( new int(0) );
 
@@ -169,6 +173,10 @@ PhotonIDisoProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       std::cout << "photon eta: " << iPhoton->eta() << std::endl;
       std::cout << "photon phi: " << iPhoton->phi() << std::endl;
     }
+
+
+        SimplePhoton->push_back( *iPhoton );// branch created by Muzamil
+
 
     photon_isEB->push_back( iPhoton->isEB() );
     photon_genMatched->push_back( iPhoton->genPhoton() != NULL );
@@ -348,6 +356,7 @@ if (genParticles.isValid()){//genLevel Stuff
   }// end loop over candidate photons
 
   iEvent.put(photons); 
+  iEvent.put(SimplePhoton, "SimplePhoton");
   iEvent.put(bestPhoton, "bestPhoton" ); 
   iEvent.put(NumPhotons, "NumPhotons" ); 
   iEvent.put(bestPhotonLoose, "bestPhotonLoose" ); 
