@@ -75,7 +75,7 @@ The first parameter, if used, tells the script to look at only the jobs which fi
 
 ## Calculate Integrated Luminosity
 
-Scripts are available to calculate the integrated luminosity from data ntuples (produced with TreeMaker):
+Scripts are available to calculate the integrated luminosity from data ntuples (produced with LeptoQuarkTreeMaker):
 ```
 python lumiSummary.py
 python calcLumi.py
