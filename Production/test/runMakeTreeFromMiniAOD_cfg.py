@@ -7,9 +7,9 @@ scenarioName=parameters.value("scenario","")
 outfile=parameters.value("outfile","test_run")
 dataset=parameters.value("dataset",[])
 nstart = parameters.value("nstart",0)
-nfiles = parameters.value("nfiles",1)
-#numevents=parameters.value("numevents",100)
-#reportfreq=parameters.value("reportfreq",10)
+nfiles = parameters.value("nfiles",-1)
+numevents=parameters.value("numevents",-1)
+reportfreq=parameters.value("reportfreq",1000)
 
 
 
@@ -23,12 +23,6 @@ signal=parameters.value("signal",scenario.signal)
 jsonfile=parameters.value("jsonfile",scenario.jsonfile)
 jecfile=parameters.value("jecfile",scenario.jecfile)
 residual=parameters.value("residual",scenario.residual)
-#jecfile=parameters.value("jecfile",scenario.jecfile)
-#residual=parameters.value("residual",scenario.residual)
-#geninfo=parameters.value("geninfo",scenario.geninfo)
-#tagname=parameters.value("tagname",scenario.tagname)
-#jsonfile=parameters.value("jsonfile",scenario.jsonfile)
-#globaltag=parameters.value("globaltag",scenario.globaltag)
 
 
 import FWCore.ParameterSet.Config as cms
@@ -55,6 +49,7 @@ if dataset!=[] :
     readFiles.extend( [dataset] )
 
 #temporary redirector fix
+#if fastsim: redir="root://cmseos.fnal.gov/"
 for f,val in enumerate(readFiles):
     if readFiles[f][0:6]=="/store":
         readFiles[f] = "root://cmsxrootd.fnal.gov/"+readFiles[f]
@@ -65,18 +60,26 @@ for f,val in enumerate(readFiles):
 from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.makeTreeFromMiniAOD_cff import makeTreeFromMiniAOD
 process = makeTreeFromMiniAOD(process,
     outfile=outfile,
-    #reportfreq=reportfreq ,
     dataset=readFiles ,
     globaltag=globaltag ,
-   # numevents=numevents ,
     geninfo=geninfo ,
     tagname=tagname ,
     jecfile=jecfile ,
     jsonfile=jsonfile ,
-    residual=residual
+    residual=residual,
+    fastsim=fastsim
 )
 
 
+#process.source = cms.Source("PoolSource",
+    # replace 'myfile.root' with the source file you want to use
+#    fileNames = cms.untracked.vstring(
+#        'file:2AC9FDED-4319-E511-AAF9-02163E011C20.root'
+#    )
+#)
+
+
+#process.p = cms.Path()
 
 
 # final tweaks to process
