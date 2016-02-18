@@ -13,7 +13,7 @@
 //
 //         Created:  Tue Nov 10 17:58:04 CET 2009
 // $Id: WeightProducer.cc,v 1.2 2012/10/04 18:17:16 mschrode Exp $
-//
+//Updated by Muzamil Ahmad Bhat
 //
 
 
