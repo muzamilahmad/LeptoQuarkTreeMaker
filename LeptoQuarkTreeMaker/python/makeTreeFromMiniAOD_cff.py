@@ -6,6 +6,7 @@ import sys,os
 def makeTreeFromMiniAOD(
 process,
 outfile,
+#reportfreq=10,
 dataset="",
 globaltag="",
 geninfo=False,
@@ -14,6 +15,7 @@ jsonfile="",
 jecfile="",
 doPDFs=False,
 residual=False,
+#numevents=-1,
 fastsim=False
 ):
 
@@ -31,7 +33,7 @@ fastsim=False
     # log output
     # log output
     process.load("FWCore.MessageService.MessageLogger_cfi")
-    process.MessageLogger.cerr.FwkReport.reportEvery = 1000
+    process.MessageLogger.cerr.FwkReport.reportEvery = 10
     process.options = cms.untracked.PSet(
         allowUnscheduled = cms.untracked.bool(True),
         wantSummary = cms.untracked.bool(True)
@@ -331,6 +333,27 @@ fastsim=False
         prescaleTagArg2  = cms.string(''),
         prescaleTagArg3  = cms.string(''),
         triggerNameList = cms.vstring( # list of trigger names
+            'HLT_Photon135_PFMET100_JetIdCleaned_v',
+            'HLT_Photon22_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon22_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon250_NoHE_v',
+            'HLT_Photon300_NoHE_v',
+            'HLT_Photon26_R9Id85_OR_CaloId24b40e_Iso50T80L_Photon16_AND_HE10_R9Id65_Eta2_Mass60_v',
+            'HLT_Photon36_R9Id85_OR_CaloId24b40e_Iso50T80L_Photon22_AND_HE10_R9Id65_Eta2_Mass15_v',
+            'HLT_Photon36_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon36_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon50_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon50_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon75_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon75_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon90_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon90_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon120_R9Id90_HE10_Iso40_EBOnly_PFMET40_v',
+            'HLT_Photon120_R9Id90_HE10_Iso40_EBOnly_VBF_v',
+            'HLT_Photon90_CaloIdL_PFHT500_v',
+            'HLT_Photon90_CaloIdL_PFHT600_v',
+            'HLT_Photon500_v',
+            'HLT_Photon600_v',
             'HLT_Photon22_v',
             'HLT_Photon30_v',
             'HLT_Photon36_v',
@@ -339,9 +362,13 @@ fastsim=False
             'HLT_Photon90_v',
             'HLT_Photon120_v',
             'HLT_Photon175_v',
+            'HLT_Photon165_HE10_v',
             'HLT_Ele22_eta2p1_WPLoose_Gsf_v',
             'HLT_Ele22_eta2p1_WPTight_Gsf_v',
+            'HLT_Ele30WP60_SC4_Mass55_v',
+            'HLT_Ele30WP60_Ele8_Mass55_v',
             'HLT_Ele23_WPLoose_Gsf_v',
+            'HLT_Ele27_WPLoose_Gsf_v',
             'HLT_Ele27_eta2p1_WPLoose_Gsf_v',
             'HLT_Ele27_eta2p1_WPTight_Gsf_v',
             'HLT_Ele32_eta2p1_WPTight_Gsf_v',
@@ -351,11 +378,23 @@ fastsim=False
             'HLT_Ele12_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
             'HLT_Ele23_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
             'HLT_Ele33_CaloIdL_TrackIdL_IsoVL_PFJet30_v',
+            'HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v',
+            'HLT_Ele17_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v',
+            'HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele17_Ele12_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele23_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele17_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele12_CaloIdL_TrackIdL_IsoVL_v',
+            'HLT_Ele27_eta2p1_WPLoose_Gsf_HT200_v',
+            'HLT_Ele15_IsoVVVL_PFHT350_PFMET50_v',
+            'HLT_Ele15_IsoVVVL_PFHT600_v',
+            'HLT_Ele15_IsoVVVL_PFHT350_v',
+            'HLT_Ele8_CaloIdM_TrackIdM_PFJet30_v',
             'HLT_Ele12_CaloIdM_TrackIdM_PFJet30_v',
             'HLT_Ele23_CaloIdM_TrackIdM_PFJet30_v',
             'HLT_Ele33_CaloIdM_TrackIdM_PFJet30_v',
             'HLT_Ele115_CaloIdVT_GsfTrkIdT_v',
-            'HLT_DoubleEle33_CaloIdL_GsfTrkIdVL_v'
+            'HLT_DoubleEle33_CaloIdL_GsfTrkIdVL_v',
         )
     )
     process.Baseline += process.TriggerProducer
