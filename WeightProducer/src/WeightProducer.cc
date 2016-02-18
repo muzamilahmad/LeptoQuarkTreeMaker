@@ -63,11 +63,13 @@ private:
   const double _NumberEvents;
   const double _lumi;
   edm::InputTag _weightName;
+  const std::string _mcVersion;
   TH1 *pu_central, *pu_up, *pu_down;
   double _weightFactor;
   bool _applyPUWeights;
   
   double getPUWeight(double trueint, TH1* pu) const;
+
 };
 
 WeightProducer::WeightProducer(const edm::ParameterSet& iConfig) :
@@ -77,6 +79,7 @@ WeightProducer::WeightProducer(const edm::ParameterSet& iConfig) :
    _NumberEvents(iConfig.getParameter<double> ("NumberEvts")),
    _lumi(iConfig.getParameter<double> ("Lumi")),
    _weightName(iConfig.getParameter<edm::InputTag> ("weightName")),
+   _mcVersion(iConfig.getParameter<std::string> ("mcVersion")),// line added by Muzamil
    pu_central(0), pu_up(0), pu_down(0)
 {
 
@@ -176,20 +179,23 @@ void WeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) 
         if(genweight_ < 0) resultWeight *= -1;
       }
    }
-
-   // Optionally, include PU weight
    edm::Handle<std::vector<PileupSummaryInfo> > puInfo;
-   iEvent.getByLabel("slimmedAddPileupInfo", puInfo);
-  //std::cout<<"Print test2 : "<<std::endl;
+std::cout<<_mcVersion<<std::endl;
+if(_mcVersion=="RunIISpring15DR74")           //These four lines have been added by Muzamil
+  iEvent.getByLabel("addPileupInfo", puInfo);
+else
+  iEvent.getByLabel("slimmedAddPileupInfo", puInfo);
+   // Optionally, include PU weight
+//   edm::Handle<std::vector<PileupSummaryInfo> > puInfo;
+ //  iEvent.getByLabel("slimmedAddPileupInfo", puInfo);
+//  iEvent.getByLabel("addPileupInfo", puInfo);
    if (_applyPUWeights && puInfo.isValid()){
-
-          std::cout<<"Print test2 : "<<std::endl;
 	   int _NumInt = 0;
 	   double _TrueNumInt = 0.;
 	   double _PUweightFactor = 1.;
        double _PUSysUp = 1.;
        double _PUSysDown = 1.;
-	   
+   
 	   //get PU info
        std::vector<PileupSummaryInfo>::const_iterator PVI;
        for(PVI = puInfo->begin(); PVI != puInfo->end(); ++PVI) {
@@ -197,14 +203,11 @@ void WeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) 
            if(PVI->getBunchCrossing()==0){
 		       _NumInt = PVI->getPU_NumInteractions();
 		       _TrueNumInt = PVI->getTrueNumInteractions();
-			   break;
+                	   break;
 		   }
 	   }	   
 	   
 	    _PUweightFactor = getPUWeight(_TrueNumInt,pu_central);
-
-             std::cout<<"PUweight: "<<_PUweightFactor<<std::endl;
-
 	    _PUSysUp = getPUWeight(_TrueNumInt,pu_up);
 	    _PUSysDown = getPUWeight(_TrueNumInt,pu_down);
 
@@ -225,6 +228,7 @@ void WeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) 
    }
 
    //---------------------------------------------------------------------------
+           std::cout << "Hii  am testing weightProducer code **************************" <<resultWeight<< std::endl;
 
    // put weight into the Event
    std::auto_ptr<double> pOut(new double(resultWeight));
