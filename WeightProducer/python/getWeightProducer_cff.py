@@ -62,6 +62,25 @@ def getWeightProducer(fileName):
         MCSample("WJetsToLNu_HT-800To1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 6.66, 1574633),
         MCSample("WJetsToLNu_HT-1200To2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 1.608, 255637),
         MCSample("WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 0.03891, 253036),
+
+        #Samples added by Muzamil
+        MCSample("QCD_Pt_30to50_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant", 140932000, 4957245),
+        MCSample("QCD_Pt_50to80_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant", 19204300, 4978425),
+        MCSample("QCD_Pt_80to120_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 2762530, 3424782),
+        MCSample("QCD_Pt_120to170_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 471100, 3452896),
+        MCSample("QCD_Pt_170to300_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant", 117276, 3364368),
+        MCSample("QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 7823, 2933611),
+        MCSample("QCD_Pt_470to600_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant", 648.2, 1936832),
+        MCSample("QCD_Pt_600to800_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v3", "RunIISpring15DR74", "Constant", 186.9, 1964128),
+        MCSample("QCD_Pt_800to1000_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant", 32.293, 1937216),
+        MCSample("QCD_Pt_1000to1400_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 9.4183, 1487136),
+        MCSample("QCD_Pt_1400to1800_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 0.84265, 197959),
+        MCSample("QCD_Pt_1800to2400_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 0.114943, 193608),
+        MCSample("QCD_Pt_2400to3200_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 0.00682981, 194456),
+        MCSample("QCD_Pt_3200toInf_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant",  0.000165445, 192944),
+        
+
+
         MCSample("QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant",   1717000, 18718905),
         MCSample("QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant",   351300, 19826197),
         MCSample("QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant",   31630, 19664159),
@@ -69,6 +88,14 @@ def getWeightProducer(fileName):
         MCSample("QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 1206, 4963895),
         MCSample("QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 120.4, 3868886),
         MCSample("QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant",  25.24, 1912529),
+
+        #Samples added by Muzamil
+        MCSample("QCD_Pt-30to50_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant",  136000000, 4695884),
+        MCSample("QCD_Pt-50to80_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 19800000, 5226884),
+        MCSample("QCD_Pt-80to120_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v3", "RunIISpring15DR74", "Constant", 2800000, 8130424),
+        MCSample("QCD_Pt-120to170_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 477000, 8499194),
+        MCSample("QCD_Pt-170to300_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant",  114000,5735584),
+        MCSample("QCD_Pt-300toInf_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant",   9000, 3696716),
         # DY/Z: k-factor of 1.23 applied
         MCSample("DYJetsToLL_M-50_HT-100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 183.1, 2725655),
         MCSample("DYJetsToLL_M-50_HT-200to400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 50.49, 973937),
@@ -79,6 +106,9 @@ def getWeightProducer(fileName):
         MCSample("ZJetsToNuNu_HT-200To400_13TeV-madgraph", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 95.23, 4998316),
         MCSample("ZJetsToNuNu_HT-400To600_13TeV-madgraph", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 13.19, 1018882),
         MCSample("ZJetsToNuNu_HT-600ToInf_13TeV-madgraph", "74X_mcRun2_asymptotic_v2-v2", "RunIISpring15MiniAODv2", "Constant", 5.063, 1008333),
+
+        #40-100_HT_Samples added by Muzamil
+        MCSample("GJets_HT-40To100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant", 20730, 4597996),
         MCSample("GJets_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 9226, 5015403),
         MCSample("GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 2300, 10424189),
         MCSample("GJets_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 277.4, 2476770),
@@ -122,13 +152,14 @@ def getWeightProducer(fileName):
     # loop over all samples until we find a match
     for sample in samples:
         if sample.name in fileName and sample.production in fileName:
-            mcVersion = sample.mcVersion
+            weightProducer.mcVersion = cms.string(sample.mcVersion)
             weightProducer.Method     = cms.string(sample.Method)
             weightProducer.XS         = cms.double(sample.XS)
             weightProducer.NumberEvts = cms.double(sample.NumberEvts)
             print sample.name+", "+sample.production+" : '"+fileName+"'"
             applyWeight = True
             weightProducer.weight = cms.double(-1.)
+            print "Hii I a testing the code dont know what is wrong"
             break
 	
     if applyWeight:
