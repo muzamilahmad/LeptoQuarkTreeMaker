@@ -180,7 +180,7 @@ void WeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) 
       }
    }
    edm::Handle<std::vector<PileupSummaryInfo> > puInfo;
-std::cout<<_mcVersion<<std::endl;
+//std::cout<<_mcVersion<<std::endl;
 if(_mcVersion=="RunIISpring15DR74")           //These four lines have been added by Muzamil
   iEvent.getByLabel("addPileupInfo", puInfo);
 else
@@ -228,7 +228,7 @@ else
    }
 
    //---------------------------------------------------------------------------
-           std::cout << "Hii  am testing weightProducer code **************************" <<resultWeight<< std::endl;
+  //         std::cout << "Hii  am testing weightProducer code **************************" <<resultWeight<< std::endl;
 
    // put weight into the Event
    std::auto_ptr<double> pOut(new double(resultWeight));
