@@ -98,6 +98,11 @@ def getWeightProducer(fileName):
         MCSample("QCD_Pt-120to170_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant", 477000, 8499194),
         MCSample("QCD_Pt-170to300_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant",  114000,5735584),
         MCSample("QCD_Pt-300toInf_EMEnriched_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant",   9000, 3696716),
+        #Diboson Samples added by Muzamil
+        MCSample("ZZ_TuneCUETP8M1_13TeV-pythia8", "Asympt25ns_MCRUN2_74_V9-v3", "RunIISpring15DR74", "Constant",  10.32, 996168),
+        MCSample("WW_TuneCUETP8M1_13TeV-pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant",  63.21, 994416),
+        MCSample("WZ_TuneCUETP8M1_13TeV-pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant",  22.82, 991232),
+
         # DY/Z: k-factor of 1.23 applied
         MCSample("DYJetsToLL_M-50_HT-100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 183.1, 2725655),
         MCSample("DYJetsToLL_M-50_HT-200to400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant", 50.49, 973937),
