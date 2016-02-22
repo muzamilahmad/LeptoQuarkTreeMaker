@@ -81,7 +81,8 @@ def getWeightProducer(fileName):
         MCSample("QCD_Pt_3200toInf_TuneCUETP8M1_13TeV_pythia8", "Asympt25ns_MCRUN2_74_V9-v1", "RunIISpring15DR74", "Constant",  0.000165445, 192944),
         
 
-
+        #Sample QCD_HT_100_200 added by Muzamil
+        MCSample("QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "Asympt25ns_MCRUN2_74_V9-v2", "RunIISpring15DR74", "Constant", 27540000, 80093092),
         MCSample("QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant",   1717000, 18718905),
         MCSample("QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant",   351300, 19826197),
         MCSample("QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "74X_mcRun2_asymptotic_v2-v1", "RunIISpring15MiniAODv2", "Constant",   31630, 19664159),
