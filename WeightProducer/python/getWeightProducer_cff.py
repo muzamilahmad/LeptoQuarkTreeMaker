@@ -174,7 +174,7 @@ def getWeightProducer(fileName):
             print sample.name+", "+sample.production+" : '"+fileName+"'"
             applyWeight = True
             weightProducer.weight = cms.double(-1.)
-            print "Hii I a testing the code dont know what is wrong"
+#            print "Hii I a testing the code dont know what is wrong"
             break
 	
     if applyWeight:
