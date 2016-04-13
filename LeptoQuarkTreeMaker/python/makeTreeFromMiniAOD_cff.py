@@ -10,7 +10,7 @@ outfile,
 dataset="",
 globaltag="",
 geninfo=False,
-tagname="PAT",
+tagname="RECO",
 jsonfile="",
 jecfile="",
 doPDFs=False,
@@ -271,6 +271,16 @@ fastsim=False
         VarsBool.extend(['eeBadSc4Filter'])
 
 
+    from LeptoQuarkTreeMaker.Utils.MuonProducer_cfi import MuonProducer
+    process.MuonProducer = MuonProducer.clone(
+        muontag = cms.InputTag('slimmedMuons')
+   # rhotag = cms.InputTag('fixedGridRhoFastjetAll')
+    )
+    process.Baseline += process.MuonProducer
+    VectorDouble.extend(['MuonProducer:Eta(Muon_Eta)'])
+    #VectorDouble.extend(['MounProducer:Et(Muon_Et)'])
+    VectorDouble.extend(['MuonProducer:mPt(Muon_Pt)'])
+    VectorDouble.extend(['MuonProducer:mPhi(Muon_Phi)'])
 
 
 
