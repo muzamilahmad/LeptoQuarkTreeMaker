@@ -23,6 +23,7 @@
 #include "DataFormats/PatCandidates/interface/Electron.h"
 #include "DataFormats/PatCandidates/interface/MET.h"
 #include "DataFormats/PatCandidates/interface/Muon.h"
+#include "DataFormats/PatCandidates/interface/Tau.h"
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 #include "TVector2.h"
@@ -48,6 +49,7 @@ class MuonProducer : public edm::EDProducer {
       virtual void endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
 
     edm::InputTag muontag_;
+    edm::InputTag tautag_;
 
 };
 
@@ -55,11 +57,18 @@ class MuonProducer : public edm::EDProducer {
 MuonProducer::MuonProducer(const edm::ParameterSet& iConfig)
 {
     muontag_  = iConfig.getParameter<edm::InputTag>( "muontag" );
+    tautag_  = iConfig.getParameter<edm::InputTag>( "tautag" );
+
     produces<std::vector<double>>( "Eta" );
- //   produces<std::vector<double>>( "Et" );
+   // produces<std::vector<int>>( "Charge" );
     produces<std::vector<double>>( "mPt");
     produces<std::vector<double>>( "mPhi");
+    produces<std::vector<int>>( "mCharge");
    
+    produces<std::vector<double>>( "tEta" );
+    produces<std::vector<double>>( "tPt");
+    produces<std::vector<double>>( "tPhi");
+
 
 }
 
@@ -75,31 +84,53 @@ void MuonProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     using namespace reco;
     using namespace std;
     edm::Handle<std::vector<pat::Muon> > muon;
+    edm::Handle<std::vector<pat::Tau> > tau;
 
 
     std::auto_ptr<std::vector<double> >Eta(new std::vector<double>());
-   // std::auto_ptr<std::vector<double> > Et(new std::vector<double>());
+  //  std::auto_ptr<std::vector<int> > Charge(new std::vector<int>());
     std::auto_ptr<std::vector<double> > mPt(new std::vector<double>());
     std::auto_ptr<std::vector<double> > mPhi(new std::vector<double>());
+    std::auto_ptr<std::vector<int> > mCharge(new std::vector<int>());
     
+    std::auto_ptr<std::vector<double> >tEta(new std::vector<double>());
+  //  std::auto_ptr<std::vector<int> > Charge(new std::vector<int>());
+    std::auto_ptr<std::vector<double> > tPt(new std::vector<double>());
+    std::auto_ptr<std::vector<double> > tPhi(new std::vector<double>());
 
 
 
 iEvent.getByLabel( muontag_, muon );
+iEvent.getByLabel( tautag_, tau );
+
+
 
     for(std::vector<pat::Muon>::const_iterator mu=muon->begin(); mu!=muon->end(); ++mu){
-
+    //cout<<mu->pt()<<"          "<<mu->charge()<<endl;
      Eta->push_back(mu->eta());
- //    Et->push_back(mu->et());
+     mCharge->push_back(mu->charge());
      mPt->push_back(mu->pt());
      mPhi->push_back(mu->phi());
 }
 
+
+     for(std::vector<pat::Tau>::const_iterator ta=tau->begin(); ta!=tau->end(); ++ta){
+
+    tEta->push_back(ta->eta());
+    tPt->push_back(ta->pt());
+    tPhi->push_back(ta->phi());
+               }
+               
+
       iEvent.put(Eta , "Eta");
-//      iEvent.put(Et , "Et");
+      iEvent.put(mCharge , "mCharge");
       iEvent.put(mPt , "mPt");
       iEvent.put(mPhi , "mPhi");
 
+      iEvent.put(tEta , "tEta");
+    //  iEvent.put(Charge , "Charge");
+      iEvent.put(tPt , "tPt");
+      iEvent.put(tPhi , "tPhi");
 
 
 }
