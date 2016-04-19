@@ -103,7 +103,10 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig)
     produces< std::vector< double > >("genEta");
     produces< std::vector< double > >("genPhi");
     produces< std::vector< double > >("genEnergy");
-    
+    produces<std::vector<double>>( "PtHEEP");
+    produces<std::vector<double>>( "scEta" );
+
+
     /*
     produces< std::vector< int > >("refpdgid");
     produces< std::vector< double > >("refe");
@@ -189,7 +192,11 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::auto_ptr<std::vector<double > >normalizedChi2 (new std::vector<double>());
     //std::auto_ptr<std::vector<double > >Phi (new std::vector<double>());
     //std::auto_ptr< std::vector< TLorentzVector > > genParticle( new std::vector< TLorentzVector > () );
-    
+    std::auto_ptr<std::vector<double > > PtHEEP(new std::vector<double>());
+    std::auto_ptr<std::vector<double> > scEta(new std::vector<double>());
+   
+
+     
     std::auto_ptr< std::vector< int > > PDGID( new std::vector< int > () );
     std::auto_ptr< std::vector< int > >gencharge( new std::vector< int > () );
     std::auto_ptr<std::vector<double > >genPt (new std::vector<double>());
@@ -218,12 +225,12 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 
     for(std::vector<pat::Electron>::const_iterator elect=electron->begin(); elect!=electron->end(); ++elect){
 
-if(elect->pt() > 10.0){//pt cut
+if(elect->pt() > 0.0){//pt cut
 
      Eta->push_back(elect->eta());
      //Phi->push_back(elect->phi());
      Et->push_back(elect->caloEnergy()*sin(elect->p4().theta()));
-     ecalDriven->push_back(elect->ecalDriven());
+     ecalDriven->push_back(elect->ecalDrivenSeed());
      DeltaEtain->push_back(elect->deltaEtaSuperClusterTrackAtVtx());
      DeltaPhiin->push_back(elect->deltaPhiSuperClusterTrackAtVtx());
      HbE->push_back(elect->hadronicOverEm());
@@ -250,12 +257,18 @@ if(elect->pt() > 10.0){//pt cut
      Phi->push_back(elect->phi());
      eEnergy->push_back(elect->energy());
      dxy->push_back(elect->gsfTrack()->dxy(vtx.position()));
-     losthits->push_back(elect->gsfTrack()->numberOfLostHits());
+     
+     constexpr reco::HitPattern::HitCategory missingHitType = reco::HitPattern::MISSING_INNER_HITS;
+     losthits->push_back(elect->gsfTrack()->hitPattern().numberOfHits(missingHitType));
+
+    //losthits->push_back(elect->gsfTrack()->numberOfLostHits());
      ePz->push_back(elect->pz());
      eTheta->push_back(elect->theta());
      ePx->push_back(elect->px());
      ePy->push_back(elect->py());
      normalizedChi2->push_back(elect->gsfTrack()->normalizedChi2());
+     PtHEEP-> push_back(elect->caloEnergy()*sin(elect->p4().theta()) );
+     scEta->push_back( elect->superCluster()->energy()/cosh(elect->superCluster()->eta()) );
 }//pt cut
 }
 
@@ -404,7 +417,8 @@ if(genParticles.isValid()) {//gen level stuff
       iEvent.put(genEnergy, "genEnergy");
       iEvent.put(motherPDGID, "motherPDGID");
       iEvent.put( elstatus, "elstatus");
-      
+      iEvent.put(PtHEEP, "PtHEEP");
+      iEvent.put(scEta, "scEta");
       /*
       iEvent.put(refpdgid, "refpdgid");
       iEvent.put(  refe, "  refe");
