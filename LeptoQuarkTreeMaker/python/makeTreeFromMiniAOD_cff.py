@@ -51,7 +51,7 @@ fastsim=False
     process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(dataset)
     )
-    
+    if len(jsonfile)>0: process.source.lumisToProcess = LumiList.LumiList(filename = jsonfile).getVLuminosityBlockRange() 
     # output file
 
     process.TFileService = cms.Service("TFileService",
@@ -278,16 +278,28 @@ fastsim=False
     )
     process.Baseline += process.MuonProducer
     VectorDouble.extend(['MuonProducer:Eta(Muon_Eta)'])
-    #VectorDouble.extend(['MounProducer:Et(Muon_Et)'])
+    VectorInt.extend(['MuonProducer:mCharge(Muon_Charge)'])
     VectorDouble.extend(['MuonProducer:mPt(Muon_Pt)'])
     VectorDouble.extend(['MuonProducer:mPhi(Muon_Phi)'])
-
-
+    VectorDouble.extend(['MuonProducer:tEta(Tau_Eta)'])
+    VectorDouble.extend(['MuonProducer:tPt(Tau_Pt)'])
+    VectorDouble.extend(['MuonProducer:tPhi(Tau_Phi)'])
+    '''
+    process.load('EgammaAnalysis.ElectronTools.calibratedElectronsRun2_cfi')
+    process.calibratedPatElectrons.electrons = cms.InputTag('slimmedElectrons')
+    process.calibratedPatElectrons.isMC = cms.bool(False)
+  
+    process.calibratedPatElectrons.correcionType = cms.string("Prompt2015")
+    process.calibratedPatElectrons.gbrForestName = cms.string("gedelectron_p4combination_25ns") 
+    process.Baseline += process.calibratedPatElectrons
+   '''
 
     from LeptoQuarkTreeMaker.Utils.HEEPProducer_cfi import HEEPProducer
     process.HEEPProducer = HEEPProducer.clone(
         eletag = cms.InputTag('slimmedElectrons')
-   # rhotag = cms.InputTag('fixedGridRhoFastjetAll')
+      #  eletag = cms.InputTag('calibratedPatElectrons')
+
+    # rhotag = cms.InputTag('fixedGridRhoFastjetAll')
     )
     process.Baseline += process.HEEPProducer
     VectorDouble.extend(['HEEPProducer:trackiso(Electron_trackiso)'])
@@ -333,6 +345,8 @@ fastsim=False
     VectorDouble.extend(['HEEPProducer:genEnergy(genEnergy)'])
     VectorInt.extend(['HEEPProducer:motherPDGID(motherPDGID)'])
     VectorInt.extend(['HEEPProducer:elstatus(elstatus)'])
+    VectorDouble.extend(['HEEPProducer:PtHEEP(Electron_PtHEEP)'])
+    VectorDouble.extend(['HEEPProducer:scEta(Electron_scEta)'])
 
     from LeptoQuarkTreeMaker.Utils.triggerproducer_cfi import triggerProducer
     process.TriggerProducer = triggerProducer.clone(
