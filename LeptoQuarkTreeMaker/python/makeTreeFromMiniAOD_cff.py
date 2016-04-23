@@ -6,7 +6,7 @@ import sys,os
 def makeTreeFromMiniAOD(
 process,
 outfile,
-#reportfreq=10,
+reportfreq=10,
 dataset="",
 globaltag="",
 geninfo=False,
@@ -15,7 +15,7 @@ jsonfile="",
 jecfile="",
 doPDFs=False,
 residual=False,
-#numevents=-1,
+numevents=-1,
 fastsim=False
 ):
 
@@ -33,7 +33,7 @@ fastsim=False
     # log output
     # log output
     process.load("FWCore.MessageService.MessageLogger_cfi")
-    process.MessageLogger.cerr.FwkReport.reportEvery = 10
+    process.MessageLogger.cerr.FwkReport.reportEvery = reportfreq 
     process.options = cms.untracked.PSet(
         allowUnscheduled = cms.untracked.bool(True),
         wantSummary = cms.untracked.bool(True)
@@ -42,15 +42,17 @@ fastsim=False
     # files to process
     import FWCore.PythonUtilities.LumiList as LumiList
     process.maxEvents = cms.untracked.PSet(
-        input = cms.untracked.int32(-1)
+        input = cms.untracked.int32(numevents)
     )
-
-
+    print " printing reportfreq and numevents ........."
+    print reportfreq 
+    print numevents
 
     # files to process
     process.source = cms.Source("PoolSource",
         fileNames = cms.untracked.vstring(dataset)
     )
+    print len(jsonfile)
     if len(jsonfile)>0: process.source.lumisToProcess = LumiList.LumiList(filename = jsonfile).getVLuminosityBlockRange() 
     # output file
 
@@ -441,20 +443,53 @@ fastsim=False
 
 
  
-
+    
     from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.makeJetVars import makeJetVars
     process = makeJetVars(process,
                           sequence="Baseline",
                           JetTag=JetTag,
                           suff='',
-                          fastsim=False,
+                   #       fastsim=False,
                           skipGoodJets=False,
                           storeProperties=2,
                           SkipTag=SkipTag
     )
 
+    
+    from LeptoQuarkTreeMaker.Utils.jetuncertainty_cfi import JetUncertaintyProducer
+    
+    #JEC unc up
+    process.patJetsJECup = JetUncertaintyProducer.clone(
+        JetTag = JetTag,
+        jecUncDir = cms.int32(1)
+    )
+    process.Baseline += process.patJetsJECup
+    #get the JEC factor and unc from here
+    VectorDouble.extend(['patJetsJECup:jecFactor(Jets_jecFactor)','patJetsJECup:jecUnc(Jets_jecUnc)'])
+    process = makeJetVars(process,
+                          sequence="Baseline",
+                          JetTag=cms.InputTag("patJetsJECup"),
+                          suff='JECup',
+                          skipGoodJets=False,
+                          storeProperties=1,
+                          SkipTag=SkipTag
+    )
 
-
+    #JEC unc down
+    process.patJetsJECdown = JetUncertaintyProducer.clone(
+        JetTag = JetTag,
+        jecUncDir = cms.int32(-1)
+    )
+    process.Baseline += process.patJetsJECdown
+    process = makeJetVars(process,
+                          sequence="Baseline",
+                          JetTag=cms.InputTag("patJetsJECdown"),
+                          suff='JECdown',
+                          skipGoodJets=False,
+                          storeProperties=1,
+                          SkipTag=SkipTag
+    )
+   
     from LeptoQuarkTreeMaker.Utils.metdouble_cfi import metdouble
     process.MET = metdouble.clone(
         METTag = cms.InputTag('slimmedMETs'), #METTag,
