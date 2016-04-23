@@ -10,7 +10,7 @@ nstart = parameters.value("nstart",0)
 nfiles = parameters.value("nfiles",-1)
 numevents=parameters.value("numevents",-1)
 reportfreq=parameters.value("reportfreq",10)
-
+doPDFs=parameters.value("doPDFs", True)
 
 
 from LeptoQuarkTreeMaker.Production.scenarios import Scenario
@@ -61,21 +61,35 @@ for f,val in enumerate(readFiles):
         readFiles[f] = "root://cmsxrootd.fnal.gov/"+readFiles[f]
 
 
+print "***** SETUP ************************************"
+print " dataset: "+str(readFiles)
+print " storing PDF weights: "+str(doPDFs)
+if scenario.known: print " scenario: "+scenarioName
+print " global tag: "+globaltag
+print " Instance name of tag information: "+tagname
+print " Including gen-level information: "+str(geninfo)
+print " Running signal uncertainties: "+str(signal)
+#print "length of json file is : "
+print len(jsonfile) 
+if len(jsonfile)>0: print " JSON file applied: "+jsonfile
+if len(jecfile)>0: print " JECs applied: "+jecfile+(" (residuals)" if residual else "")
+print "************************************************"
 
 
 from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.makeTreeFromMiniAOD_cff import makeTreeFromMiniAOD
 process = makeTreeFromMiniAOD(process,
     outfile=outfile,
-   # reportfreq=reportfreq ,
+    reportfreq=reportfreq ,
     dataset=readFiles ,
     globaltag=globaltag ,
-  #  numevents=numevents ,
+    numevents=numevents ,
     geninfo=geninfo ,
     tagname=tagname ,
     jecfile=jecfile ,
     jsonfile=jsonfile ,
     residual=residual,
-    fastsim=fastsim
+    fastsim=fastsim,
+    doPDFs=doPDFs
 )
 
 
