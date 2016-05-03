@@ -100,6 +100,29 @@ fastsim=False
        VarsDouble.extend(['WeightProducer:weight(Weight)','WeightProducer:xsec(CrossSection)','WeightProducer:nevents(NumEvents)',
                           'WeightProducer:TrueNumInteractions','WeightProducer:PUweight(puWeight)','WeightProducer:PUSysUp(puSysUp)','WeightProducer:PUSysDown(puSysDown)'])
        VarsInt.extend(['WeightProducer:NumInteractions'])
+       '''
+       from LeptoQuarkTreeMaker.Utils.JetEnergyResolution_cfi import JetEnergyResolution
+       process.JetEnergyResolution = JetEnergyResolution.clone(
+       jettag = cms.InputTag('slimmedJets')
+       #  eletag = cms.InputTag('calibratedPatElectrons')
+        # rhotag = cms.InputTag('fixedGridRhoFastjetAll')
+       )
+
+       process.Baseline += process.JetEnergyResolution
+       VectorDouble.extend(['JetEnergyResolution:JERPtCorr(JERPtCorr)'])
+              
+       VectorDouble.extend(['JetEnergyResolution:JEREnergyCorr(JEREnergyCorr)'])
+       VectorDouble.extend(['JetEnergyResolution:JERPtCorrSysUP(JERPtCorrSysUP)'])
+       VectorDouble.extend(['JetEnergyResolution:JEREnergyCorrSysUP(JEREnergyCorrSysUP)'])
+       VectorDouble.extend(['JetEnergyResolution:JERPtCorrSysDown(JERPtCorrSysDown)'])
+       VectorDouble.extend(['JetEnergyResolution:JEREnergyCorrSysDown(JEREnergyCorrSysDown)'])
+      
+       '''
+   
+
+
+
+
 
     ## ----------------------------------------------------------------------------------------------
     ## PDF weights for PDF systematics
@@ -109,9 +132,34 @@ fastsim=False
        process.Baseline += process.PDFWeights
        VectorDouble.extend(['PDFWeights:PDFweights','PDFWeights:ScaleWeights'])
        VectorInt.extend(['PDFWeights:PDFids'])
+
+
+    process.goodVertices = cms.EDFilter("VertexSelector",
+        src = cms.InputTag("offlineSlimmedPrimaryVertices"),
+        cut = cms.string("!isFake && ndof > 4 && abs(z) < 24 && position.Rho < 2"),
+        filter = cms.bool(False)
+    )
+    from LeptoQuarkTreeMaker.Utils.primaryvertices_cfi import primaryvertices
+    process.NVtx = primaryvertices.clone(
+        VertexCollection  = cms.InputTag('goodVertices'),
+    )
+    process.Baseline += process.NVtx
+    VarsInt.extend(['NVtx'])
+    # also store total number of vertices without quality checks
+    process.nAllVertices = primaryvertices.clone(
+        VertexCollection  = cms.InputTag('offlineSlimmedPrimaryVertices'),
+    )
+    process.Baseline += process.nAllVertices
+    VarsInt.extend(['nAllVertices'])
+
+
+
+
    
     JetTag = cms.InputTag('slimmedJets')
     METTag = cms.InputTag('slimmedMETs')
+ 
+   
     if len(jecfile)>0:
         #get name of JECs without any directories
         JECera = jecfile.split('/')[-1]
@@ -158,7 +206,7 @@ fastsim=False
         process.Baseline += process.patJetsReapplyJEC
 
         JetTag = cms.InputTag('patJetsReapplyJEC')
-
+       
         from PhysicsTools.PatUtils.tools.runMETCorrectionsAndUncertainties import runMetCorAndUncFromMiniAOD
         runMetCorAndUncFromMiniAOD(
             process,
@@ -348,7 +396,10 @@ fastsim=False
     VectorInt.extend(['HEEPProducer:motherPDGID(motherPDGID)'])
     VectorInt.extend(['HEEPProducer:elstatus(elstatus)'])
     VectorDouble.extend(['HEEPProducer:PtHEEP(Electron_PtHEEP)'])
+    VectorDouble.extend(['HEEPProducer:scEtaa(Electron_scEtaa)'])
     VectorDouble.extend(['HEEPProducer:scEta(Electron_scEta)'])
+
+
 
     from LeptoQuarkTreeMaker.Utils.triggerproducer_cfi import triggerProducer
     process.TriggerProducer = triggerProducer.clone(
@@ -443,7 +494,7 @@ fastsim=False
 
 
  
-    
+        
     from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.makeJetVars import makeJetVars
     process = makeJetVars(process,
                           sequence="Baseline",
@@ -454,6 +505,25 @@ fastsim=False
                           storeProperties=2,
                           SkipTag=SkipTag
     )
+
+    if geninfo:
+       from LeptoQuarkTreeMaker.Utils.JetEnergyResolution_cfi import JetEnergyResolution
+       process.JetEnergyResolution = JetEnergyResolution.clone(
+      # jettag = cms.InputTag('slimmedJets')
+       jettag = JetTag
+       )
+
+       process.Baseline += process.JetEnergyResolution
+       VectorDouble.extend(['JetEnergyResolution:JERPtCorr(JERPtCorr)'])
+
+       VectorDouble.extend(['JetEnergyResolution:JEREnergyCorr(JEREnergyCorr)'])
+       VectorDouble.extend(['JetEnergyResolution:JERPtCorrSysUP(JERPtCorrSysUP)'])
+       VectorDouble.extend(['JetEnergyResolution:JEREnergyCorrSysUP(JEREnergyCorrSysUP)'])
+       VectorDouble.extend(['JetEnergyResolution:JERPtCorrSysDown(JERPtCorrSysDown)'])
+       VectorDouble.extend(['JetEnergyResolution:JEREnergyCorrSysDown(JEREnergyCorrSysDown)'])
+       VectorDouble.extend(['JetEnergyResolution:JERPhi(JERPhi)'])
+       VectorDouble.extend(['JetEnergyResolution:JEREta(JEREta)'])
+
 
     
     from LeptoQuarkTreeMaker.Utils.jetuncertainty_cfi import JetUncertaintyProducer
@@ -489,7 +559,8 @@ fastsim=False
                           storeProperties=1,
                           SkipTag=SkipTag
     )
-   
+      
+
     from LeptoQuarkTreeMaker.Utils.metdouble_cfi import metdouble
     process.MET = metdouble.clone(
         METTag = cms.InputTag('slimmedMETs'), #METTag,
