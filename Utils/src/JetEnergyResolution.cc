@@ -119,6 +119,7 @@ for(edm::View<pat::Jet>::const_iterator jet=jets->begin(); jet!=jets->end(); ++j
 
 //syst= "nominal";
      smearfact = smear(pt, genpt, eta, "nominal");
+//std::cout<<smearfact<<std::endl;    
      ptCorr = pt * smearfact;
      energyCorr = energy * smearfact;
      JEREta->push_back(jet->eta());
@@ -172,13 +173,13 @@ double JetEnergyResolution::resolSF(double eta, std::string syst)
   if (syst == "nominal")fac = 0.;
   if (syst == "jer__up")fac = 1.;
   if (syst == "jer__down")fac = -1.;
-  if (eta <= 0.8)                       return 1.061 + (0.023 * fac);
-  else if ( eta > 0.8 && eta <= 1.3 )   return 1.088 + (0.029 * fac);
-  else if ( eta > 1.3 && eta <= 1.9 )   return 1.106 + (0.030 * fac);
-  else if ( eta > 1.9 && eta <= 2.5 )   return 1.126 + (0.094 * fac);
-  else if ( eta > 2.5 && eta <= 3.0 )   return 1.343 + (0.123 * fac);
-  else if ( eta > 3.0 && eta <= 3.2 )   return 1.303 + (0.111 * fac);
-  else if ( eta > 3.2 && eta <= 5.0 )   return 1.320 + (0.286 * fac);
+  if (eta <= 0.8)                       return 0.061 + (0.023 * fac);
+  else if ( eta > 0.8 && eta <= 1.3 )   return 0.088 + (0.029 * fac);
+  else if ( eta > 1.3 && eta <= 1.9 )   return 0.106 + (0.030 * fac);
+  else if ( eta > 1.9 && eta <= 2.5 )   return 0.126 + (0.094 * fac);
+  else if ( eta > 2.5 && eta <= 3.0 )   return 0.343 + (0.123 * fac);
+  else if ( eta > 3.0 && eta <= 3.2 )   return 0.303 + (0.111 * fac);
+  else if ( eta > 3.2 && eta <= 5.0 )   return 0.320 + (0.286 * fac);
   return 0.1;
 }
 
