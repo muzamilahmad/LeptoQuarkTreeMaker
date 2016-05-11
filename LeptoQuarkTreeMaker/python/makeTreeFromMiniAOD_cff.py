@@ -334,20 +334,33 @@ fastsim=False
     VectorDouble.extend(['MuonProducer:tEta(Tau_Eta)'])
     VectorDouble.extend(['MuonProducer:tPt(Tau_Pt)'])
     VectorDouble.extend(['MuonProducer:tPhi(Tau_Phi)'])
-    '''
+     
+    process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
+        calibratedPatElectrons = cms.PSet(
+        initialSeed = cms.untracked.uint32(1),
+        engineName = cms.untracked.string('TRandom3')
+        ),
+        calibratedElectrons = cms.PSet(
+        initialSeed = cms.untracked.uint32(1),
+        engineName = cms.untracked.string('TRandom3')
+        ),
+    )
+
+ 
     process.load('EgammaAnalysis.ElectronTools.calibratedElectronsRun2_cfi')
+    
     process.calibratedPatElectrons.electrons = cms.InputTag('slimmedElectrons')
-    process.calibratedPatElectrons.isMC = cms.bool(False)
-  
-    process.calibratedPatElectrons.correcionType = cms.string("Prompt2015")
-    process.calibratedPatElectrons.gbrForestName = cms.string("gedelectron_p4combination_25ns") 
+    process.calibratedPatElectrons.gbrForestName = cms.string("gedelectron_p4combination_25ns")
+    process.calibratedPatElectrons.isMC = cms.bool(True)
+    process.calibratedPatElectrons.isSynchronization = cms.bool(False)
+    process.calibratedPatElectrons.correctionFile = cms.string("Prompt2015")
     process.Baseline += process.calibratedPatElectrons
-   '''
+   
 
     from LeptoQuarkTreeMaker.Utils.HEEPProducer_cfi import HEEPProducer
     process.HEEPProducer = HEEPProducer.clone(
-        eletag = cms.InputTag('slimmedElectrons')
-      #  eletag = cms.InputTag('calibratedPatElectrons')
+      #  eletag = cms.InputTag('slimmedElectrons')
+        eletag = cms.InputTag('calibratedPatElectrons')
 
     # rhotag = cms.InputTag('fixedGridRhoFastjetAll')
     )
