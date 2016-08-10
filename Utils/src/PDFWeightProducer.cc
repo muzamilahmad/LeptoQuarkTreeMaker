@@ -99,7 +99,6 @@ void PDFWeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetu
   if(!found_weights){
     edm::Handle<GenEventInfoProduct> genHandle;
     iEvent.getByToken(genProductToken_, genHandle);
-
 	const std::vector<double>& genweights = genHandle->weights();
     // these numbers are hard-coded by the GenEventInfo (shifted by 1 wrt LHE)
     //renormalization/factorization scale weights
@@ -108,7 +107,8 @@ void PDFWeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetu
     }
     //pdf weights
     for (unsigned int i = 10; i < 111; i++){
-      pdfweights.push_back(genweights[i]/genweights[10]);
+
+       pdfweights.push_back(genweights[i]/genweights[10]);
       pdfids.push_back(i-10);
     }
   }

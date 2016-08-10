@@ -8,6 +8,7 @@
 //
 // Original Author:  Sam Bein,
 //         Created:  Wednesday June 24 2015
+//         Modified by Muzamil Ahmad Bhat and Bibhuprasad Mahakud 
 // system include files
 #include <memory>
 #include <algorithm>
@@ -25,7 +26,7 @@
 #include "DataFormats/Common/interface/TriggerResults.h"
 #include "FWCore/Common/interface/TriggerNames.h"
 #include "DataFormats/PatCandidates/interface/PackedTriggerPrescales.h"
-
+#include "DataFormats/PatCandidates/interface/TriggerObjectStandAlone.h"
 //
 // class declaration
 //
@@ -48,9 +49,13 @@ private:
   virtual void endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
   
   void GetInputTag(edm::InputTag& tag, std::string arg1, std::string arg2, std::string arg3, std::string arg1_default);
-  edm::InputTag trigResultsTag_, trigPrescalesTag_;
+  edm::InputTag trigResultsTag_;
+  edm::InputTag trigPrescalesTag_;
+  edm::InputTag objecttag_;
   edm::EDGetTokenT<edm::TriggerResults> trigResultsTok_;
   edm::EDGetTokenT<pat::PackedTriggerPrescales> trigPrescalesTok_;
+  edm::EDGetTokenT<pat::TriggerObjectStandAloneCollection> triggerObjectsTok_;//Vangelis
+ 
   std::vector<std::string> parsedTrigNamesVec;
 	
   // ----------member data ---------------------------
@@ -89,13 +94,29 @@ TriggerProducer::TriggerProducer(const edm::ParameterSet& iConfig)
               iConfig.getParameter <std::string> ("prescaleTagArg2"),
               iConfig.getParameter <std::string> ("prescaleTagArg3"),
               "patTrigger");
+ 
+/*  GetInputTag(objecttag_,
+              iConfig.getParameter <std::string> ("objecttag"),
+              iConfig.getParameter <std::string> ("objecttag"),
+              iConfig.getParameter <std::string> ("objecttag"),
+              "selectedPatTrigger");*/
+   trigResultsTok_ = consumes<edm::TriggerResults>(trigResultsTag_);
+   trigPrescalesTok_ = consumes<pat::PackedTriggerPrescales>(trigPrescalesTag_);
+//   triggerObjectsTok_ =  consumes<pat::TriggerObjectStandAloneCollection>(objecttag_);
+ 
+//triggerObjectsTok_ =  consumes<pat::TriggerObjectStandAloneCollection>(bjecttag_);
+triggerObjectsTok_ = (consumes<pat::TriggerObjectStandAloneCollection>(iConfig.getParameter<edm::InputTag>("objecttag")));
+//  triggerObjectsTok_ =  "selectedPatTrigger";
 
-  trigResultsTok_ = consumes<edm::TriggerResults>(trigResultsTag_);
-  trigPrescalesTok_ = consumes<pat::PackedTriggerPrescales>(trigPrescalesTag_);
+   produces<std::vector<std::string> >("TriggerNames");
+   produces<std::vector<int> >("TriggerPass");
+   produces<std::vector<int> >("TriggerPrescales");
+   produces<std::vector<std::string> >("FilterNames");
+   produces<std::vector<double> >("objectPt");
+   produces<std::vector<double> >("objecteta");
+   produces<std::vector<double> >("objectphi");
+   produces<std::vector<double> >("objectE");
 
-  produces<std::vector<std::string> >("TriggerNames");
-  produces<std::vector<int> >("TriggerPass");
-  produces<std::vector<int> >("TriggerPrescales");
 }
 
 
@@ -131,10 +152,27 @@ TriggerProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   std::auto_ptr<std::vector<int> > passTrigVec(new std::vector<int>(parsedTrigNamesVec.size(),-1));
   std::auto_ptr<std::vector<int> > trigPrescaleVec(new std::vector<int>(parsedTrigNamesVec.size(),1));
   std::auto_ptr<std::vector<std::string> > trigNamesVec(new std::vector<std::string>(parsedTrigNamesVec.size(),""));
+  std::auto_ptr<std::vector<double> >objectPt(new std::vector<double>());
+  std::auto_ptr<std::vector<double> >objecteta(new std::vector<double>());
+  std::auto_ptr<std::vector<double> >objectphi(new std::vector<double>());
+  std::auto_ptr<std::vector<double> >objectE(new std::vector<double>());
+  std::auto_ptr<std::vector<std::string> >FilterNames(new std::vector<std::string>());
+ 
 
-  //int passesTrigger;
+ //int passesTrigger;
+
+  edm::Handle<pat::TriggerObjectStandAloneCollection> triggerObjects;//Vangelis
+  iEvent.getByToken(triggerObjectsTok_, triggerObjects);//Vangelis
+
+
+
+
   edm::Handle<edm::TriggerResults> trigResults; //our trigger result object
   iEvent.getByToken(trigResultsTok_,trigResults);
+
+
+ // std::cout<<"Trig Tag:  "<<trigResultsTag_<<std::endl;
+
   const edm::TriggerNames& trigNames = iEvent.triggerNames(*trigResults);
   edm::Handle<pat::PackedTriggerPrescales> trigPrescales;
   iEvent.getByToken(trigPrescalesTok_,trigPrescales);
@@ -145,6 +183,7 @@ TriggerProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     trigNamesVec->at(parsedIndex) = parsedTrigNamesVec[parsedIndex];
     for(unsigned int trigIndex = 0; trigIndex < trigNames.size(); trigIndex++){
       testTriggerName = trigNames.triggerName(trigIndex);
+//std::cout<<testTriggerName<<std::endl; 
       if(testTriggerName.find(parsedTrigNamesVec.at(parsedIndex)) != std::string::npos){
         trigNamesVec->at(parsedIndex) = testTriggerName;
         passTrigVec->at(parsedIndex) = trigResults->accept(trigIndex);
@@ -155,9 +194,119 @@ TriggerProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     }
   }
 
+
+
+
+for (pat::TriggerObjectStandAlone obj : *triggerObjects) {
+     obj.unpackPathNames(trigNames);
+
+  if(obj.hasFilterLabel("hltEG22HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
+
+//std::cout<<"Hi I am testing the triggerproducer0"<<std::endl;
+  
+                 FilterNames->push_back("hltEG22HEFilter");
+	           objectPt->push_back( obj.pt());
+                   objecteta->push_back( obj.eta());
+                   objectphi->push_back( obj.phi());
+                   objectE->push_back( obj.energy());
+
+   }
+
+if(obj.hasFilterLabel("hltEG30HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
+//std::cout<<"Hi I am testing the triggerproducer1"<<std::endl;
+
+                   FilterNames->push_back("hltEG30HEFilter");
+                   objectPt->push_back( obj.pt());
+                   objecteta->push_back( obj.eta());
+                   objectphi->push_back( obj.phi());
+                   objectE->push_back( obj.energy());
+
+   }
+
+if(obj.hasFilterLabel("hltEG36HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
+
+//std::cout<<"Hi I am testing the triggerproducer2"<<std::endl;
+                   FilterNames->push_back("hltEG36HEFilter");
+                   objectPt->push_back( obj.pt());
+                   objecteta->push_back( obj.eta());
+                   objectphi->push_back( obj.phi());
+                   objectE->push_back( obj.energy());
+
+   }
+
+if(obj.hasFilterLabel("hltEG50HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
+//std::cout<<"Hi I am testing the triggerproducer3"<<std::endl;
+
+                   FilterNames->push_back("hltEG50HEFilter");
+                   objectPt->push_back( obj.pt());
+                   objecteta->push_back( obj.eta());
+                   objectphi->push_back( obj.phi());
+                   objectE->push_back( obj.energy());
+
+   }
+
+
+
+if(obj.hasFilterLabel("hltEG75HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
+//std::cout<<"Hi I am testing the triggerproducer4"<<std::endl;
+
+                   FilterNames->push_back("hltEG75HEFilter");
+                   objectPt->push_back( obj.pt());
+                   objecteta->push_back( obj.eta());
+                   objectphi->push_back( obj.phi());
+                   objectE->push_back( obj.energy());
+
+   }
+
+
+
+if(obj.hasFilterLabel("hltEG90HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
+//std::cout<<"Hi I am testing the triggerproducer5"<<std::endl;
+
+                   FilterNames->push_back("hltEG90HEFilter");
+                   objectPt->push_back( obj.pt());
+                   objecteta->push_back( obj.eta());
+                   objectphi->push_back( obj.phi());
+                   objectE->push_back( obj.energy());
+
+   }
+
+
+if(obj.hasFilterLabel("hltEG120HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
+//std::cout<<"Hi I am testing the triggerproducer6"<<std::endl;
+
+                   FilterNames->push_back("hltEG120HEFilter");
+                   objectPt->push_back( obj.pt());
+                   objecteta->push_back( obj.eta());
+                   objectphi->push_back( obj.phi());
+                   objectE->push_back( obj.energy());
+
+   }
+
+if(obj.hasFilterLabel("hltEG175HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
+//std::cout<<"Hi I am testing the triggerproducer7"<<std::endl;
+
+                   FilterNames->push_back("hltEG175HEFilter");
+                   objectPt->push_back( obj.pt());
+                   objecteta->push_back( obj.eta());
+                   objectphi->push_back( obj.phi());
+                   objectE->push_back( obj.energy());
+
+   }
+
+
+ }
+
+
+  iEvent.put(FilterNames,"FilterNames");
   iEvent.put(passTrigVec,"TriggerPass");
   iEvent.put(trigPrescaleVec,"TriggerPrescales");
   iEvent.put(trigNamesVec,"TriggerNames");
+  iEvent.put(objectPt, "objectPt");
+  iEvent.put(objecteta, "objecteta");
+  iEvent.put(objectphi, "objectphi");
+  iEvent.put(objectE, "objectE");
+ 
 }
 
 

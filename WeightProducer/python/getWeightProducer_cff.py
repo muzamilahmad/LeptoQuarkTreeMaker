@@ -25,7 +25,7 @@ def getWeightProducer(fileName,fastsim=False):
     ## --- Setup default WeightProducer ------------------------------------
     
     # Import weightProducer
-    from TreeMaker.WeightProducer.weightProducer_cfi import weightProducer
+    from LeptoQuarkTreeMaker.WeightProducer.weightProducer_cfi import weightProducer
     
     # Set default values to produce an event weight of 1
     weightProducer.weight = cms.double(1.0)
