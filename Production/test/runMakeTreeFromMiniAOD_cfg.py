@@ -6,8 +6,8 @@ inputFilesConfig=parameters.value("inputFilesConfig","")
 dataset=parameters.value("dataset",[])
 nstart = parameters.value("nstart",0)
 nfiles = parameters.value("nfiles",-1)
-numevents=parameters.value("numevents",100)
-reportfreq=parameters.value("reportfreq",10)
+numevents=parameters.value("numevents",-1)
+reportfreq=parameters.value("reportfreq",1000)
 outfile=parameters.value("outfile","test_run")
 
 # background estimations on by default
