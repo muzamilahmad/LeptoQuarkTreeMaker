@@ -7,7 +7,7 @@ dataset=parameters.value("dataset",[])
 nstart = parameters.value("nstart",0)
 nfiles = parameters.value("nfiles",-1)
 numevents=parameters.value("numevents",-1)
-reportfreq=parameters.value("reportfreq",1000)
+reportfreq=parameters.value("reportfreq",100)
 outfile=parameters.value("outfile","test_run")
 
 # background estimations on by default
@@ -25,14 +25,13 @@ scenario = Scenario(scenarioName)
 globaltag=parameters.value("globaltag",scenario.globaltag)
 tagname=parameters.value("tagname",scenario.tagname)
 geninfo=parameters.value("geninfo",scenario.geninfo)
+pmssm=parameters.value("pmssm",scenario.pmssm)
 fastsim=parameters.value("fastsim",scenario.fastsim)
 signal=parameters.value("signal",scenario.signal)
 jsonfile=parameters.value("jsonfile",scenario.jsonfile)
 jecfile=parameters.value("jecfile",scenario.jecfile)
 residual=parameters.value("residual",scenario.residual)
-#jerfile=parameters.value("jerfile",scenario.jerfile)
-jerfile=parameters.value("jerfile","data/jer/Spring16_25nsV6_MC")
-
+jerfile=parameters.value("jerfile",scenario.jerfile)
 pufile=parameters.value("pufile",scenario.pufile)
 era=parameters.value("era",scenario.era)
 
@@ -45,10 +44,8 @@ redir=parameters.value("redir", "root://cmseos.fnal.gov/" if fastsim and signal 
 import FWCore.ParameterSet.Config as cms
 from Configuration.StandardSequences.Eras import eras
 process = cms.Process("RA2EventSelection")
-if era=="Run2_25ns":
-    process = cms.Process("RA2EventSelection",eras.Run2_25ns)
-elif era=="Run2_50ns":
-    process = cms.Process("RA2EventSelection",eras.Run2_50ns)
+if len(era)>0:
+    process = cms.Process("RA2EventSelection",getattr(eras,era))
 
 # configure geometry & conditions
 process.load("Configuration.StandardSequences.GeometryRecoDB_cff")
@@ -75,21 +72,17 @@ for f,val in enumerate(readFiles):
 # print out settings
 print "***** SETUP ************************************"
 print " dataset: "+str(readFiles)
-#print " outfile: "+outfile
+print " outfile: "+outfile+"_RA2AnalysisTree"
 print " "
-#print " storing lostlepton variables: "+str(lostlepton)
-#print " storing hadtau variables: "+str(hadtau)
-#print " storing Zinv variables: "+str(doZinv)
 print " "
 print " storing PDF weights: "+str(doPDFs)
 print " "
-#print " storing track debugging variables: "+str(debugtracks)
-#print " Applying baseline selection filter: "+str(applybaseline)
 print " "
-if scenario.known: print " scenario: "+scenarioName
+print " scenario: "+scenarioName
 print " global tag: "+globaltag
 print " Instance name of tag information: "+tagname
 print " Including gen-level information: "+str(geninfo)
+print " Including pMSSM-related information: "+str(pmssm)
 print " Using fastsim settings: "+str(fastsim)
 print " Running signal uncertainties: "+str(signal)
 if len(jsonfile)>0: print " JSON file applied: "+jsonfile
