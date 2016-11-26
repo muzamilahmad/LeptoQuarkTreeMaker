@@ -9,7 +9,8 @@ outfile,
 reportfreq=10,
 dataset="",
 globaltag="",
-numevents=1000,
+numevents=-1,
+lostlepton=False,
 geninfo=False,
 tagname="RECO",
 jsonfile="",
@@ -63,7 +64,7 @@ signal=False,
     VectorString         = cms.vstring()
     VectorInt            = cms.vstring()
     VectorBool           = cms.vstring()
-
+    process.Baseline = cms.Sequence()
     # configure treemaker
     from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.treeMaker import TreeMaker
     process.LQTreeMaker2 = TreeMaker.clone(
@@ -87,8 +88,7 @@ signal=False,
 
     ## ----------------------------------------------------------------------------------------------
     ## SUSY scan info
-
-    
+    ## ----------------------------------------------------------------------------------------------
     ## ----------------------------------------------------------------------------------------------
     ## WeightProducer
     ## ----------------------------------------------------------------------------------------------
@@ -112,10 +112,6 @@ signal=False,
     ## ----------------------------------------------------------------------------------------------
     ## GenHT for stitching together MC samples
     ## ----------------------------------------------------------------------------------------------
-    if geninfo:
-        process.MadHT = cms.EDProducer('GenHTProducer')
-        # called madHT, i.e. MadGraph, to distinguish from GenHT from GenJets
-        VarsDouble.extend(['MadHT:genHT(madHT)'])
     
     ## ----------------------------------------------------------------------------------------------
     ## PrimaryVertices
@@ -230,42 +226,36 @@ signal=False,
         JetTag = JetTag,
         jecUncDir = cms.int32(0)
     )
-    _infosToAdd = ['jecUnc']
-    if geninfo:
-        # JER factors - central, up, down
-        from LeptoQuarkTreeMaker.Utils.smearedpatjet_cfi import SmearedPATJetProducer
-        process.jerFactor = SmearedPATJetProducer.clone(
-            src = JetTag,
-            variation = cms.int32(0),
-            store_factor = cms.bool(True)
-        )
-        process.jerFactorUp = SmearedPATJetProducer.clone(
-            src = JetTag,
-            variation = cms.int32(1),
-            store_factor = cms.bool(True)
-        )
-        process.jerFactorDown = SmearedPATJetProducer.clone(
-            src = JetTag,
-            variation = cms.int32(-1),
-            store_factor = cms.bool(True)
-        )
-        _infosToAdd.extend(['jerFactor','jerFactorUp','jerFactorDown'])
+    # JER factors - central, up, dow
+    
+    from LeptoQuarkTreeMaker.Utils.smearedpatjet_cfi import SmearedPATJetProducer
+    process.jerFactor = SmearedPATJetProducer.clone(
+        src = JetTag,
+        variation = cms.int32(0),
+        store_factor = cms.bool(True)
+    )
+    process.jerFactorUp = SmearedPATJetProducer.clone(
+        src = JetTag,
+        variation = cms.int32(1),
+        store_factor = cms.bool(True)
+    )
+    process.jerFactorDown = SmearedPATJetProducer.clone(
+        src = JetTag,
+        variation = cms.int32(-1),
+        store_factor = cms.bool(True)
+    )
+    
     # add userfloat & update tag
     from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.addJetInfo import addJetInfo
-    process, JetTag = addJetInfo(process, JetTag, _infosToAdd, [])
+    process, JetTag = addJetInfo(process, JetTag, ['jecUnc','jerFactor','jerFactorUp','jerFactorDown'], [])
 
     ## ----------------------------------------------------------------------------------------------
     ## IsoTracks
-
-    ## ----------------------------------------------------------------------------------------------
-    ## MET Filters
     ## ----------------------------------------------------------------------------------------------
     
-    # When the miniAOD file is created, the results of several different
-    # MET filters are save in a TriggerResults object for the PAT process
-    # Look at /PhysicsTools/PatAlgos/python/slimming/metFilterPaths_cff.py
-    # for the available filter flags
-
+    ## ----------------------------------------------------------------------------------------------
+    ## Electrons/Muons
+    ## ----------------------------------------------------------------------------------------------
     # The decision was made to include the filter decision flags
     # as individual branches in the tree
     
@@ -333,10 +323,7 @@ signal=False,
         process.BadPFMuonFilter.PFCandidates = cms.InputTag("packedPFCandidates")
         process.BadPFMuonFilter.taggingMode = True
         VarsBool.extend(['BadPFMuonFilter'])
-
-
-
-    
+    '''
     process.load('Configuration.StandardSequences.Services_cff')
     process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
                                                    calibratedPatElectrons  = cms.PSet( 
@@ -366,7 +353,7 @@ signal=False,
 
                                         correctionFile = cms.string("80Xapproval")
                                         )   
-    #process.Baseline += process.calibratedPatElectrons
+    process.Baseline += process.calibratedPatElectrons
 
     
     
@@ -374,7 +361,7 @@ signal=False,
     process.HEEPProducer = HEEPProducer.clone(
         eletag = cms.InputTag('slimmedElectrons')
     )
-    #process.Baseline += process.HEEPProducer
+    process.Baseline += process.HEEPProducer
     VectorDouble.extend(['HEEPProducer:trackiso(Electron_trackiso)'])
     VectorDouble.extend(['HEEPProducer:Eta(Electron_Eta)'])
     VectorDouble.extend(['HEEPProducer:Et(Electron_Et)'])
@@ -436,7 +423,7 @@ signal=False,
     process.MuonProducer = MuonProducer.clone(
         muontag = cms.InputTag('slimmedMuons')
     )
-    #process.Baseline += process.MuonProducer
+    process.Baseline += process.MuonProducer
 
     VectorBool.extend(['MuonProducer:MuonisTightMuon(MuonisTightMuon)'])
     VectorBool.extend(['MuonProducer:MuonisHighPtMuon(MuonisHighPtMuon)'])
@@ -474,15 +461,15 @@ signal=False,
     process.TauProducer = TauProducer.clone(
         tautag = cms.InputTag('slimmedTaus')
     )
-    #process.Baseline += process.TauProducer
+    process.Baseline += process.TauProducer
     VectorDouble.extend(['TauProducer:tEta(TauEta)'])
     VectorDouble.extend(['TauProducer:tPhi(TauPhi)'])
     VectorDouble.extend(['TauProducer:tPt(TauPt)'])
+
+    '''
+
+
     
-
-
-
-        
     ## ----------------------------------------------------------------------------------------------
     ## Triggers
     ## ----------------------------------------------------------------------------------------------
@@ -513,9 +500,16 @@ signal=False,
     VectorDouble.extend(['TriggerProducer:objecteta'])
     VectorDouble.extend(['TriggerProducer:objectphi'])
     VectorDouble.extend(['TriggerProducer:objectE'])
-    VectorDouble.extend(['TriggerProducer:ColumnNum'])
 
 
+    '''
+    if not geninfo:
+        from LeptoQuarkTreeMaker.Utils.prescaleweightproducer_cfi import prescaleweightProducer
+        process.PrescaleWeightProducer = prescaleweightProducer.clone()
+        VarsDouble.extend(['PrescaleWeightProducer:weight(PrescaleWeightHT)'])
+        VarsDouble.extend(['PrescaleWeightProducer:ht(HTOnline)'])
+        VarsDouble.extend(['PrescaleWeightProducer:mht(MHTOnline)'])
+    '''
     
     ## ----------------------------------------------------------------------------------------------
     ## JER smearing, various uncertainties
@@ -523,11 +517,17 @@ signal=False,
     
     # list of clean tags - ignore jet ID for jets matching these objects
     SkipTag = cms.VInputTag(
+       # cms.InputTag('LeptonsNew:IdIsoMuon'),
+       # cms.InputTag('LeptonsNew:IdIsoElectron'),
+       # cms.InputTag('IsolatedElectronTracksVeto'),
+       # cms.InputTag('IsolatedMuonTracksVeto'),
+       # cms.InputTag('IsolatedPionTracksVeto'),
     )
     
     # get the JERs (disabled by default)
     # this requires the user to download the .db file from this github
     # https://github.com/cms-jet/JRDatabase
+    ''' 
     if len(jerfile)>0:
         #get name of JERs without any directories
         JERera = jerfile.split('/')[-1]
@@ -552,11 +552,10 @@ signal=False,
         )
 
         process.es_prefer_jer = cms.ESPrefer('PoolDBESSource', 'jer')
-
+    '''
     # skip all jet smearing and uncertainties for data
-    from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.JetDepot import JetDepot          #........Uncomment it once you start running on MC datasets
+#    from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.JetDepot import JetDepot
     from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.makeJetVars import makeJetVars
-
     process = makeJetVars(process,
                           JetTag=JetTag,
                           suff='',
@@ -567,8 +566,10 @@ signal=False,
                           SkipTag=SkipTag
     )
 
-    
+ 
     if geninfo:
+        from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.JetDepot import JetDepot
+
         # JEC unc up
         process, JetTagJECup = JetDepot(process,
             JetTag=JetTag,
@@ -744,17 +745,16 @@ signal=False,
     process.JetsPropertiesAK8.bDiscriminatorSubjet2 = cms.vstring('SoftDrop','pfCombinedInclusiveSecondaryVertexV2BJetTags')
     process.JetsPropertiesAK8.bDiscriminatorCSV = cms.vstring('pfBoostedDoubleSecondaryVertexAK8BJetTags')
     #VectorRecoCand.extend([JetAK8Tag.value()+'(JetsAK8)'])
-    VectorDouble.extend(['JetsPropertiesAK8:prunedMass(JetsAK8_prunedMass)',
-                         'JetsPropertiesAK8:bDiscriminatorSubjet1(JetsAK8_bDiscriminatorSubjet1CSV)',
-                         'JetsPropertiesAK8:bDiscriminatorSubjet2(JetsAK8_bDiscriminatorSubjet2CSV)',
-                         'JetsPropertiesAK8:bDiscriminatorCSV(JetsAK8_doubleBDiscriminator)',
-                         'JetsPropertiesAK8:NsubjettinessTau1(JetsAK8_NsubjettinessTau1)',
-                         'JetsPropertiesAK8:NsubjettinessTau2(JetsAK8_NsubjettinessTau2)',
-                         'JetsPropertiesAK8:NsubjettinessTau3(JetsAK8_NsubjettinessTau3)'])
-    VectorInt.extend(['JetsPropertiesAK8:NumBhadrons(JetsAK8_NumBhadrons)',
-                      'JetsPropertiesAK8:NumChadrons(JetsAK8_NumChadrons)'])
-
-    '''
+    #VectorDouble.extend(['JetsPropertiesAK8:prunedMass(JetsAK8_prunedMass)',
+     #                    'JetsPropertiesAK8:bDiscriminatorSubjet1(JetsAK8_bDiscriminatorSubjet1CSV)',
+      #                   'JetsPropertiesAK8:bDiscriminatorSubjet2(JetsAK8_bDiscriminatorSubjet2CSV)',
+       #                  'JetsPropertiesAK8:bDiscriminatorCSV(JetsAK8_doubleBDiscriminator)',
+        #                 'JetsPropertiesAK8:NsubjettinessTau1(JetsAK8_NsubjettinessTau1)',
+         #                'JetsPropertiesAK8:NsubjettinessTau2(JetsAK8_NsubjettinessTau2)',
+          #               'JetsPropertiesAK8:NsubjettinessTau3(JetsAK8_NsubjettinessTau3)'])
+    #VectorInt.extend(['JetsPropertiesAK8:NumBhadrons(JetsAK8_NumBhadrons)',
+           #           'JetsPropertiesAK8:NumChadrons(JetsAK8_NumChadrons)'])
+    ''' 
     ## ----------------------------------------------------------------------------------------------
     ## GenJet variables
     ## ----------------------------------------------------------------------------------------------
@@ -769,31 +769,48 @@ signal=False,
             MinPt  = cms.double(30),
             MaxEta = cms.double(2.4),
         )
-        VectorBool.extend(['GenHTJets:SubJetMask(GenJets_HTMask)'])
+        #VectorBool.extend(['GenHTJets:SubJetMask(GenJets_HTMask)'])
         
         # make gen HT
         from LeptoQuarkTreeMaker.Utils.htdouble_cfi import htdouble
         process.GenHT = htdouble.clone(
             JetTag = cms.InputTag("GenHTJets"),
         )
-        VarsDouble.extend(['GenHT'])
+        #VarsDouble.extend(['GenHT'])
         
         process.GenMHTJets = SubGenJetSelection.clone(
             JetTag = cms.InputTag('slimmedGenJets'),
             MinPt  = cms.double(30),
             MaxEta = cms.double(5.0),
         )
-        VectorBool.extend(['GenMHTJets:SubJetMask(GenJets_MHTMask)'])
-        
+        #VectorBool.extend(['GenMHTJets:SubJetMask(GenJets_MHTMask)'])
+        ''' 
         # make gen MHT
-    
+        from LeptoQuarkTreeMaker.Utils.mhtdouble_cfi import mhtdouble
+        process.GenMHT = mhtdouble.clone(
+            JetTag  = cms.InputTag('GenMHTJets'),
+        )
+        VarsDouble.extend(['GenMHT:Pt(GenMHT)','GenMHT:Phi(GenMHTPhi)'])
+        '''
     ## ----------------------------------------------------------------------------------------------
     ## Baseline filters
     ## ----------------------------------------------------------------------------------------------
     # sequence for baseline filters
     process.Baseline = cms.Sequence()
+    '''
+    from LeptoQuarkTreeMaker.Utils.doublefilter_cfi import DoubleFilter
+    process.HTFilter = DoubleFilter.clone(
+        DoubleTag = cms.InputTag('HT'),
+        CutValue  = cms.double('500'),
+    )
+    process.MHTFilter = DoubleFilter.clone(
+        DoubleTag = cms.InputTag('MHT:Pt'),
+        CutValue  = cms.double('200'),
+    )
+    if applybaseline:
+        process.Baseline += process.HTFilter
         #process.Baseline += process.MHTFilter
-    
+    '''
     ## ----------------------------------------------------------------------------------------------
     ## MET
     ## ----------------------------------------------------------------------------------------------
@@ -804,12 +821,18 @@ signal=False,
         JetTag = cms.InputTag('HTJets'),
         geninfo = cms.untracked.bool(geninfo),
     )
-    VarsDouble.extend(['MET:Pt(MET)','MET:Phi(METPhi)','MET:CaloPt(CaloMET)','MET:CaloPhi(CaloMETPhi)','MET:PFCaloPtRatio(PFCaloMETRatio)'])
+    VarsDouble.extend(['MET:Pt(MET)','MET:Phi(METPhi)'])
     if geninfo:
         VarsDouble.extend(['MET:GenPt(GenMET)','MET:GenPhi(GenMETPhi)'])
         VectorDouble.extend(['MET:PtUp(METUp)', 'MET:PtDown(METDown)', 'MET:PhiUp(METPhiUp)', 'MET:PhiDown(METPhiDown)'])
-
-    
+    '''
+    from LeptoQuarkTreeMaker.Utils.mt2producer_cfi import mt2Producer
+    process.Mt2Producer = mt2Producer.clone(
+                JetTag  = cms.InputTag('MHTJets'),
+                METTag = METTag
+        )
+    VarsDouble.extend(['Mt2Producer:mt2(MT2)'])
+    '''
     ## ----------------------------------------------------------------------------------------------
     ## ----------------------------------------------------------------------------------------------
     ## Optional producers (background estimations, control regions)
@@ -819,19 +842,36 @@ signal=False,
     ## ----------------------------------------------------------------------------------------------
     ## Hadronic Tau Background
     ## ----------------------------------------------------------------------------------------------
+    '''
+    if hadtau:
+        from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.doHadTauBkg import doHadTauBkg
+        dorecluster = False
+        if hadtaurecluster==0: dorecluster = False
+        elif hadtaurecluster==1: dorecluster = ("TTJets" in process.source.fileNames[0] or "WJets" in process.source.fileNames[0])
+        elif hadtaurecluster==2: dorecluster = geninfo
+        elif hadtaurecluster==3: dorecluster = True
+        process = doHadTauBkg(process,geninfo,residual,JetTagBeforeSmearing,fastsim,dorecluster)
 
     ## ----------------------------------------------------------------------------------------------
     ## Lost Lepton Background
     ## ----------------------------------------------------------------------------------------------
+    if lostlepton:
+        from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.doLostLeptonBkg import doLostLeptonBkg
+        process = doLostLeptonBkg(process,geninfo,METTag)
+
+    ## ----------------------------------------------------------------------------------------------
     ## Zinv Background
     ## ----------------------------------------------------------------------------------------------
+    if doZinv:
+        from LeptoQuarkTreeMaker.LeptoQuarkTreeMaker.doZinvBkg import doZinvBkg
+        process = doZinvBkg(process,tagname,geninfo,residual,fastsim)
 
     ## ----------------------------------------------------------------------------------------------
     ## ----------------------------------------------------------------------------------------------
     ## Final steps
     ## ----------------------------------------------------------------------------------------------
     ## ----------------------------------------------------------------------------------------------
-
+    '''
     # create the process path
     process.dump = cms.EDAnalyzer("EventContentAnalyzer")
     process.WriteTree = cms.Path(
