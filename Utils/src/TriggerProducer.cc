@@ -6,9 +6,8 @@
 /**\class TriggerProducer TriggerProducer.cc RA2Classic/TriggerProducer/src/TriggerProducer.cc
  */
 //
-// Original Author:  Sam Bein,
-//         Created:  Wednesday June 24 2015
-//         Modified by Muzamil Ahmad Bhat and Bibhuprasad Mahakud 
+//         Created:  Wednesday Nonember 25 2016
+//         Modified by Muzamil Ahmad Bhat 
 // system include files
 #include <memory>
 #include <algorithm>
@@ -198,7 +197,7 @@ if(triggerObjects.isValid()){
 //std::cout<<"handle found"<<std::endl;
 }
 
-
+//*******************************************************************************************For L1 prescale**********************
    edm::Handle<BXVector<GlobalAlgBlk>> l1algo_handle;
   //  if (prescale_fallback_) {
       iEvent.getByLabel(edm::InputTag("gtStage2Digis"), l1algo_handle);
@@ -234,13 +233,13 @@ ColumnNum->push_back(column);
         passTrigVec->at(parsedIndex) = trigResults->accept(trigIndex);
         trigPrescaleVec->at(parsedIndex) = trigPrescales->getPrescaleForIndex(trigIndex);
          //std::cout<<"trigger path is    "<<testTriggerName<<std::endl;
-        const std::pair<std::vector<std::pair<std::string,int> >,int> prescalesInDetail(hltPrescaleProvider_.prescaleValuesInDetail(iEvent,iSetup,testTriggerName));  
+//        const std::pair<std::vector<std::pair<std::string,int> >,int> prescalesInDetail(hltPrescaleProvider_.prescaleValuesInDetail(iEvent,iSetup,testTriggerName));  
 //        const std::pair<std::vector<std::pair<std::string,int> >,int> prescalesInDetail(hltConfig_.prescaleValuesInDetail(iEvent,iSetup, testTriggerName));
           	    //l1pres->at(parsedIndex) = i
           	    //std::cout<<"L1 prescale is    "<<prescalesInDetail.first[0].second<<std::endl;
                    // cout<<prescalesInDetail.second<<endl;
-                    if(prescalesInDetail.second ==trigPrescales->getPrescaleForIndex(trigIndex)){
-                             std::cout<<"Yay I have succeeded in accessing the trigger information   "<<std::endl;}
+        //            if(prescalesInDetail.second ==trigPrescales->getPrescaleForIndex(trigIndex)){
+          //                   std::cout<<"Yay I have succeeded in accessing the trigger information   "<<std::endl;}
        
 
 
@@ -263,36 +262,11 @@ ColumnNum->push_back(column);
 
 
 for (pat::TriggerObjectStandAlone obj : *triggerObjects) {
-//const pat::TriggerObjectStandAloneCollection* triggerObjs =triggerObjects.product();
-//for(pat::TriggerObjectStandAloneCollection::const_iterator it = triggerObjs->begin() ; it !=triggerObjs->end() ; it++){
-//	 pat::TriggerObjectStandAlone *aObj = const_cast<pat::TriggerObjectStandAlone*>(&(*it));
-//if( aObj->hasFilterLabel("hltEG22HEFilter") && aObj->hasTriggerObjectType(trigger::TriggerPhoton)){
-//	   if ( deltaR( aObj->triggerObject().p4(), leg1->p4() )<0.5 )
-//std::cout<<"Hi I am testing the triggerproducer0"<<std::endl;
-//}
-
-
-//if( aObj->hasFilterLabel("hltEG30HEFilter") && aObj->hasTriggerObjectType(trigger::TriggerPhoton)){
-//         if ( deltaR( aObj->triggerObject().p4(), leg1->p4() )<0.5 )
-  //       std::cout<<"Hi I am testing the triggerproducer1"<<std::endl;
-    //     }
-         
 
 
 
      obj.unpackPathNames(trigNames);
 
-   //     std::vector<std::string> pathNamesAll  = obj.pathNames(false);
- //for (unsigned ih = 0, n = pathNamesAll.size(); ih < n; ++ih) {
-         // variab2 = pathNamesAll[ih].c_str();
-//std::cout<<pathNamesAll.at(ih)<<std::endl;
-//}
-
-
-
-
-
-//std::cout<<"Hi I am testing the triggerproducer0"<<std::endl;
 
   if(obj.hasFilterLabel("hltEG22HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
 
