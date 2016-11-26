@@ -4,7 +4,7 @@
 //        //
 //        // Original Author:  Muzamil Ahmad Bhat
 //        //         Created:  Thu, 17 Sep 2015 06:55:01 GMT
-//                   Updated on 10 Sep 2016
+//                   Updated by Bibhuprasad Mahakud
 //        //
 //        //
 //
@@ -251,7 +251,7 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      trackiso->push_back(elect->dr03TkSumPt());
      e25max->push_back(elect->e2x5Max());
      e55->push_back(elect->e5x5());
-     e25bye55->push_back((elect->e2x5Max())/(elect->e5x5()));
+     e25bye55->push_back((elect->e5x5() > 0) ? ((elect->e2x5Max())/(elect->e5x5())) : 0);
      DeltaEtaSeed->push_back(elect->deltaEtaSuperClusterTrackAtVtx()-elect->superCluster()->eta() + elect->superCluster()->seed()->eta());  
      Charge->push_back(elect->charge());
      ePt->push_back(elect->pt());
@@ -260,10 +260,10 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      full55SiEtaiEta->push_back(elect->full5x5_sigmaIetaIeta());
      sce25max->push_back(elect->scE2x5Max());
      sce55->push_back(elect->scE5x5());
-     sce25bye55->push_back(elect->scE2x5Max()/elect->scE5x5());
-     e15bye55->push_back((elect->e1x5())/(elect->e5x5()));
-     Fullsce25bye55->push_back(elect->full5x5_e2x5Max()/elect->full5x5_e5x5());
-     Fulle15bye55->push_back((elect->full5x5_e1x5())/(elect->full5x5_e5x5()));
+     sce25bye55->push_back((elect->scE5x5() > 0) ? (elect->scE2x5Max()/elect->scE5x5()) : 0);
+     e15bye55->push_back((elect->e5x5() > 0) ? ((elect->e1x5())/(elect->e5x5())) : 0 );
+     Fullsce25bye55->push_back((elect->full5x5_e5x5() > 0) ? (elect->full5x5_e2x5Max()/elect->full5x5_e5x5()) : 0);
+     Fulle15bye55->push_back((elect->full5x5_e5x5() > 0) ? ((elect->full5x5_e1x5())/(elect->full5x5_e5x5())) : 0);
      scEnergy->push_back(elect->superCluster()->energy() );
      DeltaEtaSeedscandTrack->push_back(elect->deltaEtaSeedClusterTrackAtVtx());
      Phi->push_back(elect->phi());
