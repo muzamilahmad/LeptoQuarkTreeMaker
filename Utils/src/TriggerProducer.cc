@@ -27,7 +27,27 @@
 #include "FWCore/Common/interface/TriggerNames.h"
 #include "DataFormats/PatCandidates/interface/PackedTriggerPrescales.h"
 #include "DataFormats/PatCandidates/interface/TriggerObjectStandAlone.h"
-//
+#include "HLTrigger/HLTcore/interface/HLTConfigProvider.h"
+#include "HLTrigger/HLTcore/interface/HLTPrescaleProvider.h"
+
+#include "L1Trigger/GlobalTriggerAnalyzer/interface/L1GtTrigReport.h"
+#include "CondFormats/L1TObjects/interface/L1GtTriggerMenu.h"
+#include "CondFormats/DataRecord/interface/L1GtTriggerMenuRcd.h"
+#include "L1Trigger/GlobalTriggerAnalyzer/interface/L1GtTrigReportEntry.h"
+#include "CondFormats/DataRecord/interface/L1GtStableParametersRcd.h"
+
+#include "DataFormats/L1GlobalTrigger/interface/L1GlobalTriggerReadoutRecord.h"
+#include "DataFormats/HLTReco/interface/TriggerEvent.h"
+#include "DataFormats/L1TGlobal/interface/GlobalAlgBlk.h"
+//#include "DataFormats/L1Trigger/interface/BXVector.h"
+
+#include <cassert>
+#include <string>
+#include<vector>
+
+using namespace CLHEP;
+using namespace trigger;
+using namespace math;
 // class declaration
 //
 
@@ -57,8 +77,12 @@ private:
   edm::EDGetTokenT<pat::TriggerObjectStandAloneCollection> triggerObjectsTok_;//Vangelis
  
   std::vector<std::string> parsedTrigNamesVec;
-	
-  // ----------member data ---------------------------
+   HLTPrescaleProvider hltPrescaleProvider_;
+//  HLTConfigProvider hltPrescaleProvider_;	
+ bool prescale_fallback_;
+HLTConfigProvider hlt_config_;
+
+ // ----------member data ---------------------------
 };
 
 //
@@ -72,8 +96,14 @@ private:
 //
 // constructors and destructor
 //
-TriggerProducer::TriggerProducer(const edm::ParameterSet& iConfig)
+TriggerProducer::TriggerProducer(const edm::ParameterSet& iConfig):
+hltPrescaleProvider_(iConfig, consumesCollector(), *this)
+// prescale_fallback_(iConfig.getParameter<bool>("prescaleFallback"))
 {
+
+//if (prescale_fallback_) {
+    consumes<BXVector<GlobalAlgBlk>>(edm::InputTag("gtStage2Digis"));
+ // }
   parsedTrigNamesVec = iConfig.getParameter <std::vector<std::string> > ("triggerNameList");
   //sort the trigger names
   std::sort(parsedTrigNamesVec.begin(), parsedTrigNamesVec.end());
@@ -103,9 +133,9 @@ TriggerProducer::TriggerProducer(const edm::ParameterSet& iConfig)
    trigResultsTok_ = consumes<edm::TriggerResults>(trigResultsTag_);
    trigPrescalesTok_ = consumes<pat::PackedTriggerPrescales>(trigPrescalesTag_);
 //   triggerObjectsTok_ =  consumes<pat::TriggerObjectStandAloneCollection>(objecttag_);
- 
+// hltPrescaleProvider_(iConfig, consumesCollector(), *this)
 //triggerObjectsTok_ =  consumes<pat::TriggerObjectStandAloneCollection>(bjecttag_);
-triggerObjectsTok_ = (consumes<pat::TriggerObjectStandAloneCollection>(iConfig.getParameter<edm::InputTag>("objecttag")));
+triggerObjectsTok_ = consumes<pat::TriggerObjectStandAloneCollection>(iConfig.getParameter<edm::InputTag>("objecttag"));
 //  triggerObjectsTok_ =  "selectedPatTrigger";
 
    produces<std::vector<std::string> >("TriggerNames");
@@ -116,7 +146,7 @@ triggerObjectsTok_ = (consumes<pat::TriggerObjectStandAloneCollection>(iConfig.g
    produces<std::vector<double> >("objecteta");
    produces<std::vector<double> >("objectphi");
    produces<std::vector<double> >("objectE");
-
+   produces<std::vector<double> >("ColumnNum");
 }
 
 
@@ -157,14 +187,24 @@ TriggerProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   std::auto_ptr<std::vector<double> >objectphi(new std::vector<double>());
   std::auto_ptr<std::vector<double> >objectE(new std::vector<double>());
   std::auto_ptr<std::vector<std::string> >FilterNames(new std::vector<std::string>());
- 
+  std::auto_ptr<std::vector<double> >ColumnNum(new std::vector<double>());
 
  //int passesTrigger;
 
   edm::Handle<pat::TriggerObjectStandAloneCollection> triggerObjects;//Vangelis
   iEvent.getByToken(triggerObjectsTok_, triggerObjects);//Vangelis
 
+if(triggerObjects.isValid()){
+//std::cout<<"handle found"<<std::endl;
+}
 
+
+   edm::Handle<BXVector<GlobalAlgBlk>> l1algo_handle;
+  //  if (prescale_fallback_) {
+      iEvent.getByLabel(edm::InputTag("gtStage2Digis"), l1algo_handle);
+   
+  //                           std::cout<<"Yay I have succeeded in accessing the trigger information   "<<std::endl;
+// }
 
 
   edm::Handle<edm::TriggerResults> trigResults; //our trigger result object
@@ -177,6 +217,11 @@ TriggerProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
   edm::Handle<pat::PackedTriggerPrescales> trigPrescales;
   iEvent.getByToken(trigPrescalesTok_,trigPrescales);
 
+
+double  column = l1algo_handle->at(0, 0).getPreScColumn();
+ColumnNum->push_back(column);
+// cout<<"column is   "<<column<<endl;
+
   //Find the matching triggers
   std::string testTriggerName;
   for(unsigned int parsedIndex = 0; parsedIndex < parsedTrigNamesVec.size(); parsedIndex++){
@@ -188,6 +233,26 @@ TriggerProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
         trigNamesVec->at(parsedIndex) = testTriggerName;
         passTrigVec->at(parsedIndex) = trigResults->accept(trigIndex);
         trigPrescaleVec->at(parsedIndex) = trigPrescales->getPrescaleForIndex(trigIndex);
+         //std::cout<<"trigger path is    "<<testTriggerName<<std::endl;
+        const std::pair<std::vector<std::pair<std::string,int> >,int> prescalesInDetail(hltPrescaleProvider_.prescaleValuesInDetail(iEvent,iSetup,testTriggerName));  
+//        const std::pair<std::vector<std::pair<std::string,int> >,int> prescalesInDetail(hltConfig_.prescaleValuesInDetail(iEvent,iSetup, testTriggerName));
+          	    //l1pres->at(parsedIndex) = i
+          	    //std::cout<<"L1 prescale is    "<<prescalesInDetail.first[0].second<<std::endl;
+                   // cout<<prescalesInDetail.second<<endl;
+                    if(prescalesInDetail.second ==trigPrescales->getPrescaleForIndex(trigIndex)){
+                             std::cout<<"Yay I have succeeded in accessing the trigger information   "<<std::endl;}
+       
+
+
+
+          //unsigned column = l1algo_handle->at(0, 0).getPreScColumn();
+        //if(column != 5)
+      //   cout<<"column is   "<<column<<"         "<<testTriggerName<<endl;
+        //  unsigned other_prescale = hlt_config_.prescaleValue(column, "L1_SingleEG18");
+  //        if(other_prescale !=1)
+    //       std::cout<<"other_prescale    "<<other_prescale<<std::endl;
+
+
         //std::cout << "Matched: " << testTriggerName << std::endl;
         break; //We only match one trigger to each trigger name fragment passed
       }
@@ -198,7 +263,36 @@ TriggerProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 
 
 for (pat::TriggerObjectStandAlone obj : *triggerObjects) {
+//const pat::TriggerObjectStandAloneCollection* triggerObjs =triggerObjects.product();
+//for(pat::TriggerObjectStandAloneCollection::const_iterator it = triggerObjs->begin() ; it !=triggerObjs->end() ; it++){
+//	 pat::TriggerObjectStandAlone *aObj = const_cast<pat::TriggerObjectStandAlone*>(&(*it));
+//if( aObj->hasFilterLabel("hltEG22HEFilter") && aObj->hasTriggerObjectType(trigger::TriggerPhoton)){
+//	   if ( deltaR( aObj->triggerObject().p4(), leg1->p4() )<0.5 )
+//std::cout<<"Hi I am testing the triggerproducer0"<<std::endl;
+//}
+
+
+//if( aObj->hasFilterLabel("hltEG30HEFilter") && aObj->hasTriggerObjectType(trigger::TriggerPhoton)){
+//         if ( deltaR( aObj->triggerObject().p4(), leg1->p4() )<0.5 )
+  //       std::cout<<"Hi I am testing the triggerproducer1"<<std::endl;
+    //     }
+         
+
+
+
      obj.unpackPathNames(trigNames);
+
+   //     std::vector<std::string> pathNamesAll  = obj.pathNames(false);
+ //for (unsigned ih = 0, n = pathNamesAll.size(); ih < n; ++ih) {
+         // variab2 = pathNamesAll[ih].c_str();
+//std::cout<<pathNamesAll.at(ih)<<std::endl;
+//}
+
+
+
+
+
+//std::cout<<"Hi I am testing the triggerproducer0"<<std::endl;
 
   if(obj.hasFilterLabel("hltEG22HEFilter") && obj.hasTriggerObjectType(trigger::TriggerPhoton)){
 
@@ -306,7 +400,7 @@ if(obj.hasFilterLabel("hltEG175HEFilter") && obj.hasTriggerObjectType(trigger::T
   iEvent.put(objecteta, "objecteta");
   iEvent.put(objectphi, "objectphi");
   iEvent.put(objectE, "objectE");
- 
+  iEvent.put(ColumnNum, "ColumnNum");
 }
 
 
