@@ -15,9 +15,9 @@ git cms-merge-topic -u cms-btv-pog:BoostedDoubleSVTaggerV3-WithWeightFiles-v1_fr
 git cms-merge-topic -u kpedro88:METfix8022
 git cms-merge-topic -u cms-met:CMSSW_8_0_X-METFilterUpdate
 git cms-merge-topic -u kpedro88:storeJERFactor8022
-git clone git@github.com:TreeMaker/TreeMaker.git -b Run2
+git clone https://github.com/muzamilahmad/LeptoQuarkTreeMaker
 scram b -j 8
-cd TreeMaker/Production/test
+cd LeptoQuarkTreeMaker/Production/test
 ```
 
 Several predefined scenarios are available for ease of production.
