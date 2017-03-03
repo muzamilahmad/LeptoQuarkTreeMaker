@@ -2,7 +2,7 @@
 
 ## Instructions (80X)
 
-The following installation instructions assume the user wants to process Spring16 MC (miniAOD v1 or v2 format) or Run2016 data.
+The following installation instructions assume the user wants to process Summer16 MC (miniAOD v1 or v2 format) or Run2016 data.
 
 ```
 cmsrel CMSSW_8_0_26_patch1
