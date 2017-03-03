@@ -18,6 +18,12 @@ git cms-merge-topic -u kpedro88:storeJERFactor8022
 git clone https://github.com/muzamilahmad/LeptoQuarkTreeMaker
 scram b -j 8
 cd LeptoQuarkTreeMaker/Production/test
+
+For electron and photon energy regression for 80X click on the link below
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/EGMRegression
+For HEEP ID follow the recipe from this twiki
+https://twiki.cern.ch/twiki/bin/view/CMS/HEEPElectronID
+
 ```
 
 Several predefined scenarios are available for ease of production.
