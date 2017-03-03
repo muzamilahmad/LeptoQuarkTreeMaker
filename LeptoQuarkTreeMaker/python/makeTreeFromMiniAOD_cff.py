@@ -349,7 +349,7 @@ signal=False,
                                                      ),
                                                    )
     process.load('EgammaAnalysis.ElectronTools.calibratedElectronsRun2_cfi')
-    correctionType = "80Xapproval"
+    correctionType = "Moriond2017_JEC "
     
     calibratedPatElectrons = cms.EDProducer("CalibratedPatElectronProducerRun2",
                                         
@@ -359,35 +359,49 @@ signal=False,
                                         
                                         # data or MC corrections
                                         # if isMC is false, data corrections are applied
-                                        isMC = cms.bool(False),
+                                        isMC = cms.bool(True),
                                         
                                         # set to True to get special "fake" smearing for synchronization. Use JUST in case of synchronization
-                                        isSynchronization = cms.bool(False),
+                                        isSynchronization = cms.bool(True),
 
-                                        correctionFile = cms.string("80Xapproval")
+                                        correctionFile = cms.string("Moriond2017_JEC ")
                                         )   
     #process.Baseline += process.calibratedPatElectrons
+    from PhysicsTools.SelectorUtils.tools.vid_id_tools import *
+    switchOnVIDElectronIdProducer(process, DataFormat.MiniAOD)
+    my_id_modules = []
+    my_id_modules.append('RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_Spring15_25ns_V1_cff')
+    my_id_modules.append('RecoEgamma.ElectronIdentification.Identification.heepElectronID_HEEPV60_cff') 
+    my_id_modules.append('RecoEgamma.ElectronIdentification.Identification.heepElectronID_HEEPV70_cff')
+    my_id_modules.append('RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Spring15_25ns_nonTrig_V1_cff')
+    for idmod in my_id_modules:
+        setupAllVIDIdsInModule(process,idmod,setupVIDElectronSelection)
+
+    process.egmGsfElectronIDs.physicsObjectSrc     = cms.InputTag('calibratedPatElectrons')
+    process.electronMVAValueMapProducer.srcMiniAOD = cms.InputTag('calibratedPatElectrons')
+    process.heepIDVarValueMaps.elesMiniAOD  = cms.InputTag('calibratedPatElectrons')
+    process.electronRegressionValueMapProducer.srcMiniAOD = cms.InputTag('calibratedPatElectrons')
 
     
     
     from LeptoQuarkTreeMaker.Utils.HEEPProducer_cfi import HEEPProducer
     process.HEEPProducer = HEEPProducer.clone(
-        eletag = cms.InputTag('slimmedElectrons')
+        eletag = cms.InputTag('calibratedPatElectrons')
     )
     #process.Baseline += process.HEEPProducer
     VectorDouble.extend(['HEEPProducer:trackiso(Electron_trackiso)'])
-    VectorDouble.extend(['HEEPProducer:Eta(Electron_Eta)'])
+    #VectorDouble.extend(['HEEPProducer:Eta(Electron_Eta)'])
     VectorDouble.extend(['HEEPProducer:Et(Electron_Et)'])
     VectorDouble.extend(['HEEPProducer:DeltaEtain(Electron_DeltaEtain)'])
     VectorDouble.extend(['HEEPProducer:DeltaPhiin(Electron_DeltaPhiin)'])
     VectorDouble.extend(['HEEPProducer:HbE(Electron_HOverE)'])
-    VectorDouble.extend(['HEEPProducer:SiEtaiEta(Electron_SiEtaiEta)'])
+    #VectorDouble.extend(['HEEPProducer:SiEtaiEta(Electron_SiEtaiEta)'])
     VectorDouble.extend(['HEEPProducer:Ecaliso(Electron_Ecaliso)'])
     VectorDouble.extend(['HEEPProducer:HD1iso(Electron_HD1iso)'])
-    VectorDouble.extend(['HEEPProducer:HD2iso(Electron_HD2iso)'])
+    #VectorDouble.extend(['HEEPProducer:HD2iso(Electron_HD2iso)'])
     VectorBool.extend(['HEEPProducer:ecalDriven(Electron_ecalDriven)'])
-    VectorDouble.extend(['HEEPProducer:e25max(Electron_e25max)'])
-    VectorDouble.extend(['HEEPProducer:e55(Electron_e55)'])
+    #VectorDouble.extend(['HEEPProducer:e25max(Electron_e25max)'])
+    #VectorDouble.extend(['HEEPProducer:e55(Electron_e55)'])
     VectorDouble.extend(['HEEPProducer:e25bye55(Electron_e25bye55)'])
     VectorDouble.extend(['HEEPProducer:Fullsce25bye55(Electron_Fullsce25bye55)'])
     VectorDouble.extend(['HEEPProducer:Fulle15bye55(Electron_Fulle15bye55)'])
@@ -395,24 +409,24 @@ signal=False,
     VectorDouble.extend(['HEEPProducer:DeltaEtaSeed(Electron_DeltaEtaSeed)'])
     VectorDouble.extend(['HEEPProducer:rho(rho)'])
     VectorInt.extend(['HEEPProducer:Charge(Electron_Charge)'])
-    VectorDouble.extend(['HEEPProducer:ePt(Electron_Pt)'])
-    VectorDouble.extend(['HEEPProducer:e15(Electron_e15)'])
+    #VectorDouble.extend(['HEEPProducer:ePt(Electron_Pt)'])
+    #VectorDouble.extend(['HEEPProducer:e15(Electron_e15)'])
     VectorDouble.extend(['HEEPProducer:ecalEnergy(Electron_ecalEnergy)'])
     VectorDouble.extend(['HEEPProducer:full55SiEtaiEta(Electron_full55SiEtaiEta)'])
-    VectorDouble.extend(['HEEPProducer:sce25max(Electron_sce25max)'])
-    VectorDouble.extend(['HEEPProducer:sce55(Electron_sce55)'])
+    #VectorDouble.extend(['HEEPProducer:sce25max(Electron_sce25max)'])
+    #VectorDouble.extend(['HEEPProducer:sce55(Electron_sce55)'])
     VectorDouble.extend(['HEEPProducer:sce25bye55(Electron_sce25bye55)'])
     VectorDouble.extend(['HEEPProducer:e15bye55(Electron_e15bye55)'])
-    VectorDouble.extend(['HEEPProducer:DeltaEtaSeedscandTrack(Electron_DeltaEtaSeedscandTrack)'])
+    #VectorDouble.extend(['HEEPProducer:DeltaEtaSeedscandTrack(Electron_DeltaEtaSeedscandTrack)'])
     VectorDouble.extend(['HEEPProducer:Phi(Electron_Phi)'])
     VectorDouble.extend(['HEEPProducer:eEnergy(Electron_Energy)'])
     VectorDouble.extend(['HEEPProducer:dxy(dxy)'])
     VectorInt.extend(['HEEPProducer:losthits(Electron_losthits)'])
     VectorDouble.extend(['HEEPProducer:ePz(Electron_Pz)'])
-    VectorDouble.extend(['HEEPProducer:eTheta(Electron_Theta)'])
+    #VectorDouble.extend(['HEEPProducer:eTheta(Electron_Theta)'])
     VectorDouble.extend(['HEEPProducer:ePx(Electron_Px)'])
     VectorDouble.extend(['HEEPProducer:ePy(Electron_Py)'])
-    VectorDouble.extend(['HEEPProducer:normalizedChi2(Electron_normalizedChi2)'])
+    #VectorDouble.extend(['HEEPProducer:normalizedChi2(Electron_normalizedChi2)'])
     VectorInt.extend(['HEEPProducer:PDGID(PDGID)'])
     VectorInt.extend(['HEEPProducer:gencharge(gencharge)'])
     VectorDouble.extend(['HEEPProducer:genPt(genPt)'])
@@ -422,13 +436,33 @@ signal=False,
     VectorInt.extend(['HEEPProducer:motherPDGID(motherPDGID)'])
     VectorInt.extend(['HEEPProducer:elstatus(elstatus)'])
     VectorDouble.extend(['HEEPProducer:PtHEEP(Electron_PtHEEP)'])
-    VectorDouble.extend(['HEEPProducer:scEtaa(Electron_scEtaa)'])
+    #VectorDouble.extend(['HEEPProducer:scEtaa(Electron_scEtaa)'])
     VectorDouble.extend(['HEEPProducer:scEta(Electron_scEta)'])
+    VectorDouble.extend(['HEEPProducer:heep70TrkIso(Electron_heep70TrkIso)'])
+    VectorBool.extend(['HEEPProducer:passEMHD1iso(Electron_passEMHD1iso)'])
+    
+    '''
+    VectorBool.extend(['HEEPProducer:passShowerShape(Electron_passShowerShape)'])
+    VectorBool.extend(['HEEPProducer:passDeltaEta(Electron_passDeltaEta)'])
+    VectorBool.extend(['HEEPProducer:passDeltaPhi(Electron_passDeltaPhi)'])
+    VectorBool.extend(['HEEPProducer:passEMHD1iso(Electron_passEMHD1iso)'])
+    VectorBool.extend(['HEEPProducer:passHoverE(Electron_passHoverE)'])
+    VectorBool.extend(['HEEPProducer:passDXY(Electron_passDXY)'])
+    VectorBool.extend(['HEEPProducer:passMissingHits(Electron_passMissingHits)'])
+    '''
+    VectorBool.extend(['HEEPProducer:passEcaldriven(Electron_passEcaldriven)'])
+    VectorBool.extend(['HEEPProducer:passN1TrkIso(Electron_passN1TrkIso)'])
     
 
 
 
-    ## ----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
     ## Muons
     ## ----------------------------------------------------------------------------------------------
 
@@ -438,32 +472,32 @@ signal=False,
     )
     #process.Baseline += process.MuonProducer
 
-    VectorBool.extend(['MuonProducer:MuonisTightMuon(MuonisTightMuon)'])
-    VectorBool.extend(['MuonProducer:MuonisHighPtMuon(MuonisHighPtMuon)'])
+    #VectorBool.extend(['MuonProducer:MuonisTightMuon(MuonisTightMuon)'])
+    #VectorBool.extend(['MuonProducer:MuonisHighPtMuon(MuonisHighPtMuon)'])
     VectorDouble.extend(['MuonProducer:MuonEta(MuonEta)'])
     VectorDouble.extend(['MuonProducer:MuonPhi(MuonPhi)'])
     VectorDouble.extend(['MuonProducer:MuonPt(MuonPt)'])
     VectorDouble.extend(['MuonProducer:MuonEnergy(MuonEnergy)'])
-    VectorDouble.extend(['MuonProducer:MuonPtError(MuonPtError)'])
-    VectorDouble.extend(['MuonProducer:MuonGlobalChi2(MuonGlobalChi2)'])
-    VectorDouble.extend(['MuonProducer:MuonTrkPtError(MuonTrkPtError)'])
-    VectorInt.extend(['MuonProducer:MuonIsPF(MuonIsPF)'])
-    VectorInt.extend(['MuonProducer:MuonCharge(MuonCharge)'])
-    VectorInt.extend(['MuonProducer:MuonGlobalTrkValidHits(MuonGlobalTrkValidHits)'])
-    VectorInt.extend(['MuonProducer:MuonTrkPixelHits(MuonTrkPixelHits)'])
-    VectorInt.extend(['MuonProducer:MuonStationMatches(MuonStationMatches)'])
-    VectorDouble.extend(['MuonProducer:MuonPFIsoR04Photon(MuonPFIsoR04Photon)'])
-    VectorDouble.extend(['MuonProducer:MuonPFIsoR04NeutralHadron(MuonPFIsoR04NeutralHadron)'])
-    VectorDouble.extend(['MuonProducer:MuonPFIsoR04PU(MuonPFIsoR04PU)'])
-    VectorDouble.extend(['MuonProducer:MuonTrackerIsoSumPT(MuonTrackerIsoSumPT)'])
-    VectorDouble.extend(['MuonProducer:MuonPFIsoR04ChargedHadron(MuonPFIsoR04ChargedHadron)'])
+    #VectorDouble.extend(['MuonProducer:MuonPtError(MuonPtError)'])
+    #VectorDouble.extend(['MuonProducer:MuonGlobalChi2(MuonGlobalChi2)'])
+    #VectorDouble.extend(['MuonProducer:MuonTrkPtError(MuonTrkPtError)'])
+    #VectorInt.extend(['MuonProducer:MuonIsPF(MuonIsPF)'])
+    #VectorInt.extend(['MuonProducer:MuonCharge(MuonCharge)'])
+    #VectorInt.extend(['MuonProducer:MuonGlobalTrkValidHits(MuonGlobalTrkValidHits)'])
+    #VectorInt.extend(['MuonProducer:MuonTrkPixelHits(MuonTrkPixelHits)'])
+    #VectorInt.extend(['MuonProducer:MuonStationMatches(MuonStationMatches)'])
+    #VectorDouble.extend(['MuonProducer:MuonPFIsoR04Photon(MuonPFIsoR04Photon)'])
+    #VectorDouble.extend(['MuonProducer:MuonPFIsoR04NeutralHadron(MuonPFIsoR04NeutralHadron)'])
+    #VectorDouble.extend(['MuonProducer:MuonPFIsoR04PU(MuonPFIsoR04PU)'])
+    #VectorDouble.extend(['MuonProducer:MuonTrackerIsoSumPT(MuonTrackerIsoSumPT)'])
+    #VectorDouble.extend(['MuonProducer:MuonPFIsoR04ChargedHadron(MuonPFIsoR04ChargedHadron)'])
     VectorInt.extend(['MuonProducer:MuonPassID(MuonPassID)'])
     VectorInt.extend(['MuonProducer:MuonIsGlobal(MuonIsGlobal)'])
-    VectorInt.extend(['MuonProducer:MuonTrackLayersWithMeasurement(MuonTrackLayersWithMeasurement)'])
-    VectorDouble.extend(['MuonProducer:CocktailEta(CocktailPtError)'])
-    VectorDouble.extend(['MuonProducer:CocktailPt(CocktailPt)'])
-    VectorDouble.extend(['MuonProducer:MuonBestTrackVtxDistXY(MuonBestTrackVtxDistXY)'])
-    VectorDouble.extend(['MuonProducer:MuonBestTrackVtxDistZ(MuonBestTrackVtxDistZ)'])
+    #VectorInt.extend(['MuonProducer:MuonTrackLayersWithMeasurement(MuonTrackLayersWithMeasurement)'])
+    #VectorDouble.extend(['MuonProducer:CocktailEta(CocktailPtError)'])
+    #VectorDouble.extend(['MuonProducer:CocktailPt(CocktailPt)'])
+    #VectorDouble.extend(['MuonProducer:MuonBestTrackVtxDistXY(MuonBestTrackVtxDistXY)'])
+    #VectorDouble.extend(['MuonProducer:MuonBestTrackVtxDistZ(MuonBestTrackVtxDistZ)'])
 
     ## ----------------------------------------------------------------------------------------------
     ## Taus
