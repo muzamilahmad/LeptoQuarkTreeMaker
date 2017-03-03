@@ -3,8 +3,8 @@
 //        */
 //        //
 //        // Original Author:  Muzamil Ahmad Bhat
-//        //         Created:  Thu, 17 Sep 2015 06:55:01 GMT
-//                   Updated by Bibhuprasad Mahakud
+//        //         Created:  Thu, 17 Sep 2016 06:55:01 GMT
+//                   
 //        //
 //        //
 //
@@ -466,8 +466,8 @@ if(genParticles.isValid()) {//gen level stuff
     genPhi->push_back(iPart->phi());
     genEnergy->push_back(iPart->energy());
     motherPDGID->push_back(mom->pdgId());
-if(mom->pdgId() == 42)    
-std::cout<<"mother charge is      "<<mom->threeCharge()<<"                                   "<<mom->pdgId()<<endl;
+    //if(mom->pdgId() == 42)    
+    //std::cout<<"mother charge is      "<<mom->threeCharge()<<"                                   "<<mom->pdgId()<<endl;
     }
     }
 }//gen level stuff
