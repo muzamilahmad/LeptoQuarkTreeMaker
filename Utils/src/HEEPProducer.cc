@@ -466,8 +466,8 @@ if(genParticles.isValid()) {//gen level stuff
     genPhi->push_back(iPart->phi());
     genEnergy->push_back(iPart->energy());
     motherPDGID->push_back(mom->pdgId());
-if(mom->pdgId() == 42)    
-std::cout<<"mother charge is      "<<mom->threeCharge()<<"                                   "<<mom->pdgId()<<endl;
+    //if(mom->pdgId() == 42)    
+    //std::cout<<"mother charge is      "<<mom->threeCharge()<<"                                   "<<mom->pdgId()<<endl;
     }
     }
 }//gen level stuff
