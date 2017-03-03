@@ -1,0 +1,71 @@
+Starting job on  Fri Feb 3 16:07:01 CST 2017
+Running on  Linux cmswn1896.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_25
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/MC2016_30_01_2017
+SAMPLE:     Summer16.WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1
+NPART:      168
+NSTART:     168
+NFILES:     1
+SCENARIO:   Summer16
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_1587486
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root')
+ outfile: Summer16.WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1_168_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: Summer16
+ global tag: 80X_mcRun2_asymptotic_2016_TrancheIV_v6
+ Instance name of tag information: PAT
+ Including gen-level information: True
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JECs applied: data/jec/Summer16_23Sep2016V3_MC
+ JERs applied: data/jer/Spring16_25nsV6_MC
+ PU weights stored: LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8, PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1 : 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root'
+Setup WeightProducer for 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root'
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+03-Feb-2017 16:07:34 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root
+%MSG-w XrdAdaptorInternal:  file_open 03-Feb-2017 16:10:34 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root.
+%MSG
+%MSG-w XrdAdaptorInternal:  file_open 03-Feb-2017 16:13:34 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root?tried=.
+%MSG
+----- Begin Fatal Exception 03-Feb-2017 16:13:34 CST-----------------------
+An exception of category 'FileOpenError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing input source of type PoolSource
+   [2] Calling RootFileSequenceBase::initTheFile()
+   [3] Calling StorageFactory::open()
+   [4] Calling XrdFile::open()
+Exception Message:
+Failed to open the file 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root'
+   Additional Info:
+      [a] Input file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root could not be opened.
+      [b] XrdCl::File::Open(name='root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root', flags=0x10, permissions=0660) => error '[ERROR] Operation expired' (errno=0, code=206). No additional data servers were found.
+      [c] Last URL tried: root://cmsxrootd.fnal.gov:1094//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/DCD029F6-52C0-E611-A6AA-549F3525DB98.root?tried=
+      [d] Problematic data server: cmsxrootd.fnal.gov:1094
+      [e] Disabled source: cmsxrootd.fnal.gov:1094
+----- End Fatal Exception -------------------------------------------------
+exit code 84, skipping xrdcp

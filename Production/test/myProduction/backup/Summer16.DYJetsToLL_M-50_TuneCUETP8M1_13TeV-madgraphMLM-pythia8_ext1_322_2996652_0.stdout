@@ -1,0 +1,444 @@
+Starting job on  Wed Feb 1 05:40:29 CST 2017
+Running on  Linux cmswn1867.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_25
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/MC2016_30_01_2017
+SAMPLE:     Summer16.DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1
+NPART:      322
+NSTART:     322
+NFILES:     1
+SCENARIO:   Summer16
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_3703848
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root')
+ outfile: Summer16.DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1_322_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: Summer16
+ global tag: 80X_mcRun2_asymptotic_2016_TrancheIV_v6
+ Instance name of tag information: PAT
+ Including gen-level information: True
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JECs applied: data/jec/Summer16_23Sep2016V3_MC
+ JERs applied: data/jer/Spring16_25nsV6_MC
+ PU weights stored: LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8, PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2 : 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root'
+Setup WeightProducer for 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root'
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+01-Feb-2017 05:41:01 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root
+%MSG-w XrdAdaptor:  file_open 01-Feb-2017 05:41:04 CST pre-events
+Data is served from T2_US_Caltech instead of original site T2_US_Nebraska
+%MSG
+01-Feb-2017 05:41:07 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root
+VarsBool:
+full name: BadChargedCandidateFilter -> tag: BadChargedCandidateFilter nameInTree: BadChargedCandidateFilter
+full name: BadPFMuonFilter -> tag: BadPFMuonFilter nameInTree: BadPFMuonFilter
+full name: GoodJets:JetID(JetID) -> tag: GoodJets:JetID nameInTree: JetID
+full name: GoodJetsJECup:JetID(JetIDJECup) -> tag: GoodJetsJECup:JetID nameInTree: JetIDJECup
+full name: GoodJetsJECdown:JetID(JetIDJECdown) -> tag: GoodJetsJECdown:JetID nameInTree: JetIDJECdown
+full name: GoodJetsJERup:JetID(JetIDJERup) -> tag: GoodJetsJERup:JetID nameInTree: JetIDJERup
+full name: GoodJetsJERdown:JetID(JetIDJERdown) -> tag: GoodJetsJERdown:JetID nameInTree: JetIDJERdown
+VarsInt:
+full name: WeightProducer:NumInteractions -> tag: WeightProducer:NumInteractions nameInTree: NumInteractions
+full name: NVtx -> tag: NVtx nameInTree: NVtx
+full name: nAllVertices -> tag: nAllVertices nameInTree: nAllVertices
+full name: CSCTightHaloFilter -> tag: CSCTightHaloFilter nameInTree: CSCTightHaloFilter
+full name: globalTightHalo2016Filter -> tag: globalTightHalo2016Filter nameInTree: globalTightHalo2016Filter
+full name: HBHENoiseFilter -> tag: HBHENoiseFilter nameInTree: HBHENoiseFilter
+full name: HBHEIsoNoiseFilter -> tag: HBHEIsoNoiseFilter nameInTree: HBHEIsoNoiseFilter
+full name: EcalDeadCellTriggerPrimitiveFilter -> tag: EcalDeadCellTriggerPrimitiveFilter nameInTree: EcalDeadCellTriggerPrimitiveFilter
+full name: eeBadScFilter -> tag: eeBadScFilter nameInTree: eeBadScFilter
+VarsDouble:
+full name: WeightProducer:weight(Weight) -> tag: WeightProducer:weight nameInTree: Weight
+full name: WeightProducer:xsec(CrossSection) -> tag: WeightProducer:xsec nameInTree: CrossSection
+full name: WeightProducer:nevents(NumEvents) -> tag: WeightProducer:nevents nameInTree: NumEvents
+full name: WeightProducer:TrueNumInteractions -> tag: WeightProducer:TrueNumInteractions nameInTree: TrueNumInteractions
+full name: WeightProducer:PUweight(puWeight) -> tag: WeightProducer:PUweight nameInTree: puWeight
+full name: WeightProducer:PUSysUp(puSysUp) -> tag: WeightProducer:PUSysUp nameInTree: puSysUp
+full name: WeightProducer:PUSysDown(puSysDown) -> tag: WeightProducer:PUSysDown nameInTree: puSysDown
+full name: MadHT:genHT(madHT) -> tag: MadHT:genHT nameInTree: madHT
+full name: GenHT -> tag: GenHT nameInTree: GenHT
+full name: MET:Pt(MET) -> tag: MET:Pt nameInTree: MET
+full name: MET:Phi(METPhi) -> tag: MET:Phi nameInTree: METPhi
+full name: MET:CaloPt(CaloMET) -> tag: MET:CaloPt nameInTree: CaloMET
+full name: MET:CaloPhi(CaloMETPhi) -> tag: MET:CaloPhi nameInTree: CaloMETPhi
+full name: MET:PFCaloPtRatio(PFCaloMETRatio) -> tag: MET:PFCaloPtRatio nameInTree: PFCaloMETRatio
+full name: MET:GenPt(GenMET) -> tag: MET:GenPt nameInTree: GenMET
+full name: MET:GenPhi(GenMETPhi) -> tag: MET:GenPhi nameInTree: GenMETPhi
+VarsString:
+VarsTLorentzVector:
+VectorBool:
+full name: HEEPProducer:ecalDriven(Electron_ecalDriven) -> tag: HEEPProducer:ecalDriven nameInTree: Electron_ecalDriven
+full name: GoodJets:JetIDMask(Jets_ID) -> tag: GoodJets:JetIDMask nameInTree: Jets_ID
+full name: GoodJetsJECup:JetIDMask(JetsJECup_ID) -> tag: GoodJetsJECup:JetIDMask nameInTree: JetsJECup_ID
+full name: GoodJetsJECdown:JetIDMask(JetsJECdown_ID) -> tag: GoodJetsJECdown:JetIDMask nameInTree: JetsJECdown_ID
+full name: GoodJetsJERup:JetIDMask(JetsJERup_ID) -> tag: GoodJetsJERup:JetIDMask nameInTree: JetsJERup_ID
+full name: GoodJetsJERdown:JetIDMask(JetsJERdown_ID) -> tag: GoodJetsJERdown:JetIDMask nameInTree: JetsJERdown_ID
+full name: GenHTJets:SubJetMask(GenJets_HTMask) -> tag: GenHTJets:SubJetMask nameInTree: GenJets_HTMask
+full name: GenMHTJets:SubJetMask(GenJets_MHTMask) -> tag: GenMHTJets:SubJetMask nameInTree: GenJets_MHTMask
+VectorInt:
+full name: PDFWeights:PDFids -> tag: PDFWeights:PDFids nameInTree: PDFids
+full name: HEEPProducer:Charge(Electron_Charge) -> tag: HEEPProducer:Charge nameInTree: Electron_Charge
+full name: HEEPProducer:losthits(Electron_losthits) -> tag: HEEPProducer:losthits nameInTree: Electron_losthits
+full name: HEEPProducer:PDGID(PDGID) -> tag: HEEPProducer:PDGID nameInTree: PDGID
+full name: HEEPProducer:gencharge(gencharge) -> tag: HEEPProducer:gencharge nameInTree: gencharge
+full name: HEEPProducer:motherPDGID(motherPDGID) -> tag: HEEPProducer:motherPDGID nameInTree: motherPDGID
+full name: HEEPProducer:elstatus(elstatus) -> tag: HEEPProducer:elstatus nameInTree: elstatus
+full name: MuonProducer:MuonPassID(MuonPassID) -> tag: MuonProducer:MuonPassID nameInTree: MuonPassID
+full name: MuonProducer:MuonIsGlobal(MuonIsGlobal) -> tag: MuonProducer:MuonIsGlobal nameInTree: MuonIsGlobal
+full name: TriggerProducer:TriggerPass -> tag: TriggerProducer:TriggerPass nameInTree: TriggerPass
+full name: TriggerProducer:TriggerPrescales -> tag: TriggerProducer:TriggerPrescales nameInTree: TriggerPrescales
+VectorDouble:
+full name: PDFWeights:PDFweights -> tag: PDFWeights:PDFweights nameInTree: PDFweights
+full name: PDFWeights:ScaleWeights -> tag: PDFWeights:ScaleWeights nameInTree: ScaleWeights
+full name: HEEPProducer:trackiso(Electron_trackiso) -> tag: HEEPProducer:trackiso nameInTree: Electron_trackiso
+full name: HEEPProducer:Et(Electron_Et) -> tag: HEEPProducer:Et nameInTree: Electron_Et
+full name: HEEPProducer:DeltaEtain(Electron_DeltaEtain) -> tag: HEEPProducer:DeltaEtain nameInTree: Electron_DeltaEtain
+full name: HEEPProducer:DeltaPhiin(Electron_DeltaPhiin) -> tag: HEEPProducer:DeltaPhiin nameInTree: Electron_DeltaPhiin
+full name: HEEPProducer:HbE(Electron_HOverE) -> tag: HEEPProducer:HbE nameInTree: Electron_HOverE
+full name: HEEPProducer:Ecaliso(Electron_Ecaliso) -> tag: HEEPProducer:Ecaliso nameInTree: Electron_Ecaliso
+full name: HEEPProducer:HD1iso(Electron_HD1iso) -> tag: HEEPProducer:HD1iso nameInTree: Electron_HD1iso
+full name: HEEPProducer:e25bye55(Electron_e25bye55) -> tag: HEEPProducer:e25bye55 nameInTree: Electron_e25bye55
+full name: HEEPProducer:Fullsce25bye55(Electron_Fullsce25bye55) -> tag: HEEPProducer:Fullsce25bye55 nameInTree: Electron_Fullsce25bye55
+full name: HEEPProducer:Fulle15bye55(Electron_Fulle15bye55) -> tag: HEEPProducer:Fulle15bye55 nameInTree: Electron_Fulle15bye55
+full name: HEEPProducer:scEnergy(Electron_scEnergy) -> tag: HEEPProducer:scEnergy nameInTree: Electron_scEnergy
+full name: HEEPProducer:DeltaEtaSeed(Electron_DeltaEtaSeed) -> tag: HEEPProducer:DeltaEtaSeed nameInTree: Electron_DeltaEtaSeed
+full name: HEEPProducer:rho(rho) -> tag: HEEPProducer:rho nameInTree: rho
+full name: HEEPProducer:ecalEnergy(Electron_ecalEnergy) -> tag: HEEPProducer:ecalEnergy nameInTree: Electron_ecalEnergy
+full name: HEEPProducer:full55SiEtaiEta(Electron_full55SiEtaiEta) -> tag: HEEPProducer:full55SiEtaiEta nameInTree: Electron_full55SiEtaiEta
+full name: HEEPProducer:sce25bye55(Electron_sce25bye55) -> tag: HEEPProducer:sce25bye55 nameInTree: Electron_sce25bye55
+full name: HEEPProducer:e15bye55(Electron_e15bye55) -> tag: HEEPProducer:e15bye55 nameInTree: Electron_e15bye55
+full name: HEEPProducer:Phi(Electron_Phi) -> tag: HEEPProducer:Phi nameInTree: Electron_Phi
+full name: HEEPProducer:eEnergy(Electron_Energy) -> tag: HEEPProducer:eEnergy nameInTree: Electron_Energy
+full name: HEEPProducer:dxy(dxy) -> tag: HEEPProducer:dxy nameInTree: dxy
+full name: HEEPProducer:ePz(Electron_Pz) -> tag: HEEPProducer:ePz nameInTree: Electron_Pz
+full name: HEEPProducer:ePx(Electron_Px) -> tag: HEEPProducer:ePx nameInTree: Electron_Px
+full name: HEEPProducer:ePy(Electron_Py) -> tag: HEEPProducer:ePy nameInTree: Electron_Py
+full name: HEEPProducer:genPt(genPt) -> tag: HEEPProducer:genPt nameInTree: genPt
+full name: HEEPProducer:genEta(genEta) -> tag: HEEPProducer:genEta nameInTree: genEta
+full name: HEEPProducer:genPhi(genPhi) -> tag: HEEPProducer:genPhi nameInTree: genPhi
+full name: HEEPProducer:genEnergy(genEnergy) -> tag: HEEPProducer:genEnergy nameInTree: genEnergy
+full name: HEEPProducer:PtHEEP(Electron_PtHEEP) -> tag: HEEPProducer:PtHEEP nameInTree: Electron_PtHEEP
+full name: HEEPProducer:scEta(Electron_scEta) -> tag: HEEPProducer:scEta nameInTree: Electron_scEta
+full name: HEEPProducer:heep70TrkIso(Electron_heep70TrkIso) -> tag: HEEPProducer:heep70TrkIso nameInTree: Electron_heep70TrkIso
+full name: MuonProducer:MuonEta(MuonEta) -> tag: MuonProducer:MuonEta nameInTree: MuonEta
+full name: MuonProducer:MuonPhi(MuonPhi) -> tag: MuonProducer:MuonPhi nameInTree: MuonPhi
+full name: MuonProducer:MuonPt(MuonPt) -> tag: MuonProducer:MuonPt nameInTree: MuonPt
+full name: MuonProducer:MuonEnergy(MuonEnergy) -> tag: MuonProducer:MuonEnergy nameInTree: MuonEnergy
+full name: TauProducer:tEta(TauEta) -> tag: TauProducer:tEta nameInTree: TauEta
+full name: TauProducer:tPhi(TauPhi) -> tag: TauProducer:tPhi nameInTree: TauPhi
+full name: TauProducer:tPt(TauPt) -> tag: TauProducer:tPt nameInTree: TauPt
+full name: TriggerProducer:objectPt -> tag: TriggerProducer:objectPt nameInTree: objectPt
+full name: TriggerProducer:objecteta -> tag: TriggerProducer:objecteta nameInTree: objecteta
+full name: TriggerProducer:objectphi -> tag: TriggerProducer:objectphi nameInTree: objectphi
+full name: TriggerProducer:objectE -> tag: TriggerProducer:objectE nameInTree: objectE
+full name: TriggerProducer:ColumnNum -> tag: TriggerProducer:ColumnNum nameInTree: ColumnNum
+full name: MET:PtUp(METUp) -> tag: MET:PtUp nameInTree: METUp
+full name: MET:PtDown(METDown) -> tag: MET:PtDown nameInTree: METDown
+full name: MET:PhiUp(METPhiUp) -> tag: MET:PhiUp nameInTree: METPhiUp
+full name: MET:PhiDown(METPhiDown) -> tag: MET:PhiDown nameInTree: METPhiDown
+VectorString:
+full name: TriggerProducer:TriggerNames -> tag: TriggerProducer:TriggerNames nameInTree: TriggerNames
+VectorTLorentzVector:
+VectorRecoCand:
+full name: GoodJets(Jets) -> tag: GoodJets nameInTree: Jets
+full name: GoodJetsJECup(JetsJECup) -> tag: GoodJetsJECup nameInTree: JetsJECup
+full name: GoodJetsJECdown(JetsJECdown) -> tag: GoodJetsJECdown nameInTree: JetsJECdown
+full name: GoodJetsJERup(JetsJERup) -> tag: GoodJetsJERup nameInTree: JetsJERup
+full name: GoodJetsJERdown(JetsJERdown) -> tag: GoodJetsJERdown nameInTree: JetsJERdown
+full name: slimmedGenJets(GenJets) -> tag: slimmedGenJets nameInTree: GenJets
+List of stored triggers:
+0: HLT_CaloJet500_NoJetID_v
+1: HLT_DoubleEle8_CaloIdM_TrackIdM_Mass8_PFHT300_v
+2: HLT_DoubleMu8_Mass8_PFHT300_v
+3: HLT_Ele105_CaloIdVT_GsfTrkIdT_v
+4: HLT_Ele115_CaloIdVT_GsfTrkIdT_v
+5: HLT_Ele15_IsoVVVL_PFHT350_PFMET50_v
+6: HLT_Ele15_IsoVVVL_PFHT350_v
+7: HLT_Ele15_IsoVVVL_PFHT400_v
+8: HLT_Ele15_IsoVVVL_PFHT600_v
+9: HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v
+10: HLT_Ele25_eta2p1_WPTight_Gsf_v 
+11: HLT_Ele27_WPTight_Gsf_v
+12: HLT_Ele27_eta2p1_WPLoose_Gsf_v 
+13: HLT_Ele45_WPLoose_Gsf_v
+14: HLT_Ele50_IsoVVVL_PFHT400_v
+15: HLT_IsoMu16_eta2p1_MET30_v
+16: HLT_IsoMu22_eta2p1_v
+17: HLT_IsoMu22_v
+18: HLT_IsoMu24_v 
+19: HLT_IsoTkMu22_v
+20: HLT_Mu15_IsoVVVL_PFHT350_PFMET50_v
+21: HLT_Mu15_IsoVVVL_PFHT350_v
+22: HLT_Mu15_IsoVVVL_PFHT400_v
+23: HLT_Mu15_IsoVVVL_PFHT600_v
+24: HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_v
+25: HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_v
+26: HLT_Mu45_eta2p1_v
+27: HLT_Mu50_IsoVVVL_PFHT400_v
+28: HLT_Mu50_v
+29: HLT_PFHT200_v
+30: HLT_PFHT250_v
+31: HLT_PFHT300_PFMET100_v
+32: HLT_PFHT300_PFMET110_v
+33: HLT_PFHT300_v
+34: HLT_PFHT350_v
+35: HLT_PFHT400_v
+36: HLT_PFHT475_v
+37: HLT_PFHT600_v
+38: HLT_PFHT650_v
+39: HLT_PFHT800_v
+40: HLT_PFHT900_v
+41: HLT_PFMET100_PFMHT100_IDTight_v
+42: HLT_PFMET110_PFMHT110_IDTight_v
+43: HLT_PFMET120_PFMHT120_IDTight_v
+44: HLT_PFMET90_PFMHT90_IDTight_v
+45: HLT_PFMETNoMu100_PFMHTNoMu100_IDTight_v
+46: HLT_PFMETNoMu110_PFMHTNoMu110_IDTight_v
+47: HLT_PFMETNoMu120_PFMHTNoMu120_IDTight_v
+48: HLT_PFMETNoMu90_PFMHTNoMu90_IDTight_v
+49: HLT_Photon120_v
+50: HLT_Photon165_HE10_v
+51: HLT_Photon175_v
+52: HLT_Photon22_v
+53: HLT_Photon30_v
+54: HLT_Photon36_v
+55: HLT_Photon50_v
+56: HLT_Photon75_v
+57: HLT_Photon90_CaloIdL_PFHT500_v
+58: HLT_Photon90_v
+59: HLT_TkMu50_v
+WeightProducer: Using constant event weight of 0.000122602
+  Target luminosity (1/pb) : 1
+        Cross section (pb) : 6025.2
+          Number of events : 4.91443e+07
+WeightProducer: Applying multiplicative PU weights
+  Reading PU scenario from '/storage/local/data1/condor/execute/dir_3703848/CMSSW_8_0_25/src/LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root'
+[STATUS] Reading energy scale correction  values from file: EgammaAnalysis/ElectronTools/data/ScalesSmearings/Winter_2016_reReco_v1_ele_scales.dat
+[STATUS] Reading energy scale correction  values from file: EgammaAnalysis/ElectronTools/data/ScalesSmearings/Winter_2016_reReco_v1_ele_scales.dat
+Begin processing the 1st record. Run 1, Event 41994804, LumiSection 209975 at 01-Feb-2017 05:41:33.799 CST
+Begin processing the 1001st record. Run 1, Event 57259472, LumiSection 286298 at 01-Feb-2017 05:42:19.720 CST
+Begin processing the 2001st record. Run 1, Event 76118478, LumiSection 380593 at 01-Feb-2017 05:42:55.293 CST
+Begin processing the 3001st record. Run 1, Event 89450745, LumiSection 447254 at 01-Feb-2017 05:43:30.082 CST
+Begin processing the 4001st record. Run 1, Event 171816708, LumiSection 859084 at 01-Feb-2017 05:44:05.925 CST
+Begin processing the 5001st record. Run 1, Event 203346735, LumiSection 1016734 at 01-Feb-2017 05:44:41.542 CST
+Begin processing the 6001st record. Run 1, Event 238426618, LumiSection 1192134 at 01-Feb-2017 05:45:17.126 CST
+Begin processing the 7001st record. Run 1, Event 235038185, LumiSection 1175191 at 01-Feb-2017 05:45:53.152 CST
+Begin processing the 8001st record. Run 1, Event 426333076, LumiSection 2131666 at 01-Feb-2017 05:46:42.631 CST
+Begin processing the 9001st record. Run 1, Event 431574868, LumiSection 2157875 at 01-Feb-2017 05:47:22.463 CST
+Begin processing the 10001st record. Run 1, Event 440507209, LumiSection 2202537 at 01-Feb-2017 05:48:00.315 CST
+Begin processing the 11001st record. Run 1, Event 471072833, LumiSection 2355365 at 01-Feb-2017 05:48:35.661 CST
+Begin processing the 12001st record. Run 1, Event 494503971, LumiSection 2472520 at 01-Feb-2017 05:49:12.096 CST
+Begin processing the 13001st record. Run 1, Event 512528725, LumiSection 2562644 at 01-Feb-2017 05:49:47.922 CST
+Begin processing the 14001st record. Run 1, Event 513237269, LumiSection 2566187 at 01-Feb-2017 05:50:23.268 CST
+Begin processing the 15001st record. Run 1, Event 102488298, LumiSection 512442 at 01-Feb-2017 05:51:06.227 CST
+Begin processing the 16001st record. Run 1, Event 171693272, LumiSection 858467 at 01-Feb-2017 05:51:47.701 CST
+Begin processing the 17001st record. Run 1, Event 201513462, LumiSection 1007568 at 01-Feb-2017 05:52:23.971 CST
+Begin processing the 18001st record. Run 1, Event 289653730, LumiSection 1448269 at 01-Feb-2017 05:53:00.077 CST
+Begin processing the 19001st record. Run 1, Event 293516347, LumiSection 1467582 at 01-Feb-2017 05:53:38.167 CST
+Begin processing the 20001st record. Run 1, Event 298931253, LumiSection 1494657 at 01-Feb-2017 05:54:12.916 CST
+Begin processing the 21001st record. Run 1, Event 337854703, LumiSection 1689274 at 01-Feb-2017 05:54:51.644 CST
+Begin processing the 22001st record. Run 1, Event 317424740, LumiSection 1587124 at 01-Feb-2017 05:55:27.340 CST
+Begin processing the 23001st record. Run 1, Event 325356433, LumiSection 1626783 at 01-Feb-2017 05:56:02.730 CST
+Begin processing the 24001st record. Run 1, Event 337817123, LumiSection 1689086 at 01-Feb-2017 05:56:41.596 CST
+Begin processing the 25001st record. Run 1, Event 338064429, LumiSection 1690323 at 01-Feb-2017 05:57:22.396 CST
+Begin processing the 26001st record. Run 1, Event 382166553, LumiSection 1910833 at 01-Feb-2017 05:58:01.766 CST
+Begin processing the 27001st record. Run 1, Event 383126947, LumiSection 1915635 at 01-Feb-2017 05:58:38.920 CST
+Begin processing the 28001st record. Run 1, Event 384075397, LumiSection 1920377 at 01-Feb-2017 05:59:14.921 CST
+Begin processing the 29001st record. Run 1, Event 392761187, LumiSection 1963806 at 01-Feb-2017 05:59:51.088 CST
+Begin processing the 30001st record. Run 1, Event 104288877, LumiSection 521445 at 01-Feb-2017 06:00:31.435 CST
+Begin processing the 31001st record. Run 1, Event 107244572, LumiSection 536223 at 01-Feb-2017 06:01:08.056 CST
+Begin processing the 32001st record. Run 1, Event 145065838, LumiSection 725330 at 01-Feb-2017 06:01:43.452 CST
+Begin processing the 33001st record. Run 1, Event 151550548, LumiSection 757753 at 01-Feb-2017 06:02:22.889 CST
+Begin processing the 34001st record. Run 1, Event 171547172, LumiSection 857736 at 01-Feb-2017 06:03:02.607 CST
+Begin processing the 35001st record. Run 1, Event 256068515, LumiSection 1280343 at 01-Feb-2017 06:03:39.212 CST
+Begin processing the 36001st record. Run 1, Event 293817813, LumiSection 1469090 at 01-Feb-2017 06:04:15.907 CST
+Begin processing the 37001st record. Run 1, Event 305495112, LumiSection 1527476 at 01-Feb-2017 06:04:51.687 CST
+Begin processing the 38001st record. Run 1, Event 307212850, LumiSection 1536065 at 01-Feb-2017 06:05:28.759 CST
+[2017-02-01 06:06:05.190294 -0600][Error  ][AsyncSock         ] [transfer-4.ultralight.org:1095 #0.0] Socket error encountered: [ERROR] Socket error: Resource temporarily unavailable
+Begin processing the 39001st record. Run 1, Event 311878714, LumiSection 1559394 at 01-Feb-2017 06:06:09.573 CST
+[2017-02-01 06:06:19.395239 -0600][Error  ][XRootD            ] [transfer-4.ultralight.org:1095] Unable to send the message kXR_readv (handle: 0x00000000, chunks: 36, total size: 7495723): [ERROR] Invalid session
+[2017-02-01 06:06:20.867700 -0600][Error  ][AsyncSock         ] [transfer-2.ultralight.org:1095 #0.0] Socket error encountered: [ERROR] Socket error: Resource temporarily unavailable
+[2017-02-01 06:06:20.867787 -0600][Error  ][XRootD            ] [transfer-2.ultralight.org:1095] Unable to get the response to request kXR_readv (handle: 0x00000000, chunks: 45, total size: 4655722)
+Begin processing the 40001st record. Run 1, Event 313296371, LumiSection 1566482 at 01-Feb-2017 06:06:47.605 CST
+Begin processing the 41001st record. Run 1, Event 337982814, LumiSection 1689915 at 01-Feb-2017 06:07:24.468 CST
+Begin processing the 42001st record. Run 1, Event 401829054, LumiSection 2009146 at 01-Feb-2017 06:08:00.285 CST
+Begin processing the 43001st record. Run 1, Event 401868385, LumiSection 2009342 at 01-Feb-2017 06:08:37.661 CST
+Begin processing the 44001st record. Run 1, Event 402194724, LumiSection 2010974 at 01-Feb-2017 06:09:14.996 CST
+Begin processing the 45001st record. Run 1, Event 321596058, LumiSection 1607981 at 01-Feb-2017 06:09:57.355 CST
+Begin processing the 46001st record. Run 1, Event 392842745, LumiSection 1964214 at 01-Feb-2017 06:10:33.874 CST
+Begin processing the 47001st record. Run 1, Event 402242044, LumiSection 2011211 at 01-Feb-2017 06:11:10.752 CST
+Begin processing the 48001st record. Run 1, Event 467390388, LumiSection 2336952 at 01-Feb-2017 06:11:48.343 CST
+Begin processing the 49001st record. Run 1, Event 471437999, LumiSection 2357190 at 01-Feb-2017 06:12:24.464 CST
+Begin processing the 50001st record. Run 1, Event 508961765, LumiSection 2544809 at 01-Feb-2017 06:13:02.248 CST
+Begin processing the 51001st record. Run 1, Event 510320216, LumiSection 2551602 at 01-Feb-2017 06:13:40.573 CST
+Begin processing the 52001st record. Run 1, Event 552275567, LumiSection 2761378 at 01-Feb-2017 06:14:17.047 CST
+Begin processing the 53001st record. Run 1, Event 563623911, LumiSection 2818120 at 01-Feb-2017 06:14:56.330 CST
+Begin processing the 54001st record. Run 1, Event 568851065, LumiSection 2844256 at 01-Feb-2017 06:15:33.284 CST
+Begin processing the 55001st record. Run 1, Event 601332749, LumiSection 3006664 at 01-Feb-2017 06:16:09.770 CST
+Begin processing the 56001st record. Run 1, Event 647612474, LumiSection 3238063 at 01-Feb-2017 06:16:46.520 CST
+Begin processing the 57001st record. Run 1, Event 676939041, LumiSection 3384696 at 01-Feb-2017 06:17:23.490 CST
+Begin processing the 58001st record. Run 1, Event 677960321, LumiSection 3389802 at 01-Feb-2017 06:18:00.251 CST
+Begin processing the 59001st record. Run 1, Event 227915181, LumiSection 1139576 at 01-Feb-2017 06:18:39.796 CST
+Begin processing the 60001st record. Run 1, Event 292926855, LumiSection 1464635 at 01-Feb-2017 06:19:21.936 CST
+Begin processing the 61001st record. Run 1, Event 293586668, LumiSection 1467934 at 01-Feb-2017 06:19:58.911 CST
+Begin processing the 62001st record. Run 1, Event 293793588, LumiSection 1468968 at 01-Feb-2017 06:20:37.624 CST
+Begin processing the 63001st record. Run 1, Event 337833477, LumiSection 1689168 at 01-Feb-2017 06:21:14.960 CST
+Begin processing the 64001st record. Run 1, Event 337986031, LumiSection 1689931 at 01-Feb-2017 06:21:50.640 CST
+Begin processing the 65001st record. Run 1, Event 428410143, LumiSection 2142051 at 01-Feb-2017 06:22:27.440 CST
+Begin processing the 66001st record. Run 1, Event 472089764, LumiSection 2360449 at 01-Feb-2017 06:23:03.749 CST
+Begin processing the 67001st record. Run 1, Event 508597977, LumiSection 2542990 at 01-Feb-2017 06:23:42.395 CST
+Begin processing the 68001st record. Run 1, Event 508722563, LumiSection 2543613 at 01-Feb-2017 06:24:20.193 CST
+Begin processing the 69001st record. Run 1, Event 509068266, LumiSection 2545342 at 01-Feb-2017 06:24:56.250 CST
+Begin processing the 70001st record. Run 1, Event 509207026, LumiSection 2546036 at 01-Feb-2017 06:25:32.188 CST
+Begin processing the 71001st record. Run 1, Event 509409295, LumiSection 2547047 at 01-Feb-2017 06:26:08.742 CST
+Begin processing the 72001st record. Run 1, Event 679106201, LumiSection 3395532 at 01-Feb-2017 06:26:46.162 CST
+Begin processing the 73001st record. Run 1, Event 686939000, LumiSection 3434695 at 01-Feb-2017 06:27:23.394 CST
+Begin processing the 74001st record. Run 1, Event 291050330, LumiSection 1455252 at 01-Feb-2017 06:28:05.560 CST
+Begin processing the 75001st record. Run 1, Event 257447092, LumiSection 1287236 at 01-Feb-2017 06:28:41.108 CST
+Begin processing the 76001st record. Run 1, Event 269510918, LumiSection 1347555 at 01-Feb-2017 06:29:16.804 CST
+Begin processing the 77001st record. Run 1, Event 306019839, LumiSection 1530100 at 01-Feb-2017 06:29:54.936 CST
+Begin processing the 78001st record. Run 1, Event 314415878, LumiSection 1572080 at 01-Feb-2017 06:30:31.292 CST
+Begin processing the 79001st record. Run 1, Event 354211930, LumiSection 1771060 at 01-Feb-2017 06:31:08.140 CST
+Begin processing the 80001st record. Run 1, Event 424208244, LumiSection 2121042 at 01-Feb-2017 06:31:43.897 CST
+Begin processing the 81001st record. Run 1, Event 413559821, LumiSection 2067800 at 01-Feb-2017 06:32:19.865 CST
+Begin processing the 82001st record. Run 1, Event 442393534, LumiSection 2211968 at 01-Feb-2017 06:32:56.438 CST
+Begin processing the 83001st record. Run 1, Event 455135867, LumiSection 2275680 at 01-Feb-2017 06:33:32.467 CST
+Begin processing the 84001st record. Run 1, Event 476918136, LumiSection 2384591 at 01-Feb-2017 06:34:11.647 CST
+Begin processing the 85001st record. Run 1, Event 545892054, LumiSection 2729461 at 01-Feb-2017 06:34:47.858 CST
+Begin processing the 86001st record. Run 1, Event 547691147, LumiSection 2738456 at 01-Feb-2017 06:35:23.272 CST
+Begin processing the 87001st record. Run 1, Event 547580043, LumiSection 2737901 at 01-Feb-2017 06:35:58.595 CST
+Begin processing the 88001st record. Run 1, Event 605799056, LumiSection 3028996 at 01-Feb-2017 06:36:33.864 CST
+Begin processing the 89001st record. Run 1, Event 289941380, LumiSection 1449707 at 01-Feb-2017 06:37:11.088 CST
+Begin processing the 90001st record. Run 1, Event 328775508, LumiSection 1643878 at 01-Feb-2017 06:37:47.815 CST
+Begin processing the 91001st record. Run 1, Event 340323800, LumiSection 1701619 at 01-Feb-2017 06:38:23.334 CST
+Begin processing the 92001st record. Run 1, Event 405838460, LumiSection 2029193 at 01-Feb-2017 06:39:00.101 CST
+Begin processing the 93001st record. Run 1, Event 405421028, LumiSection 2027106 at 01-Feb-2017 06:39:35.055 CST
+Begin processing the 94001st record. Run 1, Event 384666181, LumiSection 1923331 at 01-Feb-2017 06:40:12.172 CST
+Begin processing the 95001st record. Run 1, Event 410876899, LumiSection 2054385 at 01-Feb-2017 06:40:48.017 CST
+Begin processing the 96001st record. Run 1, Event 431567534, LumiSection 2157838 at 01-Feb-2017 06:41:25.420 CST
+Begin processing the 97001st record. Run 1, Event 433215433, LumiSection 2166078 at 01-Feb-2017 06:42:02.805 CST
+Begin processing the 98001st record. Run 1, Event 434685763, LumiSection 2173429 at 01-Feb-2017 06:42:40.200 CST
+Begin processing the 99001st record. Run 1, Event 440162461, LumiSection 2200813 at 01-Feb-2017 06:43:16.099 CST
+Begin processing the 100001st record. Run 1, Event 441138489, LumiSection 2205693 at 01-Feb-2017 06:43:52.173 CST
+Begin processing the 101001st record. Run 1, Event 460905633, LumiSection 2304529 at 01-Feb-2017 06:44:28.700 CST
+Begin processing the 102001st record. Run 1, Event 473247703, LumiSection 2366239 at 01-Feb-2017 06:45:06.686 CST
+Begin processing the 103001st record. Run 1, Event 473836269, LumiSection 2369182 at 01-Feb-2017 06:45:42.652 CST
+Begin processing the 104001st record. Run 1, Event 290466497, LumiSection 1452333 at 01-Feb-2017 06:46:22.868 CST
+Begin processing the 105001st record. Run 1, Event 307485821, LumiSection 1537430 at 01-Feb-2017 06:47:01.331 CST
+Begin processing the 106001st record. Run 1, Event 319033474, LumiSection 1595168 at 01-Feb-2017 06:47:40.567 CST
+Begin processing the 107001st record. Run 1, Event 337850076, LumiSection 1689251 at 01-Feb-2017 06:48:26.944 CST
+Begin processing the 108001st record. Run 1, Event 359608429, LumiSection 1798043 at 01-Feb-2017 06:49:03.160 CST
+Begin processing the 109001st record. Run 1, Event 366437826, LumiSection 1832190 at 01-Feb-2017 06:49:39.072 CST
+Begin processing the 110001st record. Run 1, Event 366714754, LumiSection 1833574 at 01-Feb-2017 06:50:15.146 CST
+Begin processing the 111001st record. Run 1, Event 369616218, LumiSection 1848082 at 01-Feb-2017 06:50:51.057 CST
+Begin processing the 112001st record. Run 1, Event 378361705, LumiSection 1891809 at 01-Feb-2017 06:51:29.190 CST
+Begin processing the 113001st record. Run 1, Event 378475090, LumiSection 1892376 at 01-Feb-2017 06:52:06.937 CST
+Begin processing the 114001st record. Run 1, Event 383115109, LumiSection 1915576 at 01-Feb-2017 06:52:45.205 CST
+Begin processing the 115001st record. Run 1, Event 382776092, LumiSection 1913881 at 01-Feb-2017 06:53:21.298 CST
+Begin processing the 116001st record. Run 1, Event 384108986, LumiSection 1920545 at 01-Feb-2017 06:53:56.998 CST
+Begin processing the 117001st record. Run 1, Event 386676817, LumiSection 1933385 at 01-Feb-2017 06:54:34.981 CST
+Begin processing the 118001st record. Run 1, Event 385814379, LumiSection 1929072 at 01-Feb-2017 06:55:11.369 CST
+Begin processing the 119001st record. Run 1, Event 337885640, LumiSection 1689429 at 01-Feb-2017 06:55:53.432 CST
+Begin processing the 120001st record. Run 1, Event 337888568, LumiSection 1689443 at 01-Feb-2017 06:56:30.166 CST
+Begin processing the 121001st record. Run 1, Event 337999048, LumiSection 1689996 at 01-Feb-2017 06:57:07.469 CST
+Begin processing the 122001st record. Run 1, Event 338044185, LumiSection 1690221 at 01-Feb-2017 06:57:45.055 CST
+Begin processing the 123001st record. Run 1, Event 338697385, LumiSection 1693487 at 01-Feb-2017 06:58:21.545 CST
+Begin processing the 124001st record. Run 1, Event 368750267, LumiSection 1843752 at 01-Feb-2017 06:58:58.881 CST
+Begin processing the 125001st record. Run 1, Event 378495297, LumiSection 1892477 at 01-Feb-2017 06:59:34.401 CST
+Begin processing the 126001st record. Run 1, Event 381338573, LumiSection 1906693 at 01-Feb-2017 07:00:13.594 CST
+Begin processing the 127001st record. Run 1, Event 383978245, LumiSection 1919892 at 01-Feb-2017 07:00:51.319 CST
+Begin processing the 128001st record. Run 1, Event 384268083, LumiSection 1921341 at 01-Feb-2017 07:01:25.954 CST
+Begin processing the 129001st record. Run 1, Event 385408144, LumiSection 1927041 at 01-Feb-2017 07:02:05.899 CST
+[2017-02-01 07:02:39.943142 -0600][Error  ][File              ] [0xb20fed40@root://cmsxrootd.fnal.gov:1094//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root] Fatal file state error. Message kXR_readv (handle: 0x01000000, chunks: 37, total size: 7431384) returned with [ERROR] Server responded with an error: [3010] Unable to readv /store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root; operation not permitted
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 01-Feb-2017 07:02:39 CST pre-events
+XrdRequestManager::handle(name='root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root) failure when reading from transfer-2.ultralight.org:1095 (site T2_US_Caltech); failed with error '[ERROR] Server responded with an error: [3010] Unable to readv /store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root; operation not permitted
+' (errno=3010, code=400).
+%MSG
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 01-Feb-2017 07:02:39 CST pre-events
+Request failure when reading from transfer-2.ultralight.org:1095 (site T2_US_Caltech)
+%MSG
+[2017-02-01 07:02:39.998256 -0600][Error  ][File              ] [0xb20ff380@root://cmsxrootd.fnal.gov:1094//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root?tried=transfer-2.ultralight.org] Fatal file state error. Message kXR_readv (handle: 0x00000000, chunks: 21, total size: 4424662) returned with [ERROR] Server responded with an error: [3010] Unable to readv /store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root; operation not permitted
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 01-Feb-2017 07:02:39 CST pre-events
+XrdRequestManager::handle(name='root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root) failure when reading from transfer-4.ultralight.org:1095 (site T2_US_Caltech); failed with error '[ERROR] Server responded with an error: [3010] Unable to readv /store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root; operation not permitted
+' (errno=3010, code=400).
+%MSG
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 01-Feb-2017 07:02:39 CST pre-events
+Request failure when reading from transfer-4.ultralight.org:1095 (site T2_US_Caltech)
+%MSG
+%MSG-w XrdAdaptor:  (NoModuleName) 01-Feb-2017 07:02:39 CST pre-events
+Data is now served from  instead of previous T2_US_Caltech
+%MSG
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 01-Feb-2017 07:02:39 CST pre-events
+Caught a CMSSW exception when running connection recovery.
+%MSG
+[2017-02-01 07:02:40.393005 -0600][Error  ][AsyncSock         ] [transfer-5.ultralight.org:1097 #0.0] Socket error encountered: [ERROR] Socket error: Resource temporarily unavailable
+[2017-02-01 07:02:40.393146 -0600][Error  ][XRootD            ] [transfer-5.ultralight.org:1097] Unable to get the response to request kXR_readv (handle: 0x00000000, chunks: 37, total size: 7431384)
+----- Begin Fatal Exception 01-Feb-2017 07:02:44 CST-----------------------
+An exception of category 'FileReadError' occurred while
+   [0] Processing run: 1 lumi: 2135785 event: 427156867
+   [1] Running path 'WriteTree'
+   [2] Calling event method for module TreeMaker/'LQTreeMaker2'
+   [3] Calling produce method for unscheduled module BadChargedCandidateFilter/'BadChargedCandidateFilter'
+   [4] Reading branch patMuons_slimmedMuons__PAT.
+   [5] Calling XrdFile::readv()
+   [6] XrdAdaptor::ClientRequest::HandleResponse() failure while running connection recovery
+   [7] In XrdAdaptor::RequestManager::requestFailure()
+Exception Message:
+XrdAdaptor::RequestManager::requestFailure Open(name='root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root', flags=0x10, permissions=0660, old source=transfer-4.ultralight.org:1095 (site T2_US_Caltech), new source=transfer-4.ultralight.org:1095 (site T2_US_Caltech)) => Xrootd server returned an excluded source
+   Additional Info:
+      [a] Original error: '[ERROR] Server responded with an error: [3010] Unable to readv /store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root; operation not permitted
+' (errno=3010, code=400, source=transfer-4.ultralight.org:1095 (site T2_US_Caltech)).
+      [b] Disabled source: transfer-4.ultralight.org:1095
+      [c] Disabled source: transfer-2.ultralight.org:1095
+----- End Fatal Exception -------------------------------------------------
+[2017-02-01 07:02:44.154599 -0600][Error  ][XRootD            ] [transfer-5.ultralight.org:1097] Unable to send the message kXR_close (handle: 0x01000000): [ERROR] Invalid session
+01-Feb-2017 07:02:44 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2/60000/FE79F840-3DC4-E611-8DBA-002481AD12F0.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w (NoModuleName)                         1        1
+    2 XrdAdaptor           -w file_open                              1        1
+    3 XrdAdaptorInternal   -w (NoModuleName)                         5        5
+    4 Fatal Exception      -s PostProcessPath                        1        1
+    5 fileAction           -s file_close                             1        1
+    6 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events                        
+    2 XrdAdaptor           pre-events                        
+    3 XrdAdaptorInternal   pre-events       pre-events       pre-events
+    4 Fatal Exception      1/427156867                       
+    5 fileAction           PostEndRun                        
+    6 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 7                   7
+System                  4                   4
+exit code 85, skipping xrdcp

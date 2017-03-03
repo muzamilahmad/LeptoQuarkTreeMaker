@@ -1,0 +1,68 @@
+Starting job on  Wed Feb 1 18:08:58 CST 2017
+Running on  Linux cmswn1962.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_25
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/MC2016_30_01_2017
+SAMPLE:     Run2016B-23Sep2016-v3.SinglePhoton
+NPART:      271
+NSTART:     271
+NFILES:     1
+SCENARIO:   2016ReReco23Sep
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_680060
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/data/Run2016B/SinglePhoton/MINIAOD/23Sep2016-v3/60000/1A9350D9-F397-E611-8E5F-003048FFD798.root')
+ outfile: Run2016B-23Sep2016-v3.SinglePhoton_271_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: 2016ReReco23Sep
+ global tag: 80X_dataRun2_2016SeptRepro_v3
+ Instance name of tag information: RECO
+ Including gen-level information: False
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JSON file applied: data/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt
+ JECs applied: data/jec/Summer16_23Sep2016AllV3_DATA (residuals)
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+01-Feb-2017 18:09:52 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/data/Run2016B/SinglePhoton/MINIAOD/23Sep2016-v3/60000/1A9350D9-F397-E611-8E5F-003048FFD798.root
+%MSG-w XrdAdaptorInternal:  file_open 01-Feb-2017 18:12:52 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/data/Run2016B/SinglePhoton/MINIAOD/23Sep2016-v3/60000/1A9350D9-F397-E611-8E5F-003048FFD798.root.
+%MSG
+%MSG-w XrdAdaptorInternal:  file_open 01-Feb-2017 18:15:51 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/data/Run2016B/SinglePhoton/MINIAOD/23Sep2016-v3/60000/1A9350D9-F397-E611-8E5F-003048FFD798.root?tried=.
+%MSG
+----- Begin Fatal Exception 01-Feb-2017 18:15:51 CST-----------------------
+An exception of category 'FileOpenError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing input source of type PoolSource
+   [2] Calling RootFileSequenceBase::initTheFile()
+   [3] Calling StorageFactory::open()
+   [4] Calling XrdFile::open()
+Exception Message:
+Failed to open the file 'root://cmsxrootd.fnal.gov//store/data/Run2016B/SinglePhoton/MINIAOD/23Sep2016-v3/60000/1A9350D9-F397-E611-8E5F-003048FFD798.root'
+   Additional Info:
+      [a] Input file root://cmsxrootd.fnal.gov//store/data/Run2016B/SinglePhoton/MINIAOD/23Sep2016-v3/60000/1A9350D9-F397-E611-8E5F-003048FFD798.root could not be opened.
+      [b] XrdCl::File::Open(name='root://cmsxrootd.fnal.gov//store/data/Run2016B/SinglePhoton/MINIAOD/23Sep2016-v3/60000/1A9350D9-F397-E611-8E5F-003048FFD798.root', flags=0x10, permissions=0660) => error '[ERROR] Operation expired' (errno=0, code=206). No additional data servers were found.
+      [c] Last URL tried: root://cmsxrootd.fnal.gov:1094//store/data/Run2016B/SinglePhoton/MINIAOD/23Sep2016-v3/60000/1A9350D9-F397-E611-8E5F-003048FFD798.root?tried=
+      [d] Problematic data server: cmsxrootd.fnal.gov:1094
+      [e] Disabled source: cmsxrootd.fnal.gov:1094
+----- End Fatal Exception -------------------------------------------------
+exit code 84, skipping xrdcp

@@ -1,0 +1,92 @@
+Starting job on  Thu Jan 26 03:17:49 CST 2017
+Running on  Linux cmswn1600.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_25
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/Data2016_11_01_2017
+SAMPLE:     Run2016D-23Sep2016-v1.SinglePhoton
+NPART:      80
+NSTART:     80
+NFILES:     1
+SCENARIO:   2016ReReco23Sep
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_3648561
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root')
+ outfile: Run2016D-23Sep2016-v1.SinglePhoton_80_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: 2016ReReco23Sep
+ global tag: 80X_dataRun2_2016SeptRepro_v3
+ Instance name of tag information: RECO
+ Including gen-level information: False
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JSON file applied: data/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt
+ JECs applied: data/jec/Spring16_25nsV6_DATA
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+26-Jan-2017 03:18:24 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root
+[2017-01-26 03:18:25.533245 -0600][Error  ][XRootDTransport   ] [transfer-4.ultralight.org:1094 #0.0] No protocols left to try
+[2017-01-26 03:18:25.533416 -0600][Error  ][AsyncSock         ] [transfer-4.ultralight.org:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:18:25.533650 -0600][Error  ][PostMaster        ] [transfer-4.ultralight.org:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:18:25.533699 -0600][Error  ][XRootD            ] [transfer-4.ultralight.org:1094] Impossible to send message kXR_open (file: /store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-01-26 03:18:25.749632 -0600][Error  ][XRootDTransport   ] [transfer-2.ultralight.org:1094 #0.0] No protocols left to try
+[2017-01-26 03:18:25.749690 -0600][Error  ][AsyncSock         ] [transfer-2.ultralight.org:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:18:25.749743 -0600][Error  ][PostMaster        ] [transfer-2.ultralight.org:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:18:25.749754 -0600][Error  ][XRootD            ] [transfer-2.ultralight.org:1094] Impossible to send message kXR_open (file: /store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root?tried=transfer-4.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-01-26 03:18:25.965819 -0600][Error  ][XRootDTransport   ] [transfer-5.ultralight.org:1094 #0.0] No protocols left to try
+[2017-01-26 03:18:25.965892 -0600][Error  ][AsyncSock         ] [transfer-5.ultralight.org:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:18:25.965948 -0600][Error  ][PostMaster        ] [transfer-5.ultralight.org:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:18:25.965975 -0600][Error  ][XRootD            ] [transfer-5.ultralight.org:1094] Impossible to send message kXR_open (file: /store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root?tried=transfer-4.ultralight.org,transfer-2.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-01-26 03:18:26.182932 -0600][Error  ][XRootDTransport   ] [transfer-5.ultralight.org:1096 #0.0] No protocols left to try
+[2017-01-26 03:18:26.182993 -0600][Error  ][AsyncSock         ] [transfer-5.ultralight.org:1096 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:18:26.183042 -0600][Error  ][PostMaster        ] [transfer-5.ultralight.org:1096 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:18:26.183052 -0600][Error  ][XRootD            ] [transfer-5.ultralight.org:1096] Impossible to send message kXR_open (file: /store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root?tried=transfer-4.ultralight.org,transfer-2.ultralight.org,transfer-5.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-01-26 03:18:26.400706 -0600][Error  ][XRootDTransport   ] [transfer-4.ultralight.org:1096 #0.0] No protocols left to try
+[2017-01-26 03:18:26.400758 -0600][Error  ][AsyncSock         ] [transfer-4.ultralight.org:1096 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:18:26.400802 -0600][Error  ][PostMaster        ] [transfer-4.ultralight.org:1096 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:18:26.400812 -0600][Error  ][XRootD            ] [transfer-4.ultralight.org:1096] Impossible to send message kXR_open (file: /store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root?tried=transfer-4.ultralight.org,transfer-2.ultralight.org,transfer-5.ultralight.org,transfer-5.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-01-26 03:18:26.619793 -0600][Error  ][XRootDTransport   ] [transfer-2.ultralight.org:1096 #0.0] No protocols left to try
+[2017-01-26 03:18:26.619852 -0600][Error  ][AsyncSock         ] [transfer-2.ultralight.org:1096 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:18:26.619896 -0600][Error  ][PostMaster        ] [transfer-2.ultralight.org:1096 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:18:26.619906 -0600][Error  ][XRootD            ] [transfer-2.ultralight.org:1096] Impossible to send message kXR_open (file: /store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root?tried=transfer-4.ultralight.org,transfer-2.ultralight.org,transfer-5.ultralight.org,transfer-5.ultralight.org,transfer-4.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+%MSG-w XrdAdaptorInternal:  file_open 26-Jan-2017 03:18:27 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root.
+%MSG
+%MSG-w XrdAdaptorInternal:  file_open 26-Jan-2017 03:18:27 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root?tried=.
+%MSG
+----- Begin Fatal Exception 26-Jan-2017 03:18:30 CST-----------------------
+An exception of category 'FileOpenError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing input source of type PoolSource
+   [2] Calling RootFileSequenceBase::initTheFile()
+   [3] Calling StorageFactory::open()
+   [4] Calling XrdFile::open()
+Exception Message:
+Failed to open the file 'root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root'
+   Additional Info:
+      [a] Input file root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root could not be opened.
+      [b] XrdCl::File::Open(name='root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root', flags=0x10, permissions=0660) => error '[FATAL] Redirect limit has been reached' (errno=0, code=306). No additional data servers were found.
+      [c] Last URL tried: root://cmsxrootd.fnal.gov:1094//store/data/Run2016D/SinglePhoton/MINIAOD/23Sep2016-v1/100000/84643C34-C085-E611-A20A-008CFAF75356.root?tried=
+      [d] Problematic data server: cmsxrootd.fnal.gov:1094
+      [e] Disabled source: cmsxrootd.fnal.gov:1094
+----- End Fatal Exception -------------------------------------------------
+exit code 84, skipping xrdcp

@@ -1,0 +1,95 @@
+Starting job on  Wed Feb 1 04:35:05 CST 2017
+Running on  Linux cmswn1970.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_25
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/MC2016_30_01_2017
+SAMPLE:     Summer16.GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1
+NPART:      67
+NSTART:     67
+NFILES:     1
+SCENARIO:   Summer16
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_585620
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root')
+ outfile: Summer16.GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1_67_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: Summer16
+ global tag: 80X_mcRun2_asymptotic_2016_TrancheIV_v6
+ Instance name of tag information: PAT
+ Including gen-level information: True
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JECs applied: data/jec/Summer16_23Sep2016V3_MC
+ JERs applied: data/jer/Spring16_25nsV6_MC
+ PU weights stored: LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8, PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1 : 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root'
+Setup WeightProducer for 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root'
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+01-Feb-2017 04:35:57 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root
+[2017-02-01 04:35:58.654730 -0600][Error  ][XRootDTransport   ] [transfer-2.ultralight.org:1094 #0.0] No protocols left to try
+[2017-02-01 04:35:58.654990 -0600][Error  ][AsyncSock         ] [transfer-2.ultralight.org:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-02-01 04:35:58.655320 -0600][Error  ][PostMaster        ] [transfer-2.ultralight.org:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-02-01 04:35:58.655391 -0600][Error  ][XRootD            ] [transfer-2.ultralight.org:1094] Impossible to send message kXR_open (file: /store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-02-01 04:35:58.877038 -0600][Error  ][XRootDTransport   ] [transfer-5.ultralight.org:1097 #0.0] No protocols left to try
+[2017-02-01 04:35:58.877117 -0600][Error  ][AsyncSock         ] [transfer-5.ultralight.org:1097 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-02-01 04:35:58.877186 -0600][Error  ][PostMaster        ] [transfer-5.ultralight.org:1097 #0] Unable to recover: [FATAL] Auth failed.
+[2017-02-01 04:35:58.877200 -0600][Error  ][XRootD            ] [transfer-5.ultralight.org:1097] Impossible to send message kXR_open (file: /store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root?tried=transfer-2.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-02-01 04:35:59.099096 -0600][Error  ][XRootDTransport   ] [transfer-4.ultralight.org:1095 #0.0] No protocols left to try
+[2017-02-01 04:35:59.099177 -0600][Error  ][AsyncSock         ] [transfer-4.ultralight.org:1095 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-02-01 04:35:59.099235 -0600][Error  ][PostMaster        ] [transfer-4.ultralight.org:1095 #0] Unable to recover: [FATAL] Auth failed.
+[2017-02-01 04:35:59.099249 -0600][Error  ][XRootD            ] [transfer-4.ultralight.org:1095] Impossible to send message kXR_open (file: /store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root?tried=transfer-2.ultralight.org,transfer-5.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-02-01 04:35:59.322926 -0600][Error  ][XRootDTransport   ] [transfer-2.ultralight.org:1096 #0.0] No protocols left to try
+[2017-02-01 04:35:59.323010 -0600][Error  ][AsyncSock         ] [transfer-2.ultralight.org:1096 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-02-01 04:35:59.323075 -0600][Error  ][PostMaster        ] [transfer-2.ultralight.org:1096 #0] Unable to recover: [FATAL] Auth failed.
+[2017-02-01 04:35:59.323089 -0600][Error  ][XRootD            ] [transfer-2.ultralight.org:1096] Impossible to send message kXR_open (file: /store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root?tried=transfer-2.ultralight.org,transfer-5.ultralight.org,transfer-4.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-02-01 04:35:59.545156 -0600][Error  ][XRootDTransport   ] [transfer-4.ultralight.org:1097 #0.0] No protocols left to try
+[2017-02-01 04:35:59.545230 -0600][Error  ][AsyncSock         ] [transfer-4.ultralight.org:1097 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-02-01 04:35:59.545280 -0600][Error  ][PostMaster        ] [transfer-4.ultralight.org:1097 #0] Unable to recover: [FATAL] Auth failed.
+[2017-02-01 04:35:59.545293 -0600][Error  ][XRootD            ] [transfer-4.ultralight.org:1097] Impossible to send message kXR_open (file: /store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root?tried=transfer-2.ultralight.org,transfer-5.ultralight.org,transfer-4.ultralight.org,transfer-2.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-02-01 04:35:59.808905 -0600][Error  ][XRootDTransport   ] [transfer-5.ultralight.org:1095 #0.0] No protocols left to try
+[2017-02-01 04:35:59.808981 -0600][Error  ][AsyncSock         ] [transfer-5.ultralight.org:1095 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-02-01 04:35:59.809037 -0600][Error  ][PostMaster        ] [transfer-5.ultralight.org:1095 #0] Unable to recover: [FATAL] Auth failed.
+[2017-02-01 04:35:59.809051 -0600][Error  ][XRootD            ] [transfer-5.ultralight.org:1095] Impossible to send message kXR_open (file: /store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root?tried=transfer-2.ultralight.org,transfer-5.ultralight.org,transfer-4.ultralight.org,transfer-2.ultralight.org,transfer-4.ultralight.org,transfer-2.ultralight.org, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+%MSG-w XrdAdaptorInternal:  file_open 01-Feb-2017 04:36:00 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root.
+%MSG
+%MSG-w XrdAdaptorInternal:  file_open 01-Feb-2017 04:36:00 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root?tried=.
+%MSG
+----- Begin Fatal Exception 01-Feb-2017 04:36:02 CST-----------------------
+An exception of category 'FileOpenError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing input source of type PoolSource
+   [2] Calling RootFileSequenceBase::initTheFile()
+   [3] Calling StorageFactory::open()
+   [4] Calling XrdFile::open()
+Exception Message:
+Failed to open the file 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root'
+   Additional Info:
+      [a] Input file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root could not be opened.
+      [b] XrdCl::File::Open(name='root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root', flags=0x10, permissions=0660) => error '[FATAL] Redirect limit has been reached' (errno=0, code=306). No additional data servers were found.
+      [c] Last URL tried: root://cmsxrootd.fnal.gov:1094//store/mc/RunIISummer16MiniAODv2/GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/38C7C32F-57B9-E611-A221-FA163E66374A.root?tried=
+      [d] Problematic data server: cmsxrootd.fnal.gov:1094
+      [e] Disabled source: cmsxrootd.fnal.gov:1094
+----- End Fatal Exception -------------------------------------------------
+exit code 84, skipping xrdcp

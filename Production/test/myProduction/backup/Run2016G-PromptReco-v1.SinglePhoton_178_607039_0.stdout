@@ -1,0 +1,90 @@
+Starting job on  Thu Nov 10 06:37:18 CST 2016
+Running on  Linux cmswn1748.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_22
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/Data2016_09_11_2016
+SAMPLE:     Run2016G-PromptReco-v1.SinglePhoton
+NPART:      178
+NSTART:     178
+NFILES:     1
+SCENARIO:   2016G
+REDIR:      
+Reading cached build data
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_638545
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root')
+ outfile: Run2016G-PromptReco-v1.SinglePhoton_178_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: 2016G
+ global tag: 80X_dataRun2_Prompt_v11
+ Instance name of tag information: RECO
+ Including gen-level information: False
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JSON file applied: data/Cert_271036-284044_13TeV_PromptReco_Collisions16_JSON_NoL1T.txt
+ JECs applied: data/jec/Spring16_25nsV6_DATA (residuals)
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+10-Nov-2016 06:37:43 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root
+%MSG-w XrdAdaptor:  file_open 10-Nov-2016 06:37:46 CST pre-events
+Data is served from T2_US_UCSD instead of original site T2_US_Nebraska
+%MSG
+10-Nov-2016 06:37:49 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root
+[2016-11-10 06:38:15.250053 -0600][Error  ][File              ] [0x5d2a3280@root://cmsxrootd.fnal.gov:1094//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root?tried=cabinet-8-8-10.t2.ucsd.edu] Fatal file state error. Message kXR_readv (handle: 0x00000000, chunks: 42, total size: 977236) returned with [ERROR] Server responded with an error: [3005] Unable to readv /store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root; unknown error 255
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 10-Nov-2016 06:38:15 CST pre-events
+XrdRequestManager::handle(name='root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root) failure when reading from cabinet-7-7-32.t2.ucsd.edu:1094 (site T2_US_UCSD); failed with error '[ERROR] Server responded with an error: [3005] Unable to readv /store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root; unknown error 255
+' (errno=3005, code=400).
+%MSG
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 10-Nov-2016 06:38:15 CST pre-events
+Request failure when reading from cabinet-7-7-32.t2.ucsd.edu:1094 (site T2_US_UCSD)
+%MSG
+[2016-11-10 06:38:36.112555 -0600][Error  ][File              ] [0x60171800@root://cmsxrootd.fnal.gov:1094//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root] Fatal file state error. Message kXR_readv (handle: 0x00000000, chunks: 42, total size: 977236) returned with [ERROR] Server responded with an error: [3005] Unable to readv /store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root; unknown error 255
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 10-Nov-2016 06:38:36 CST pre-events
+XrdRequestManager::handle(name='root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root) failure when reading from cabinet-8-8-10.t2.ucsd.edu:1094 (site T2_US_UCSD); failed with error '[ERROR] Server responded with an error: [3005] Unable to readv /store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root; unknown error 255
+' (errno=3005, code=400).
+%MSG
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 10-Nov-2016 06:38:36 CST pre-events
+Request failure when reading from cabinet-8-8-10.t2.ucsd.edu:1094 (site T2_US_UCSD)
+%MSG
+%MSG-w XrdAdaptor:  (NoModuleName) 10-Nov-2016 06:38:36 CST pre-events
+Data is now served from  instead of previous T2_US_UCSD
+%MSG
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 10-Nov-2016 06:38:36 CST pre-events
+Caught a CMSSW exception when running connection recovery.
+%MSG
+10-Nov-2016 06:38:36 CST  Closed file root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root
+----- Begin Fatal Exception 10-Nov-2016 06:38:36 CST-----------------------
+An exception of category 'FileReadError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing input source of type PoolSource
+   [2] Reading branch EventAuxiliary
+   [3] Calling XrdFile::readv()
+   [4] XrdAdaptor::ClientRequest::HandleResponse() failure while running connection recovery
+   [5] In XrdAdaptor::RequestManager::requestFailure()
+Exception Message:
+XrdAdaptor::RequestManager::requestFailure Open(name='root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root', flags=0x10, permissions=0660, old source=cabinet-8-8-10.t2.ucsd.edu:1094 (site T2_US_UCSD), new source=cabinet-7-7-32.t2.ucsd.edu:1094 (site T2_US_UCSD)) => Xrootd server returned an excluded source
+   Additional Info:
+      [a] Original error: '[ERROR] Server responded with an error: [3005] Unable to readv /store/data/Run2016G/SinglePhoton/MINIAOD/PromptReco-v1/000/279/685/00000/EC24472F-3470-E611-965B-02163E014205.root; unknown error 255
+' (errno=3005, code=400, source=cabinet-8-8-10.t2.ucsd.edu:1094 (site T2_US_UCSD)).
+      [b] Disabled source: cabinet-8-8-10.t2.ucsd.edu:1094
+      [c] Disabled source: cabinet-7-7-32.t2.ucsd.edu:1094
+----- End Fatal Exception -------------------------------------------------
+exit code 85, skipping xrdcp

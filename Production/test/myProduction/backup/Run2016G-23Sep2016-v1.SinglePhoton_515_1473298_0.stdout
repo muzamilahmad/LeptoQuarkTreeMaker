@@ -1,0 +1,72 @@
+Starting job on  Sat Jan 28 07:08:58 CST 2017
+Running on  Linux cmswn2003.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_25
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/Data2016_11_01_2017
+SAMPLE:     Run2016G-23Sep2016-v1.SinglePhoton
+NPART:      515
+NSTART:     515
+NFILES:     1
+SCENARIO:   2016ReReco23Sep
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_590274
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root')
+ outfile: Run2016G-23Sep2016-v1.SinglePhoton_515_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: 2016ReReco23Sep
+ global tag: 80X_dataRun2_2016SeptRepro_v3
+ Instance name of tag information: RECO
+ Including gen-level information: False
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JSON file applied: data/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt
+ JECs applied: data/jec/Spring16_25nsV6_DATA
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+28-Jan-2017 07:09:44 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root
+[2017-01-28 07:09:46.050902 -0600][Error  ][XRootDTransport   ] [s17n02.hep.wisc.edu:1094 #0.0] No protocols left to try
+[2017-01-28 07:09:46.051152 -0600][Error  ][AsyncSock         ] [s17n02.hep.wisc.edu:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-28 07:09:46.051498 -0600][Error  ][PostMaster        ] [s17n02.hep.wisc.edu:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-28 07:09:46.051562 -0600][Error  ][XRootD            ] [s17n02.hep.wisc.edu:1094] Impossible to send message kXR_open (file: /store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+%MSG-w XrdAdaptorInternal:  file_open 28-Jan-2017 07:12:44 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root.
+%MSG
+%MSG-w XrdAdaptorInternal:  file_open 28-Jan-2017 07:15:43 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root?tried=.
+%MSG
+----- Begin Fatal Exception 28-Jan-2017 07:15:44 CST-----------------------
+An exception of category 'FileOpenError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing input source of type PoolSource
+   [2] Calling RootFileSequenceBase::initTheFile()
+   [3] Calling StorageFactory::open()
+   [4] Calling XrdFile::open()
+Exception Message:
+Failed to open the file 'root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root'
+   Additional Info:
+      [a] Input file root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root could not be opened.
+      [b] XrdCl::File::Open(name='root://cmsxrootd.fnal.gov//store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root', flags=0x10, permissions=0660) => error '[ERROR] Operation expired' (errno=0, code=206). No additional data servers were found.
+      [c] Last URL tried: root://cmsxrootd.fnal.gov:1094//store/data/Run2016G/SinglePhoton/MINIAOD/23Sep2016-v1/90000/EEB2F0C4-AE8A-E611-B6A7-F04DA275C03D.root?tried=
+      [d] Problematic data server: cmsxrootd.fnal.gov:1094
+      [e] Disabled source: cmsxrootd.fnal.gov:1094
+----- End Fatal Exception -------------------------------------------------
+exit code 84, skipping xrdcp

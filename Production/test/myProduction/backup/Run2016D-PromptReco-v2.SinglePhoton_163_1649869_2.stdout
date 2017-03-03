@@ -1,0 +1,838 @@
+Starting job on  Sun Nov 13 01:22:35 CST 2016
+Running on  Linux cmswn1601.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_22
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/Data2016_09_11_2016
+SAMPLE:     Run2016D-PromptReco-v2.SinglePhoton
+NPART:      163
+NSTART:     163
+NFILES:     1
+SCENARIO:   2016CD
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_1283770
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/PromptReco-v2/000/276/501/00000/FCC62BD4-5C48-E611-92A7-02163E0126E9.root')
+ outfile: Run2016D-PromptReco-v2.SinglePhoton_163_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: 2016CD
+ global tag: 80X_dataRun2_Prompt_v9
+ Instance name of tag information: RECO
+ Including gen-level information: False
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JSON file applied: data/Cert_271036-284044_13TeV_PromptReco_Collisions16_JSON_NoL1T.txt
+ JECs applied: data/jec/Spring16_25nsV6_DATA (residuals)
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+13-Nov-2016 01:22:55 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/PromptReco-v2/000/276/501/00000/FCC62BD4-5C48-E611-92A7-02163E0126E9.root
+%MSG-w XrdAdaptor:  file_open 13-Nov-2016 01:22:58 CST pre-events
+Data is served from T2_US_Vanderbilt instead of original site T1_US_FNAL
+%MSG
+13-Nov-2016 01:23:00 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/PromptReco-v2/000/276/501/00000/FCC62BD4-5C48-E611-92A7-02163E0126E9.root
+VarsBool:
+full name: BadChargedCandidateFilter -> tag: BadChargedCandidateFilter nameInTree: BadChargedCandidateFilter
+full name: BadPFMuonFilter -> tag: BadPFMuonFilter nameInTree: BadPFMuonFilter
+full name: GoodJets:JetID(JetID) -> tag: GoodJets:JetID nameInTree: JetID
+VarsInt:
+full name: NVtx -> tag: NVtx nameInTree: NVtx
+full name: nAllVertices -> tag: nAllVertices nameInTree: nAllVertices
+full name: CSCTightHaloFilter -> tag: CSCTightHaloFilter nameInTree: CSCTightHaloFilter
+full name: globalTightHalo2016Filter -> tag: globalTightHalo2016Filter nameInTree: globalTightHalo2016Filter
+full name: HBHENoiseFilter -> tag: HBHENoiseFilter nameInTree: HBHENoiseFilter
+full name: HBHEIsoNoiseFilter -> tag: HBHEIsoNoiseFilter nameInTree: HBHEIsoNoiseFilter
+full name: EcalDeadCellTriggerPrimitiveFilter -> tag: EcalDeadCellTriggerPrimitiveFilter nameInTree: EcalDeadCellTriggerPrimitiveFilter
+full name: eeBadScFilter -> tag: eeBadScFilter nameInTree: eeBadScFilter
+VarsDouble:
+full name: MET:Pt(MET) -> tag: MET:Pt nameInTree: MET
+full name: MET:Phi(METPhi) -> tag: MET:Phi nameInTree: METPhi
+full name: MET:CaloPt(CaloMET) -> tag: MET:CaloPt nameInTree: CaloMET
+full name: MET:CaloPhi(CaloMETPhi) -> tag: MET:CaloPhi nameInTree: CaloMETPhi
+full name: MET:PFCaloPtRatio(PFCaloMETRatio) -> tag: MET:PFCaloPtRatio nameInTree: PFCaloMETRatio
+VarsString:
+VarsTLorentzVector:
+VectorBool:
+full name: HEEPProducer:ecalDriven(Electron_ecalDriven) -> tag: HEEPProducer:ecalDriven nameInTree: Electron_ecalDriven
+full name: MuonProducer:MuonisTightMuon(MuonisTightMuon) -> tag: MuonProducer:MuonisTightMuon nameInTree: MuonisTightMuon
+full name: MuonProducer:MuonisHighPtMuon(MuonisHighPtMuon) -> tag: MuonProducer:MuonisHighPtMuon nameInTree: MuonisHighPtMuon
+full name: GoodJets:JetIDMask(Jets_ID) -> tag: GoodJets:JetIDMask nameInTree: Jets_ID
+VectorInt:
+full name: HEEPProducer:Charge(Electron_Charge) -> tag: HEEPProducer:Charge nameInTree: Electron_Charge
+full name: HEEPProducer:losthits(Electron_losthits) -> tag: HEEPProducer:losthits nameInTree: Electron_losthits
+full name: HEEPProducer:PDGID(PDGID) -> tag: HEEPProducer:PDGID nameInTree: PDGID
+full name: HEEPProducer:gencharge(gencharge) -> tag: HEEPProducer:gencharge nameInTree: gencharge
+full name: HEEPProducer:motherPDGID(motherPDGID) -> tag: HEEPProducer:motherPDGID nameInTree: motherPDGID
+full name: HEEPProducer:elstatus(elstatus) -> tag: HEEPProducer:elstatus nameInTree: elstatus
+full name: MuonProducer:MuonIsPF(MuonIsPF) -> tag: MuonProducer:MuonIsPF nameInTree: MuonIsPF
+full name: MuonProducer:MuonCharge(MuonCharge) -> tag: MuonProducer:MuonCharge nameInTree: MuonCharge
+full name: MuonProducer:MuonGlobalTrkValidHits(MuonGlobalTrkValidHits) -> tag: MuonProducer:MuonGlobalTrkValidHits nameInTree: MuonGlobalTrkValidHits
+full name: MuonProducer:MuonTrkPixelHits(MuonTrkPixelHits) -> tag: MuonProducer:MuonTrkPixelHits nameInTree: MuonTrkPixelHits
+full name: MuonProducer:MuonStationMatches(MuonStationMatches) -> tag: MuonProducer:MuonStationMatches nameInTree: MuonStationMatches
+full name: MuonProducer:MuonPassID(MuonPassID) -> tag: MuonProducer:MuonPassID nameInTree: MuonPassID
+full name: MuonProducer:MuonIsGlobal(MuonIsGlobal) -> tag: MuonProducer:MuonIsGlobal nameInTree: MuonIsGlobal
+full name: MuonProducer:MuonTrackLayersWithMeasurement(MuonTrackLayersWithMeasurement) -> tag: MuonProducer:MuonTrackLayersWithMeasurement nameInTree: MuonTrackLayersWithMeasurement
+full name: TriggerProducer:TriggerPass -> tag: TriggerProducer:TriggerPass nameInTree: TriggerPass
+full name: TriggerProducer:TriggerPrescales -> tag: TriggerProducer:TriggerPrescales nameInTree: TriggerPrescales
+VectorDouble:
+full name: HEEPProducer:trackiso(Electron_trackiso) -> tag: HEEPProducer:trackiso nameInTree: Electron_trackiso
+full name: HEEPProducer:Eta(Electron_Eta) -> tag: HEEPProducer:Eta nameInTree: Electron_Eta
+full name: HEEPProducer:Et(Electron_Et) -> tag: HEEPProducer:Et nameInTree: Electron_Et
+full name: HEEPProducer:DeltaEtain(Electron_DeltaEtain) -> tag: HEEPProducer:DeltaEtain nameInTree: Electron_DeltaEtain
+full name: HEEPProducer:DeltaPhiin(Electron_DeltaPhiin) -> tag: HEEPProducer:DeltaPhiin nameInTree: Electron_DeltaPhiin
+full name: HEEPProducer:HbE(Electron_HOverE) -> tag: HEEPProducer:HbE nameInTree: Electron_HOverE
+full name: HEEPProducer:SiEtaiEta(Electron_SiEtaiEta) -> tag: HEEPProducer:SiEtaiEta nameInTree: Electron_SiEtaiEta
+full name: HEEPProducer:Ecaliso(Electron_Ecaliso) -> tag: HEEPProducer:Ecaliso nameInTree: Electron_Ecaliso
+full name: HEEPProducer:HD1iso(Electron_HD1iso) -> tag: HEEPProducer:HD1iso nameInTree: Electron_HD1iso
+full name: HEEPProducer:HD2iso(Electron_HD2iso) -> tag: HEEPProducer:HD2iso nameInTree: Electron_HD2iso
+full name: HEEPProducer:e25max(Electron_e25max) -> tag: HEEPProducer:e25max nameInTree: Electron_e25max
+full name: HEEPProducer:e55(Electron_e55) -> tag: HEEPProducer:e55 nameInTree: Electron_e55
+full name: HEEPProducer:e25bye55(Electron_e25bye55) -> tag: HEEPProducer:e25bye55 nameInTree: Electron_e25bye55
+full name: HEEPProducer:Fullsce25bye55(Electron_Fullsce25bye55) -> tag: HEEPProducer:Fullsce25bye55 nameInTree: Electron_Fullsce25bye55
+full name: HEEPProducer:Fulle15bye55(Electron_Fulle15bye55) -> tag: HEEPProducer:Fulle15bye55 nameInTree: Electron_Fulle15bye55
+full name: HEEPProducer:scEnergy(Electron_scEnergy) -> tag: HEEPProducer:scEnergy nameInTree: Electron_scEnergy
+full name: HEEPProducer:DeltaEtaSeed(Electron_DeltaEtaSeed) -> tag: HEEPProducer:DeltaEtaSeed nameInTree: Electron_DeltaEtaSeed
+full name: HEEPProducer:rho(rho) -> tag: HEEPProducer:rho nameInTree: rho
+full name: HEEPProducer:ePt(Electron_Pt) -> tag: HEEPProducer:ePt nameInTree: Electron_Pt
+full name: HEEPProducer:e15(Electron_e15) -> tag: HEEPProducer:e15 nameInTree: Electron_e15
+full name: HEEPProducer:ecalEnergy(Electron_ecalEnergy) -> tag: HEEPProducer:ecalEnergy nameInTree: Electron_ecalEnergy
+full name: HEEPProducer:full55SiEtaiEta(Electron_full55SiEtaiEta) -> tag: HEEPProducer:full55SiEtaiEta nameInTree: Electron_full55SiEtaiEta
+full name: HEEPProducer:sce25max(Electron_sce25max) -> tag: HEEPProducer:sce25max nameInTree: Electron_sce25max
+full name: HEEPProducer:sce55(Electron_sce55) -> tag: HEEPProducer:sce55 nameInTree: Electron_sce55
+full name: HEEPProducer:sce25bye55(Electron_sce25bye55) -> tag: HEEPProducer:sce25bye55 nameInTree: Electron_sce25bye55
+full name: HEEPProducer:e15bye55(Electron_e15bye55) -> tag: HEEPProducer:e15bye55 nameInTree: Electron_e15bye55
+full name: HEEPProducer:DeltaEtaSeedscandTrack(Electron_DeltaEtaSeedscandTrack) -> tag: HEEPProducer:DeltaEtaSeedscandTrack nameInTree: Electron_DeltaEtaSeedscandTrack
+full name: HEEPProducer:Phi(Electron_Phi) -> tag: HEEPProducer:Phi nameInTree: Electron_Phi
+full name: HEEPProducer:eEnergy(Electron_Energy) -> tag: HEEPProducer:eEnergy nameInTree: Electron_Energy
+full name: HEEPProducer:dxy(dxy) -> tag: HEEPProducer:dxy nameInTree: dxy
+full name: HEEPProducer:ePz(Electron_Pz) -> tag: HEEPProducer:ePz nameInTree: Electron_Pz
+full name: HEEPProducer:eTheta(Electron_Theta) -> tag: HEEPProducer:eTheta nameInTree: Electron_Theta
+full name: HEEPProducer:ePx(Electron_Px) -> tag: HEEPProducer:ePx nameInTree: Electron_Px
+full name: HEEPProducer:ePy(Electron_Py) -> tag: HEEPProducer:ePy nameInTree: Electron_Py
+full name: HEEPProducer:normalizedChi2(Electron_normalizedChi2) -> tag: HEEPProducer:normalizedChi2 nameInTree: Electron_normalizedChi2
+full name: HEEPProducer:genPt(genPt) -> tag: HEEPProducer:genPt nameInTree: genPt
+full name: HEEPProducer:genEta(genEta) -> tag: HEEPProducer:genEta nameInTree: genEta
+full name: HEEPProducer:genPhi(genPhi) -> tag: HEEPProducer:genPhi nameInTree: genPhi
+full name: HEEPProducer:genEnergy(genEnergy) -> tag: HEEPProducer:genEnergy nameInTree: genEnergy
+full name: HEEPProducer:PtHEEP(Electron_PtHEEP) -> tag: HEEPProducer:PtHEEP nameInTree: Electron_PtHEEP
+full name: HEEPProducer:scEtaa(Electron_scEtaa) -> tag: HEEPProducer:scEtaa nameInTree: Electron_scEtaa
+full name: HEEPProducer:scEta(Electron_scEta) -> tag: HEEPProducer:scEta nameInTree: Electron_scEta
+full name: MuonProducer:MuonEta(MuonEta) -> tag: MuonProducer:MuonEta nameInTree: MuonEta
+full name: MuonProducer:MuonPhi(MuonPhi) -> tag: MuonProducer:MuonPhi nameInTree: MuonPhi
+full name: MuonProducer:MuonPt(MuonPt) -> tag: MuonProducer:MuonPt nameInTree: MuonPt
+full name: MuonProducer:MuonEnergy(MuonEnergy) -> tag: MuonProducer:MuonEnergy nameInTree: MuonEnergy
+full name: MuonProducer:MuonPtError(MuonPtError) -> tag: MuonProducer:MuonPtError nameInTree: MuonPtError
+full name: MuonProducer:MuonGlobalChi2(MuonGlobalChi2) -> tag: MuonProducer:MuonGlobalChi2 nameInTree: MuonGlobalChi2
+full name: MuonProducer:MuonTrkPtError(MuonTrkPtError) -> tag: MuonProducer:MuonTrkPtError nameInTree: MuonTrkPtError
+full name: MuonProducer:MuonPFIsoR04Photon(MuonPFIsoR04Photon) -> tag: MuonProducer:MuonPFIsoR04Photon nameInTree: MuonPFIsoR04Photon
+full name: MuonProducer:MuonPFIsoR04NeutralHadron(MuonPFIsoR04NeutralHadron) -> tag: MuonProducer:MuonPFIsoR04NeutralHadron nameInTree: MuonPFIsoR04NeutralHadron
+full name: MuonProducer:MuonPFIsoR04PU(MuonPFIsoR04PU) -> tag: MuonProducer:MuonPFIsoR04PU nameInTree: MuonPFIsoR04PU
+full name: MuonProducer:MuonTrackerIsoSumPT(MuonTrackerIsoSumPT) -> tag: MuonProducer:MuonTrackerIsoSumPT nameInTree: MuonTrackerIsoSumPT
+full name: MuonProducer:MuonPFIsoR04ChargedHadron(MuonPFIsoR04ChargedHadron) -> tag: MuonProducer:MuonPFIsoR04ChargedHadron nameInTree: MuonPFIsoR04ChargedHadron
+full name: MuonProducer:CocktailEta(CocktailPtError) -> tag: MuonProducer:CocktailEta nameInTree: CocktailPtError
+full name: MuonProducer:CocktailPt(CocktailPt) -> tag: MuonProducer:CocktailPt nameInTree: CocktailPt
+full name: MuonProducer:MuonBestTrackVtxDistXY(MuonBestTrackVtxDistXY) -> tag: MuonProducer:MuonBestTrackVtxDistXY nameInTree: MuonBestTrackVtxDistXY
+full name: MuonProducer:MuonBestTrackVtxDistZ(MuonBestTrackVtxDistZ) -> tag: MuonProducer:MuonBestTrackVtxDistZ nameInTree: MuonBestTrackVtxDistZ
+full name: TauProducer:tEta(TauEta) -> tag: TauProducer:tEta nameInTree: TauEta
+full name: TauProducer:tPhi(TauPhi) -> tag: TauProducer:tPhi nameInTree: TauPhi
+full name: TauProducer:tPt(TauPt) -> tag: TauProducer:tPt nameInTree: TauPt
+full name: TriggerProducer:objectPt -> tag: TriggerProducer:objectPt nameInTree: objectPt
+full name: TriggerProducer:objecteta -> tag: TriggerProducer:objecteta nameInTree: objecteta
+full name: TriggerProducer:objectphi -> tag: TriggerProducer:objectphi nameInTree: objectphi
+full name: TriggerProducer:objectE -> tag: TriggerProducer:objectE nameInTree: objectE
+VectorString:
+full name: TriggerProducer:TriggerNames -> tag: TriggerProducer:TriggerNames nameInTree: TriggerNames
+VectorTLorentzVector:
+VectorRecoCand:
+full name: GoodJets(Jets) -> tag: GoodJets nameInTree: Jets
+List of stored triggers:
+0: HLT_CaloJet500_NoJetID_v
+1: HLT_DoubleEle8_CaloIdM_TrackIdM_Mass8_PFHT300_v
+2: HLT_DoubleMu8_Mass8_PFHT300_v
+3: HLT_Ele105_CaloIdVT_GsfTrkIdT_v
+4: HLT_Ele115_CaloIdVT_GsfTrkIdT_v
+5: HLT_Ele15_IsoVVVL_PFHT350_PFMET50_v
+6: HLT_Ele15_IsoVVVL_PFHT350_v
+7: HLT_Ele15_IsoVVVL_PFHT400_v
+8: HLT_Ele15_IsoVVVL_PFHT600_v
+9: HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v
+10: HLT_Ele25_eta2p1_WPTight_Gsf_v 
+11: HLT_Ele27_WPTight_Gsf_v
+12: HLT_Ele27_eta2p1_WPLoose_Gsf_v 
+13: HLT_Ele45_WPLoose_Gsf_v
+14: HLT_Ele50_IsoVVVL_PFHT400_v
+15: HLT_IsoMu16_eta2p1_MET30_v
+16: HLT_IsoMu22_eta2p1_v
+17: HLT_IsoMu22_v
+18: HLT_IsoMu24_v 
+19: HLT_IsoTkMu22_v
+20: HLT_Mu15_IsoVVVL_PFHT350_PFMET50_v
+21: HLT_Mu15_IsoVVVL_PFHT350_v
+22: HLT_Mu15_IsoVVVL_PFHT400_v
+23: HLT_Mu15_IsoVVVL_PFHT600_v
+24: HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_v
+25: HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_v
+26: HLT_Mu45_eta2p1_v
+27: HLT_Mu50_IsoVVVL_PFHT400_v
+28: HLT_Mu50_v
+29: HLT_PFHT200_v
+30: HLT_PFHT250_v
+31: HLT_PFHT300_PFMET100_v
+32: HLT_PFHT300_PFMET110_v
+33: HLT_PFHT300_v
+34: HLT_PFHT350_v
+35: HLT_PFHT400_v
+36: HLT_PFHT475_v
+37: HLT_PFHT600_v
+38: HLT_PFHT650_v
+39: HLT_PFHT800_v
+40: HLT_PFHT900_v
+41: HLT_PFMET100_PFMHT100_IDTight_v
+42: HLT_PFMET110_PFMHT110_IDTight_v
+43: HLT_PFMET120_PFMHT120_IDTight_v
+44: HLT_PFMET90_PFMHT90_IDTight_v
+45: HLT_PFMETNoMu100_PFMHTNoMu100_IDTight_v
+46: HLT_PFMETNoMu110_PFMHTNoMu110_IDTight_v
+47: HLT_PFMETNoMu120_PFMHTNoMu120_IDTight_v
+48: HLT_PFMETNoMu90_PFMHTNoMu90_IDTight_v
+49: HLT_Photon165_HE10_v
+50: HLT_Photon175_v
+51: HLT_Photon90_CaloIdL_PFHT500_v
+52: HLT_TkMu50_v
+[STATUS] Reading energy scale correction  values from file: EgammaAnalysis/ElectronTools/data/ScalesSmearings/80X_ichepV1_2016_ele_scales.dat
+[STATUS] Reading energy scale correction  values from file: EgammaAnalysis/ElectronTools/data/ScalesSmearings/80X_ichepV1_2016_ele_scales.dat
+Begin processing the 1st record. Run 276501, Event 17039408, LumiSection 14 at 13-Nov-2016 01:23:27.984 CST
+Begin processing the 101st record. Run 276501, Event 17852480, LumiSection 14 at 13-Nov-2016 01:23:37.317 CST
+Begin processing the 201st record. Run 276501, Event 18391899, LumiSection 14 at 13-Nov-2016 01:23:40.752 CST
+Begin processing the 301st record. Run 276501, Event 16906797, LumiSection 14 at 13-Nov-2016 01:23:44.284 CST
+Begin processing the 401st record. Run 276501, Event 17366349, LumiSection 14 at 13-Nov-2016 01:23:47.731 CST
+Begin processing the 501st record. Run 276501, Event 18587210, LumiSection 14 at 13-Nov-2016 01:23:52.031 CST
+Begin processing the 601st record. Run 276501, Event 17092365, LumiSection 14 at 13-Nov-2016 01:23:57.182 CST
+Begin processing the 701st record. Run 276501, Event 17412462, LumiSection 14 at 13-Nov-2016 01:23:59.310 CST
+Begin processing the 801st record. Run 276501, Event 16902561, LumiSection 14 at 13-Nov-2016 01:24:01.673 CST
+Begin processing the 901st record. Run 276501, Event 17509842, LumiSection 14 at 13-Nov-2016 01:24:05.614 CST
+Begin processing the 1001st record. Run 276501, Event 17105143, LumiSection 14 at 13-Nov-2016 01:24:07.995 CST
+Begin processing the 1101st record. Run 276501, Event 19181520, LumiSection 15 at 13-Nov-2016 01:24:13.559 CST
+Begin processing the 1201st record. Run 276501, Event 19227119, LumiSection 15 at 13-Nov-2016 01:24:15.838 CST
+Begin processing the 1301st record. Run 276501, Event 20340227, LumiSection 15 at 13-Nov-2016 01:24:18.156 CST
+Begin processing the 1401st record. Run 276501, Event 20321096, LumiSection 15 at 13-Nov-2016 01:24:21.956 CST
+Begin processing the 1501st record. Run 276501, Event 19273174, LumiSection 15 at 13-Nov-2016 01:24:24.166 CST
+Begin processing the 1601st record. Run 276501, Event 19289076, LumiSection 15 at 13-Nov-2016 01:24:29.479 CST
+Begin processing the 1701st record. Run 276501, Event 19068360, LumiSection 15 at 13-Nov-2016 01:24:31.623 CST
+Begin processing the 1801st record. Run 276501, Event 20006871, LumiSection 15 at 13-Nov-2016 01:24:35.366 CST
+Begin processing the 1901st record. Run 276501, Event 18796551, LumiSection 15 at 13-Nov-2016 01:24:37.447 CST
+Begin processing the 2001st record. Run 276501, Event 19057310, LumiSection 15 at 13-Nov-2016 01:24:39.669 CST
+Begin processing the 2101st record. Run 276501, Event 21636131, LumiSection 16 at 13-Nov-2016 01:24:42.056 CST
+Begin processing the 2201st record. Run 276501, Event 21680316, LumiSection 16 at 13-Nov-2016 01:24:50.200 CST
+Begin processing the 2301st record. Run 276501, Event 20606361, LumiSection 16 at 13-Nov-2016 01:24:52.378 CST
+Begin processing the 2401st record. Run 276501, Event 20966793, LumiSection 16 at 13-Nov-2016 01:24:54.659 CST
+Begin processing the 2501st record. Run 276501, Event 20617382, LumiSection 16 at 13-Nov-2016 01:24:57.005 CST
+Begin processing the 2601st record. Run 276501, Event 20976259, LumiSection 16 at 13-Nov-2016 01:24:59.257 CST
+Begin processing the 2701st record. Run 276501, Event 21469642, LumiSection 16 at 13-Nov-2016 01:25:04.737 CST
+Begin processing the 2801st record. Run 276501, Event 21776526, LumiSection 16 at 13-Nov-2016 01:25:06.780 CST
+Begin processing the 2901st record. Run 276501, Event 21387052, LumiSection 16 at 13-Nov-2016 01:25:08.954 CST
+Begin processing the 3001st record. Run 276501, Event 23337043, LumiSection 17 at 13-Nov-2016 01:25:11.198 CST
+Begin processing the 3101st record. Run 276501, Event 23251473, LumiSection 17 at 13-Nov-2016 01:25:14.870 CST
+Begin processing the 3201st record. Run 276501, Event 22520957, LumiSection 17 at 13-Nov-2016 01:25:20.466 CST
+Begin processing the 3301st record. Run 276501, Event 23850542, LumiSection 17 at 13-Nov-2016 01:25:22.725 CST
+Begin processing the 3401st record. Run 276501, Event 22465662, LumiSection 17 at 13-Nov-2016 01:25:24.960 CST
+Begin processing the 3501st record. Run 276501, Event 22145817, LumiSection 17 at 13-Nov-2016 01:25:28.638 CST
+Begin processing the 3601st record. Run 276501, Event 22481761, LumiSection 17 at 13-Nov-2016 01:25:30.852 CST
+Begin processing the 3701st record. Run 276501, Event 22126802, LumiSection 17 at 13-Nov-2016 01:25:34.509 CST
+Begin processing the 3801st record. Run 276501, Event 23620817, LumiSection 17 at 13-Nov-2016 01:25:36.724 CST
+Begin processing the 3901st record. Run 276501, Event 23017398, LumiSection 17 at 13-Nov-2016 01:25:39.112 CST
+Begin processing the 4001st record. Run 276501, Event 25430233, LumiSection 18 at 13-Nov-2016 01:25:42.796 CST
+Begin processing the 4101st record. Run 276501, Event 24992862, LumiSection 18 at 13-Nov-2016 01:25:45.035 CST
+Begin processing the 4201st record. Run 276501, Event 24643832, LumiSection 18 at 13-Nov-2016 01:25:47.347 CST
+Begin processing the 4301st record. Run 276501, Event 25533706, LumiSection 18 at 13-Nov-2016 01:25:51.196 CST
+Begin processing the 4401st record. Run 276501, Event 24504939, LumiSection 18 at 13-Nov-2016 01:25:54.986 CST
+Begin processing the 4501st record. Run 276501, Event 24687070, LumiSection 18 at 13-Nov-2016 01:25:57.256 CST
+Begin processing the 4601st record. Run 276501, Event 24988741, LumiSection 18 at 13-Nov-2016 01:25:59.586 CST
+Begin processing the 4701st record. Run 276501, Event 24947552, LumiSection 18 at 13-Nov-2016 01:26:01.949 CST
+Begin processing the 4801st record. Run 276501, Event 25176612, LumiSection 18 at 13-Nov-2016 01:26:08.273 CST
+Begin processing the 4901st record. Run 276501, Event 24592787, LumiSection 18 at 13-Nov-2016 01:26:10.477 CST
+Begin processing the 5001st record. Run 276501, Event 35186707, LumiSection 24 at 13-Nov-2016 01:26:13.720 CST
+Begin processing the 5101st record. Run 276501, Event 34894559, LumiSection 24 at 13-Nov-2016 01:26:16.981 CST
+Begin processing the 5201st record. Run 276501, Event 35280502, LumiSection 24 at 13-Nov-2016 01:26:20.103 CST
+Begin processing the 5301st record. Run 276501, Event 34799888, LumiSection 24 at 13-Nov-2016 01:26:24.981 CST
+Begin processing the 5401st record. Run 276501, Event 34675070, LumiSection 24 at 13-Nov-2016 01:26:28.180 CST
+Begin processing the 5501st record. Run 276501, Event 35916305, LumiSection 24 at 13-Nov-2016 01:26:32.489 CST
+Begin processing the 5601st record. Run 276501, Event 34573435, LumiSection 24 at 13-Nov-2016 01:26:34.714 CST
+Begin processing the 5701st record. Run 276501, Event 35327446, LumiSection 24 at 13-Nov-2016 01:26:36.882 CST
+Begin processing the 5801st record. Run 276501, Event 35843139, LumiSection 24 at 13-Nov-2016 01:26:39.153 CST
+Begin processing the 5901st record. Run 276501, Event 34681882, LumiSection 24 at 13-Nov-2016 01:26:45.504 CST
+Begin processing the 6001st record. Run 276501, Event 37252951, LumiSection 25 at 13-Nov-2016 01:26:47.756 CST
+Begin processing the 6101st record. Run 276501, Event 36157036, LumiSection 25 at 13-Nov-2016 01:26:49.949 CST
+Begin processing the 6201st record. Run 276501, Event 36388078, LumiSection 25 at 13-Nov-2016 01:26:52.161 CST
+Begin processing the 6301st record. Run 276501, Event 36773951, LumiSection 25 at 13-Nov-2016 01:26:54.456 CST
+Begin processing the 6401st record. Run 276501, Event 36966579, LumiSection 25 at 13-Nov-2016 01:27:00.630 CST
+Begin processing the 6501st record. Run 276501, Event 36376189, LumiSection 25 at 13-Nov-2016 01:27:02.813 CST
+Begin processing the 6601st record. Run 276501, Event 36560298, LumiSection 25 at 13-Nov-2016 01:27:04.895 CST
+Begin processing the 6701st record. Run 276501, Event 36116214, LumiSection 25 at 13-Nov-2016 01:27:07.187 CST
+Begin processing the 6801st record. Run 276501, Event 36387968, LumiSection 25 at 13-Nov-2016 01:27:09.318 CST
+Begin processing the 6901st record. Run 276501, Event 36253896, LumiSection 25 at 13-Nov-2016 01:27:31.499 CST
+Begin processing the 7001st record. Run 276501, Event 39343298, LumiSection 26 at 13-Nov-2016 01:27:33.659 CST
+Begin processing the 7101st record. Run 276501, Event 38442400, LumiSection 26 at 13-Nov-2016 01:27:35.875 CST
+Begin processing the 7201st record. Run 276501, Event 39162430, LumiSection 26 at 13-Nov-2016 01:27:38.318 CST
+Begin processing the 7301st record. Run 276501, Event 39300656, LumiSection 26 at 13-Nov-2016 01:27:42.078 CST
+Begin processing the 7401st record. Run 276501, Event 38177965, LumiSection 26 at 13-Nov-2016 01:27:46.387 CST
+Begin processing the 7501st record. Run 276501, Event 38547409, LumiSection 26 at 13-Nov-2016 01:27:48.594 CST
+Begin processing the 7601st record. Run 276501, Event 39141415, LumiSection 26 at 13-Nov-2016 01:27:50.779 CST
+Begin processing the 7701st record. Run 276501, Event 38040859, LumiSection 26 at 13-Nov-2016 01:27:53.207 CST
+Begin processing the 7801st record. Run 276501, Event 38253476, LumiSection 26 at 13-Nov-2016 01:27:57.005 CST
+Begin processing the 7901st record. Run 276501, Event 38591653, LumiSection 26 at 13-Nov-2016 01:27:59.214 CST
+Begin processing the 8001st record. Run 276501, Event 39672140, LumiSection 27 at 13-Nov-2016 01:28:03.266 CST
+Begin processing the 8101st record. Run 276501, Event 40982765, LumiSection 27 at 13-Nov-2016 01:28:05.671 CST
+Begin processing the 8201st record. Run 276501, Event 39804409, LumiSection 27 at 13-Nov-2016 01:28:09.546 CST
+Begin processing the 8301st record. Run 276501, Event 40630716, LumiSection 27 at 13-Nov-2016 01:28:11.770 CST
+Begin processing the 8401st record. Run 276501, Event 39783461, LumiSection 27 at 13-Nov-2016 01:28:14.057 CST
+Begin processing the 8501st record. Run 276501, Event 39922176, LumiSection 27 at 13-Nov-2016 01:28:20.356 CST
+Begin processing the 8601st record. Run 276501, Event 40081264, LumiSection 27 at 13-Nov-2016 01:28:22.672 CST
+found bad track!
+Begin processing the 8701st record. Run 276501, Event 39844236, LumiSection 27 at 13-Nov-2016 01:28:26.234 CST
+Begin processing the 8801st record. Run 276501, Event 40736738, LumiSection 27 at 13-Nov-2016 01:28:28.434 CST
+Begin processing the 8901st record. Run 276501, Event 42301644, LumiSection 28 at 13-Nov-2016 01:28:30.736 CST
+Begin processing the 9001st record. Run 276501, Event 42384260, LumiSection 28 at 13-Nov-2016 01:28:34.968 CST
+Begin processing the 9101st record. Run 276501, Event 41615989, LumiSection 28 at 13-Nov-2016 01:28:38.758 CST
+Begin processing the 9201st record. Run 276501, Event 41546464, LumiSection 28 at 13-Nov-2016 01:28:40.877 CST
+Begin processing the 9301st record. Run 276501, Event 41587244, LumiSection 28 at 13-Nov-2016 01:28:43.118 CST
+Begin processing the 9401st record. Run 276501, Event 41278514, LumiSection 28 at 13-Nov-2016 01:28:45.305 CST
+Begin processing the 9501st record. Run 276501, Event 41637760, LumiSection 28 at 13-Nov-2016 01:28:51.013 CST
+Begin processing the 9601st record. Run 276501, Event 42390702, LumiSection 28 at 13-Nov-2016 01:28:54.526 CST
+Begin processing the 9701st record. Run 276501, Event 42404656, LumiSection 28 at 13-Nov-2016 01:28:56.716 CST
+Begin processing the 9801st record. Run 276501, Event 42362472, LumiSection 28 at 13-Nov-2016 01:28:58.949 CST
+Begin processing the 9901st record. Run 276501, Event 87609263, LumiSection 54 at 13-Nov-2016 01:29:02.921 CST
+Begin processing the 10001st record. Run 276501, Event 87355794, LumiSection 54 at 13-Nov-2016 01:29:06.204 CST
+Begin processing the 10101st record. Run 276501, Event 86669258, LumiSection 54 at 13-Nov-2016 01:29:12.736 CST
+Begin processing the 10201st record. Run 276501, Event 86782925, LumiSection 54 at 13-Nov-2016 01:29:15.952 CST
+Begin processing the 10301st record. Run 276501, Event 87025337, LumiSection 54 at 13-Nov-2016 01:29:20.351 CST
+Begin processing the 10401st record. Run 276501, Event 86972660, LumiSection 54 at 13-Nov-2016 01:29:22.567 CST
+Begin processing the 10501st record. Run 276501, Event 87043773, LumiSection 54 at 13-Nov-2016 01:29:24.800 CST
+Begin processing the 10601st record. Run 276501, Event 86389031, LumiSection 54 at 13-Nov-2016 01:29:30.621 CST
+Begin processing the 10701st record. Run 276501, Event 87407685, LumiSection 54 at 13-Nov-2016 01:29:33.076 CST
+Begin processing the 10801st record. Run 276501, Event 88691552, LumiSection 55 at 13-Nov-2016 01:29:36.742 CST
+Begin processing the 10901st record. Run 276501, Event 88514406, LumiSection 55 at 13-Nov-2016 01:29:39.014 CST
+Begin processing the 11001st record. Run 276501, Event 89425473, LumiSection 55 at 13-Nov-2016 01:29:41.275 CST
+Begin processing the 11101st record. Run 276501, Event 89332777, LumiSection 55 at 13-Nov-2016 01:29:46.108 CST
+Begin processing the 11201st record. Run 276501, Event 89241764, LumiSection 55 at 13-Nov-2016 01:29:49.785 CST
+Begin processing the 11301st record. Run 276501, Event 89181883, LumiSection 55 at 13-Nov-2016 01:29:51.891 CST
+Begin processing the 11401st record. Run 276501, Event 89125943, LumiSection 55 at 13-Nov-2016 01:29:54.133 CST
+Begin processing the 11501st record. Run 276501, Event 88988446, LumiSection 55 at 13-Nov-2016 01:29:56.270 CST
+Begin processing the 11601st record. Run 276501, Event 88311020, LumiSection 55 at 13-Nov-2016 01:30:02.706 CST
+Begin processing the 11701st record. Run 276501, Event 89320863, LumiSection 55 at 13-Nov-2016 01:30:06.380 CST
+Begin processing the 11801st record. Run 276501, Event 90867488, LumiSection 56 at 13-Nov-2016 01:30:08.478 CST
+Begin processing the 11901st record. Run 276501, Event 89848556, LumiSection 56 at 13-Nov-2016 01:30:10.683 CST
+Begin processing the 12001st record. Run 276501, Event 90869914, LumiSection 56 at 13-Nov-2016 01:30:13.057 CST
+Begin processing the 12101st record. Run 276501, Event 91022567, LumiSection 56 at 13-Nov-2016 01:30:16.741 CST
+Begin processing the 12201st record. Run 276501, Event 89833175, LumiSection 56 at 13-Nov-2016 01:30:20.978 CST
+Begin processing the 12301st record. Run 276501, Event 89775072, LumiSection 56 at 13-Nov-2016 01:30:23.211 CST
+Begin processing the 12401st record. Run 276501, Event 90607050, LumiSection 56 at 13-Nov-2016 01:30:25.482 CST
+Begin processing the 12501st record. Run 276501, Event 89900088, LumiSection 56 at 13-Nov-2016 01:30:27.885 CST
+Begin processing the 12601st record. Run 276501, Event 90995094, LumiSection 56 at 13-Nov-2016 01:30:31.646 CST
+Begin processing the 12701st record. Run 276501, Event 91825591, LumiSection 57 at 13-Nov-2016 01:30:36.132 CST
+Begin processing the 12801st record. Run 276501, Event 91942484, LumiSection 57 at 13-Nov-2016 01:30:38.413 CST
+Begin processing the 12901st record. Run 276501, Event 92867906, LumiSection 57 at 13-Nov-2016 01:30:40.717 CST
+Begin processing the 13001st record. Run 276501, Event 92517580, LumiSection 57 at 13-Nov-2016 01:30:42.916 CST
+Begin processing the 13101st record. Run 276501, Event 92865833, LumiSection 57 at 13-Nov-2016 01:30:46.585 CST
+Begin processing the 13201st record. Run 276501, Event 92750663, LumiSection 57 at 13-Nov-2016 01:30:50.242 CST
+Begin processing the 13301st record. Run 276501, Event 91572823, LumiSection 57 at 13-Nov-2016 01:30:52.440 CST
+Begin processing the 13401st record. Run 276501, Event 91650593, LumiSection 57 at 13-Nov-2016 01:30:54.797 CST
+Begin processing the 13501st record. Run 276501, Event 91509681, LumiSection 57 at 13-Nov-2016 01:30:58.563 CST
+Begin processing the 13601st record. Run 276501, Event 94403054, LumiSection 58 at 13-Nov-2016 01:31:00.850 CST
+Begin processing the 13701st record. Run 276501, Event 94473084, LumiSection 58 at 13-Nov-2016 01:31:02.928 CST
+Begin processing the 13801st record. Run 276501, Event 94658825, LumiSection 58 at 13-Nov-2016 01:31:06.734 CST
+Begin processing the 13901st record. Run 276501, Event 94256432, LumiSection 58 at 13-Nov-2016 01:31:09.160 CST
+Begin processing the 14001st record. Run 276501, Event 93871955, LumiSection 58 at 13-Nov-2016 01:31:12.814 CST
+Begin processing the 14101st record. Run 276501, Event 93681921, LumiSection 58 at 13-Nov-2016 01:31:15.066 CST
+Begin processing the 14201st record. Run 276501, Event 94325076, LumiSection 58 at 13-Nov-2016 01:31:17.249 CST
+Begin processing the 14301st record. Run 276501, Event 94779605, LumiSection 58 at 13-Nov-2016 01:31:23.169 CST
+Begin processing the 14401st record. Run 276501, Event 94803310, LumiSection 58 at 13-Nov-2016 01:31:26.473 CST
+Begin processing the 14501st record. Run 276501, Event 93116084, LumiSection 58 at 13-Nov-2016 01:31:28.683 CST
+Begin processing the 14601st record. Run 276501, Event 190510530, LumiSection 114 at 13-Nov-2016 01:31:32.660 CST
+Begin processing the 14701st record. Run 276501, Event 190224851, LumiSection 114 at 13-Nov-2016 01:31:35.993 CST
+Begin processing the 14801st record. Run 276501, Event 189653305, LumiSection 114 at 13-Nov-2016 01:31:41.910 CST
+Begin processing the 14901st record. Run 276501, Event 189048380, LumiSection 114 at 13-Nov-2016 01:31:44.994 CST
+Begin processing the 15001st record. Run 276501, Event 189576987, LumiSection 114 at 13-Nov-2016 01:31:49.444 CST
+Begin processing the 15101st record. Run 276501, Event 190325973, LumiSection 114 at 13-Nov-2016 01:31:51.635 CST
+Begin processing the 15201st record. Run 276501, Event 189668058, LumiSection 114 at 13-Nov-2016 01:31:53.960 CST
+Begin processing the 15301st record. Run 276501, Event 190336445, LumiSection 114 at 13-Nov-2016 01:31:58.483 CST
+Begin processing the 15401st record. Run 276501, Event 190114572, LumiSection 114 at 13-Nov-2016 01:32:00.833 CST
+Begin processing the 15501st record. Run 276501, Event 190621748, LumiSection 115 at 13-Nov-2016 01:32:04.562 CST
+Begin processing the 15601st record. Run 276501, Event 191546389, LumiSection 115 at 13-Nov-2016 01:32:06.760 CST
+Begin processing the 15701st record. Run 276501, Event 192075249, LumiSection 115 at 13-Nov-2016 01:32:09.141 CST
+Begin processing the 15801st record. Run 276501, Event 191354031, LumiSection 115 at 13-Nov-2016 01:32:11.530 CST
+Begin processing the 15901st record. Run 276501, Event 190724807, LumiSection 115 at 13-Nov-2016 01:32:17.092 CST
+Begin processing the 16001st record. Run 276501, Event 190732580, LumiSection 115 at 13-Nov-2016 01:32:19.367 CST
+Begin processing the 16101st record. Run 276501, Event 191593010, LumiSection 115 at 13-Nov-2016 01:32:21.610 CST
+Begin processing the 16201st record. Run 276501, Event 191393939, LumiSection 115 at 13-Nov-2016 01:32:23.931 CST
+Begin processing the 16301st record. Run 276501, Event 191604860, LumiSection 115 at 13-Nov-2016 01:32:26.147 CST
+Begin processing the 16401st record. Run 276501, Event 191538877, LumiSection 115 at 13-Nov-2016 01:32:33.320 CST
+Begin processing the 16501st record. Run 276501, Event 192581565, LumiSection 116 at 13-Nov-2016 01:32:35.516 CST
+Begin processing the 16601st record. Run 276501, Event 192743971, LumiSection 116 at 13-Nov-2016 01:32:37.720 CST
+Begin processing the 16701st record. Run 276501, Event 192771102, LumiSection 116 at 13-Nov-2016 01:32:39.835 CST
+Begin processing the 16801st record. Run 276501, Event 192927819, LumiSection 116 at 13-Nov-2016 01:32:42.137 CST
+Begin processing the 16901st record. Run 276501, Event 192586152, LumiSection 116 at 13-Nov-2016 01:32:48.738 CST
+Begin processing the 17001st record. Run 276501, Event 192220779, LumiSection 116 at 13-Nov-2016 01:32:50.909 CST
+Begin processing the 17101st record. Run 276501, Event 193252138, LumiSection 116 at 13-Nov-2016 01:32:53.151 CST
+Begin processing the 17201st record. Run 276501, Event 193395898, LumiSection 116 at 13-Nov-2016 01:32:55.388 CST
+Begin processing the 17301st record. Run 276501, Event 195282459, LumiSection 117 at 13-Nov-2016 01:32:59.075 CST
+Begin processing the 17401st record. Run 276501, Event 194292328, LumiSection 117 at 13-Nov-2016 01:33:01.216 CST
+Begin processing the 17501st record. Run 276501, Event 195013949, LumiSection 117 at 13-Nov-2016 01:33:06.943 CST
+Begin processing the 17601st record. Run 276501, Event 195373062, LumiSection 117 at 13-Nov-2016 01:33:09.218 CST
+Begin processing the 17701st record. Run 276501, Event 194065959, LumiSection 117 at 13-Nov-2016 01:33:11.616 CST
+Begin processing the 17801st record. Run 276501, Event 193809606, LumiSection 117 at 13-Nov-2016 01:33:15.382 CST
+Begin processing the 17901st record. Run 276501, Event 194828334, LumiSection 117 at 13-Nov-2016 01:33:17.595 CST
+Begin processing the 18001st record. Run 276501, Event 194529238, LumiSection 117 at 13-Nov-2016 01:33:22.505 CST
+Begin processing the 18101st record. Run 276501, Event 194239269, LumiSection 117 at 13-Nov-2016 01:33:24.862 CST
+Begin processing the 18201st record. Run 276501, Event 195154916, LumiSection 117 at 13-Nov-2016 01:33:28.686 CST
+Begin processing the 18301st record. Run 276501, Event 196878317, LumiSection 118 at 13-Nov-2016 01:33:30.940 CST
+Begin processing the 18401st record. Run 276501, Event 195844374, LumiSection 118 at 13-Nov-2016 01:33:33.223 CST
+Begin processing the 18501st record. Run 276501, Event 196220417, LumiSection 118 at 13-Nov-2016 01:33:38.353 CST
+Begin processing the 18601st record. Run 276501, Event 196934845, LumiSection 118 at 13-Nov-2016 01:33:40.766 CST
+Begin processing the 18701st record. Run 276501, Event 195912865, LumiSection 118 at 13-Nov-2016 01:33:44.508 CST
+Begin processing the 18801st record. Run 276501, Event 196460680, LumiSection 118 at 13-Nov-2016 01:33:46.654 CST
+Begin processing the 18901st record. Run 276501, Event 196817200, LumiSection 118 at 13-Nov-2016 01:33:48.775 CST
+Begin processing the 19001st record. Run 276501, Event 196611684, LumiSection 118 at 13-Nov-2016 01:33:50.972 CST
+Begin processing the 19101st record. Run 276501, Event 196904604, LumiSection 118 at 13-Nov-2016 01:33:56.111 CST
+Begin processing the 19201st record. Run 276501, Event 290078544, LumiSection 175 at 13-Nov-2016 01:34:00.409 CST
+Begin processing the 19301st record. Run 276501, Event 289027404, LumiSection 175 at 13-Nov-2016 01:34:03.604 CST
+Begin processing the 19401st record. Run 276501, Event 289175204, LumiSection 175 at 13-Nov-2016 01:34:06.884 CST
+Begin processing the 19501st record. Run 276501, Event 289451268, LumiSection 175 at 13-Nov-2016 01:34:12.788 CST
+Begin processing the 19601st record. Run 276501, Event 290019049, LumiSection 175 at 13-Nov-2016 01:34:15.951 CST
+Begin processing the 19701st record. Run 276501, Event 290584890, LumiSection 175 at 13-Nov-2016 01:34:20.057 CST
+Begin processing the 19801st record. Run 276501, Event 290275216, LumiSection 175 at 13-Nov-2016 01:34:22.226 CST
+Begin processing the 19901st record. Run 276501, Event 290634383, LumiSection 175 at 13-Nov-2016 01:34:24.379 CST
+Begin processing the 20001st record. Run 276501, Event 289324413, LumiSection 175 at 13-Nov-2016 01:34:26.728 CST
+Begin processing the 20101st record. Run 276501, Event 289403113, LumiSection 175 at 13-Nov-2016 01:34:36.158 CST
+Begin processing the 20201st record. Run 276501, Event 291297015, LumiSection 176 at 13-Nov-2016 01:34:39.957 CST
+Begin processing the 20301st record. Run 276501, Event 291521126, LumiSection 176 at 13-Nov-2016 01:34:42.148 CST
+Begin processing the 20401st record. Run 276501, Event 291406743, LumiSection 176 at 13-Nov-2016 01:34:44.387 CST
+Begin processing the 20501st record. Run 276501, Event 290889322, LumiSection 176 at 13-Nov-2016 01:34:46.775 CST
+Begin processing the 20601st record. Run 276501, Event 291318475, LumiSection 176 at 13-Nov-2016 01:34:55.238 CST
+Begin processing the 20701st record. Run 276501, Event 290693971, LumiSection 176 at 13-Nov-2016 01:34:57.415 CST
+Begin processing the 20801st record. Run 276501, Event 291684056, LumiSection 176 at 13-Nov-2016 01:34:59.634 CST
+Begin processing the 20901st record. Run 276501, Event 291884728, LumiSection 176 at 13-Nov-2016 01:35:01.845 CST
+Begin processing the 21001st record. Run 276501, Event 290700388, LumiSection 176 at 13-Nov-2016 01:35:04.152 CST
+Begin processing the 21101st record. Run 276501, Event 293668536, LumiSection 177 at 13-Nov-2016 01:35:07.719 CST
+Begin processing the 21201st record. Run 276501, Event 293625823, LumiSection 177 at 13-Nov-2016 01:35:11.837 CST
+Begin processing the 21301st record. Run 276501, Event 293489716, LumiSection 177 at 13-Nov-2016 01:35:13.984 CST
+Begin processing the 21401st record. Run 276501, Event 292820590, LumiSection 177 at 13-Nov-2016 01:35:16.274 CST
+Begin processing the 21501st record. Run 276501, Event 293048866, LumiSection 177 at 13-Nov-2016 01:35:18.525 CST
+Begin processing the 21601st record. Run 276501, Event 293353910, LumiSection 177 at 13-Nov-2016 01:35:22.232 CST
+Begin processing the 21701st record. Run 276501, Event 292962189, LumiSection 177 at 13-Nov-2016 01:35:25.951 CST
+Begin processing the 21801st record. Run 276501, Event 292643177, LumiSection 177 at 13-Nov-2016 01:35:28.174 CST
+Begin processing the 21901st record. Run 276501, Event 293459296, LumiSection 177 at 13-Nov-2016 01:35:30.504 CST
+Begin processing the 22001st record. Run 276501, Event 294650236, LumiSection 178 at 13-Nov-2016 01:35:34.522 CST
+Begin processing the 22101st record. Run 276501, Event 294550700, LumiSection 178 at 13-Nov-2016 01:35:36.703 CST
+Begin processing the 22201st record. Run 276501, Event 295504568, LumiSection 178 at 13-Nov-2016 01:35:41.161 CST
+Begin processing the 22301st record. Run 276501, Event 294138731, LumiSection 178 at 13-Nov-2016 01:35:43.249 CST
+Begin processing the 22401st record. Run 276501, Event 295125673, LumiSection 178 at 13-Nov-2016 01:35:45.604 CST
+Begin processing the 22501st record. Run 276501, Event 294178427, LumiSection 178 at 13-Nov-2016 01:35:49.313 CST
+Begin processing the 22601st record. Run 276501, Event 295223708, LumiSection 178 at 13-Nov-2016 01:35:51.425 CST
+Begin processing the 22701st record. Run 276501, Event 294925707, LumiSection 178 at 13-Nov-2016 01:35:55.067 CST
+Begin processing the 22801st record. Run 276501, Event 294785382, LumiSection 178 at 13-Nov-2016 01:35:57.330 CST
+Begin processing the 22901st record. Run 276501, Event 295778957, LumiSection 179 at 13-Nov-2016 01:35:59.506 CST
+Begin processing the 23001st record. Run 276501, Event 296966178, LumiSection 179 at 13-Nov-2016 01:36:03.512 CST
+Begin processing the 23101st record. Run 276501, Event 296998797, LumiSection 179 at 13-Nov-2016 01:36:05.859 CST
+Begin processing the 23201st record. Run 276501, Event 296907490, LumiSection 179 at 13-Nov-2016 01:36:08.006 CST
+Begin processing the 23301st record. Run 276501, Event 296651673, LumiSection 179 at 13-Nov-2016 01:36:16.125 CST
+Begin processing the 23401st record. Run 276501, Event 296729094, LumiSection 179 at 13-Nov-2016 01:36:20.100 CST
+Begin processing the 23501st record. Run 276501, Event 296069750, LumiSection 179 at 13-Nov-2016 01:36:22.292 CST
+Begin processing the 23601st record. Run 276501, Event 295727517, LumiSection 179 at 13-Nov-2016 01:36:24.365 CST
+Begin processing the 23701st record. Run 276501, Event 296366781, LumiSection 179 at 13-Nov-2016 01:36:26.543 CST
+Begin processing the 23801st record. Run 276501, Event 315362644, LumiSection 190 at 13-Nov-2016 01:36:31.781 CST
+Begin processing the 23901st record. Run 276501, Event 315152753, LumiSection 190 at 13-Nov-2016 01:36:35.004 CST
+Begin processing the 24001st record. Run 276501, Event 314746183, LumiSection 190 at 13-Nov-2016 01:36:38.399 CST
+Begin processing the 24101st record. Run 276501, Event 314657958, LumiSection 190 at 13-Nov-2016 01:36:41.677 CST
+Begin processing the 24201st record. Run 276501, Event 314608943, LumiSection 190 at 13-Nov-2016 01:36:45.041 CST
+Begin processing the 24301st record. Run 276501, Event 315266618, LumiSection 190 at 13-Nov-2016 01:36:53.512 CST
+Begin processing the 24401st record. Run 276501, Event 314520314, LumiSection 190 at 13-Nov-2016 01:36:55.788 CST
+Begin processing the 24501st record. Run 276501, Event 314254311, LumiSection 190 at 13-Nov-2016 01:36:57.964 CST
+Begin processing the 24601st record. Run 276501, Event 314023084, LumiSection 190 at 13-Nov-2016 01:37:00.094 CST
+Begin processing the 24701st record. Run 276501, Event 314610908, LumiSection 190 at 13-Nov-2016 01:37:02.556 CST
+Begin processing the 24801st record. Run 276501, Event 316474184, LumiSection 191 at 13-Nov-2016 01:37:06.519 CST
+Begin processing the 24901st record. Run 276501, Event 315846362, LumiSection 191 at 13-Nov-2016 01:37:10.327 CST
+Begin processing the 25001st record. Run 276501, Event 317015253, LumiSection 191 at 13-Nov-2016 01:37:12.493 CST
+Begin processing the 25101st record. Run 276501, Event 315626246, LumiSection 191 at 13-Nov-2016 01:37:14.720 CST
+Begin processing the 25201st record. Run 276501, Event 316879562, LumiSection 191 at 13-Nov-2016 01:37:17.001 CST
+Begin processing the 25301st record. Run 276501, Event 316742661, LumiSection 191 at 13-Nov-2016 01:37:20.872 CST
+Begin processing the 25401st record. Run 276501, Event 316712723, LumiSection 191 at 13-Nov-2016 01:37:25.154 CST
+Begin processing the 25501st record. Run 276501, Event 315494618, LumiSection 191 at 13-Nov-2016 01:37:27.236 CST
+Begin processing the 25601st record. Run 276501, Event 316637072, LumiSection 191 at 13-Nov-2016 01:37:29.492 CST
+Begin processing the 25701st record. Run 276501, Event 317464330, LumiSection 192 at 13-Nov-2016 01:37:33.464 CST
+Begin processing the 25801st record. Run 276501, Event 317262705, LumiSection 192 at 13-Nov-2016 01:37:35.613 CST
+Begin processing the 25901st record. Run 276501, Event 317291302, LumiSection 192 at 13-Nov-2016 01:37:38.946 CST
+Begin processing the 26001st record. Run 276501, Event 317878106, LumiSection 192 at 13-Nov-2016 01:37:41.135 CST
+Begin processing the 26101st record. Run 276501, Event 317718693, LumiSection 192 at 13-Nov-2016 01:37:43.470 CST
+Begin processing the 26201st record. Run 276501, Event 318500070, LumiSection 192 at 13-Nov-2016 01:37:47.354 CST
+Begin processing the 26301st record. Run 276501, Event 317399046, LumiSection 192 at 13-Nov-2016 01:37:49.574 CST
+Begin processing the 26401st record. Run 276501, Event 317930004, LumiSection 192 at 13-Nov-2016 01:37:53.372 CST
+Begin processing the 26501st record. Run 276501, Event 317786169, LumiSection 192 at 13-Nov-2016 01:37:55.523 CST
+Begin processing the 26601st record. Run 276501, Event 320219117, LumiSection 193 at 13-Nov-2016 01:37:57.923 CST
+Begin processing the 26701st record. Run 276501, Event 319347931, LumiSection 193 at 13-Nov-2016 01:38:01.838 CST
+Begin processing the 26801st record. Run 276501, Event 318766577, LumiSection 193 at 13-Nov-2016 01:38:04.039 CST
+Begin processing the 26901st record. Run 276501, Event 319664952, LumiSection 193 at 13-Nov-2016 01:38:08.650 CST
+Begin processing the 27001st record. Run 276501, Event 320219524, LumiSection 193 at 13-Nov-2016 01:38:11.070 CST
+Begin processing the 27101st record. Run 276501, Event 319084655, LumiSection 193 at 13-Nov-2016 01:38:13.333 CST
+Begin processing the 27201st record. Run 276501, Event 319169989, LumiSection 193 at 13-Nov-2016 01:38:17.065 CST
+Begin processing the 27301st record. Run 276501, Event 319809988, LumiSection 193 at 13-Nov-2016 01:38:19.278 CST
+Begin processing the 27401st record. Run 276501, Event 319801498, LumiSection 193 at 13-Nov-2016 01:38:21.409 CST
+Begin processing the 27501st record. Run 276501, Event 320631360, LumiSection 194 at 13-Nov-2016 01:38:26.695 CST
+Begin processing the 27601st record. Run 276501, Event 321183680, LumiSection 194 at 13-Nov-2016 01:38:30.650 CST
+Begin processing the 27701st record. Run 276501, Event 320969089, LumiSection 194 at 13-Nov-2016 01:38:32.808 CST
+Begin processing the 27801st record. Run 276501, Event 320973818, LumiSection 194 at 13-Nov-2016 01:38:35.060 CST
+Begin processing the 27901st record. Run 276501, Event 321767532, LumiSection 194 at 13-Nov-2016 01:38:37.292 CST
+Begin processing the 28001st record. Run 276501, Event 321151463, LumiSection 194 at 13-Nov-2016 01:38:42.775 CST
+Begin processing the 28101st record. Run 276501, Event 321941605, LumiSection 194 at 13-Nov-2016 01:38:46.629 CST
+Begin processing the 28201st record. Run 276501, Event 321117529, LumiSection 194 at 13-Nov-2016 01:38:48.704 CST
+Begin processing the 28301st record. Run 276501, Event 320701637, LumiSection 194 at 13-Nov-2016 01:38:50.913 CST
+Begin processing the 28401st record. Run 276501, Event 395460344, LumiSection 240 at 13-Nov-2016 01:38:54.843 CST
+Begin processing the 28501st record. Run 276501, Event 396296100, LumiSection 240 at 13-Nov-2016 01:39:01.355 CST
+Begin processing the 28601st record. Run 276501, Event 396323550, LumiSection 240 at 13-Nov-2016 01:39:04.665 CST
+Begin processing the 28701st record. Run 276501, Event 395447292, LumiSection 240 at 13-Nov-2016 01:39:08.198 CST
+Begin processing the 28801st record. Run 276501, Event 395713547, LumiSection 240 at 13-Nov-2016 01:39:11.860 CST
+Begin processing the 28901st record. Run 276501, Event 396256234, LumiSection 240 at 13-Nov-2016 01:39:16.241 CST
+Begin processing the 29001st record. Run 276501, Event 396575674, LumiSection 240 at 13-Nov-2016 01:39:18.520 CST
+Begin processing the 29101st record. Run 276501, Event 395883444, LumiSection 240 at 13-Nov-2016 01:39:23.929 CST
+Begin processing the 29201st record. Run 276501, Event 395670969, LumiSection 240 at 13-Nov-2016 01:39:26.268 CST
+Begin processing the 29301st record. Run 276501, Event 397403758, LumiSection 241 at 13-Nov-2016 01:39:30.318 CST
+Begin processing the 29401st record. Run 276501, Event 398015145, LumiSection 241 at 13-Nov-2016 01:39:32.624 CST
+Begin processing the 29501st record. Run 276501, Event 397402362, LumiSection 241 at 13-Nov-2016 01:39:34.897 CST
+Begin processing the 29601st record. Run 276501, Event 397360078, LumiSection 241 at 13-Nov-2016 01:39:39.968 CST
+Begin processing the 29701st record. Run 276501, Event 397901582, LumiSection 241 at 13-Nov-2016 01:39:42.309 CST
+Begin processing the 29801st record. Run 276501, Event 398425970, LumiSection 241 at 13-Nov-2016 01:39:46.254 CST
+Begin processing the 29901st record. Run 276501, Event 397267582, LumiSection 241 at 13-Nov-2016 01:39:48.425 CST
+Begin processing the 30001st record. Run 276501, Event 397176875, LumiSection 241 at 13-Nov-2016 01:39:50.683 CST
+Begin processing the 30101st record. Run 276501, Event 397324677, LumiSection 241 at 13-Nov-2016 01:39:55.250 CST
+Begin processing the 30201st record. Run 276501, Event 399875251, LumiSection 242 at 13-Nov-2016 01:39:57.481 CST
+Begin processing the 30301st record. Run 276501, Event 399204906, LumiSection 242 at 13-Nov-2016 01:40:01.279 CST
+Begin processing the 30401st record. Run 276501, Event 399171011, LumiSection 242 at 13-Nov-2016 01:40:03.521 CST
+Begin processing the 30501st record. Run 276501, Event 398663754, LumiSection 242 at 13-Nov-2016 01:40:05.771 CST
+Begin processing the 30601st record. Run 276501, Event 399044468, LumiSection 242 at 13-Nov-2016 01:40:10.627 CST
+Begin processing the 30701st record. Run 276501, Event 398533722, LumiSection 242 at 13-Nov-2016 01:40:14.562 CST
+Begin processing the 30801st record. Run 276501, Event 399897409, LumiSection 242 at 13-Nov-2016 01:40:16.731 CST
+Begin processing the 30901st record. Run 276501, Event 399107210, LumiSection 242 at 13-Nov-2016 01:40:18.978 CST
+Begin processing the 31001st record. Run 276501, Event 401049459, LumiSection 243 at 13-Nov-2016 01:40:21.139 CST
+Begin processing the 31101st record. Run 276501, Event 400660893, LumiSection 243 at 13-Nov-2016 01:40:23.599 CST
+Begin processing the 31201st record. Run 276501, Event 401474476, LumiSection 243 at 13-Nov-2016 01:40:31.968 CST
+Begin processing the 31301st record. Run 276501, Event 400523650, LumiSection 243 at 13-Nov-2016 01:40:34.126 CST
+Begin processing the 31401st record. Run 276501, Event 400628584, LumiSection 243 at 13-Nov-2016 01:40:36.340 CST
+Begin processing the 31501st record. Run 276501, Event 401329454, LumiSection 243 at 13-Nov-2016 01:40:38.673 CST
+Begin processing the 31601st record. Run 276501, Event 400983639, LumiSection 243 at 13-Nov-2016 01:40:42.758 CST
+Begin processing the 31701st record. Run 276501, Event 401220551, LumiSection 243 at 13-Nov-2016 01:40:47.395 CST
+Begin processing the 31801st record. Run 276501, Event 401589686, LumiSection 243 at 13-Nov-2016 01:40:49.600 CST
+Begin processing the 31901st record. Run 276501, Event 401838274, LumiSection 244 at 13-Nov-2016 01:40:51.811 CST
+Begin processing the 32001st record. Run 276501, Event 402531299, LumiSection 244 at 13-Nov-2016 01:40:54.136 CST
+Begin processing the 32101st record. Run 276501, Event 401950040, LumiSection 244 at 13-Nov-2016 01:40:58.154 CST
+Begin processing the 32201st record. Run 276501, Event 402226191, LumiSection 244 at 13-Nov-2016 01:41:04.331 CST
+Begin processing the 32301st record. Run 276501, Event 403270904, LumiSection 244 at 13-Nov-2016 01:41:06.668 CST
+Begin processing the 32401st record. Run 276501, Event 403045279, LumiSection 244 at 13-Nov-2016 01:41:09.068 CST
+Begin processing the 32501st record. Run 276501, Event 402868046, LumiSection 244 at 13-Nov-2016 01:41:11.354 CST
+Begin processing the 32601st record. Run 276501, Event 401800443, LumiSection 244 at 13-Nov-2016 01:41:15.423 CST
+Begin processing the 32701st record. Run 276501, Event 404349029, LumiSection 245 at 13-Nov-2016 01:41:20.731 CST
+Begin processing the 32801st record. Run 276501, Event 404046602, LumiSection 245 at 13-Nov-2016 01:41:22.879 CST
+Begin processing the 32901st record. Run 276501, Event 403739224, LumiSection 245 at 13-Nov-2016 01:41:25.152 CST
+Begin processing the 33001st record. Run 276501, Event 403477484, LumiSection 245 at 13-Nov-2016 01:41:29.332 CST
+Begin processing the 33101st record. Run 276501, Event 403772457, LumiSection 245 at 13-Nov-2016 01:41:31.437 CST
+Begin processing the 33201st record. Run 276501, Event 404741736, LumiSection 245 at 13-Nov-2016 01:41:33.531 CST
+Begin processing the 33301st record. Run 276501, Event 404041589, LumiSection 245 at 13-Nov-2016 01:41:38.885 CST
+Begin processing the 33401st record. Run 276501, Event 403556693, LumiSection 245 at 13-Nov-2016 01:41:41.445 CST
+Begin processing the 33501st record. Run 276501, Event 403925967, LumiSection 245 at 13-Nov-2016 01:41:45.010 CST
+Begin processing the 33601st record. Run 276501, Event 404110799, LumiSection 245 at 13-Nov-2016 01:41:47.241 CST
+Begin processing the 33701st record. Run 276501, Event 433452002, LumiSection 263 at 13-Nov-2016 01:41:51.194 CST
+Begin processing the 33801st record. Run 276501, Event 433778484, LumiSection 263 at 13-Nov-2016 01:41:57.446 CST
+Begin processing the 33901st record. Run 276501, Event 433123538, LumiSection 263 at 13-Nov-2016 01:42:00.771 CST
+Begin processing the 34001st record. Run 276501, Event 433471367, LumiSection 263 at 13-Nov-2016 01:42:04.114 CST
+Begin processing the 34101st record. Run 276501, Event 432696783, LumiSection 263 at 13-Nov-2016 01:42:09.048 CST
+Begin processing the 34201st record. Run 276501, Event 433048229, LumiSection 263 at 13-Nov-2016 01:42:11.251 CST
+Begin processing the 34301st record. Run 276501, Event 432695616, LumiSection 263 at 13-Nov-2016 01:42:17.174 CST
+Begin processing the 34401st record. Run 276501, Event 433406621, LumiSection 263 at 13-Nov-2016 01:42:19.287 CST
+Begin processing the 34501st record. Run 276501, Event 434720641, LumiSection 264 at 13-Nov-2016 01:42:21.652 CST
+Begin processing the 34601st record. Run 276501, Event 435474336, LumiSection 264 at 13-Nov-2016 01:42:25.869 CST
+Begin processing the 34701st record. Run 276501, Event 435264508, LumiSection 264 at 13-Nov-2016 01:42:28.261 CST
+Begin processing the 34801st record. Run 276501, Event 434101321, LumiSection 264 at 13-Nov-2016 01:42:32.714 CST
+Begin processing the 34901st record. Run 276501, Event 434797748, LumiSection 264 at 13-Nov-2016 01:42:34.980 CST
+Begin processing the 35001st record. Run 276501, Event 435316990, LumiSection 264 at 13-Nov-2016 01:42:37.358 CST
+Begin processing the 35101st record. Run 276501, Event 434710979, LumiSection 264 at 13-Nov-2016 01:42:41.475 CST
+Begin processing the 35201st record. Run 276501, Event 434410879, LumiSection 264 at 13-Nov-2016 01:42:43.703 CST
+Begin processing the 35301st record. Run 276501, Event 434505211, LumiSection 264 at 13-Nov-2016 01:42:45.808 CST
+Begin processing the 35401st record. Run 276501, Event 434417548, LumiSection 264 at 13-Nov-2016 01:42:49.716 CST
+Begin processing the 35501st record. Run 276501, Event 436400312, LumiSection 265 at 13-Nov-2016 01:42:53.634 CST
+Begin processing the 35601st record. Run 276501, Event 436392687, LumiSection 265 at 13-Nov-2016 01:42:55.775 CST
+Begin processing the 35701st record. Run 276501, Event 436619339, LumiSection 265 at 13-Nov-2016 01:42:57.905 CST
+Begin processing the 35801st record. Run 276501, Event 435973519, LumiSection 265 at 13-Nov-2016 01:43:00.077 CST
+Begin processing the 35901st record. Run 276501, Event 435931652, LumiSection 265 at 13-Nov-2016 01:43:04.576 CST
+Begin processing the 36001st record. Run 276501, Event 436701067, LumiSection 265 at 13-Nov-2016 01:43:08.555 CST
+Begin processing the 36101st record. Run 276501, Event 436554190, LumiSection 265 at 13-Nov-2016 01:43:10.787 CST
+Begin processing the 36201st record. Run 276501, Event 436004247, LumiSection 265 at 13-Nov-2016 01:43:13.065 CST
+Begin processing the 36301st record. Run 276501, Event 436873282, LumiSection 265 at 13-Nov-2016 01:43:15.175 CST
+Begin processing the 36401st record. Run 276501, Event 437626003, LumiSection 266 at 13-Nov-2016 01:43:20.769 CST
+Begin processing the 36501st record. Run 276501, Event 438425424, LumiSection 266 at 13-Nov-2016 01:43:24.558 CST
+Begin processing the 36601st record. Run 276501, Event 437978690, LumiSection 266 at 13-Nov-2016 01:43:26.604 CST
+Begin processing the 36701st record. Run 276501, Event 437708648, LumiSection 266 at 13-Nov-2016 01:43:28.635 CST
+Begin processing the 36801st record. Run 276501, Event 438811722, LumiSection 266 at 13-Nov-2016 01:43:30.852 CST
+Begin processing the 36901st record. Run 276501, Event 437726526, LumiSection 266 at 13-Nov-2016 01:43:34.787 CST
+Begin processing the 37001st record. Run 276501, Event 438542734, LumiSection 266 at 13-Nov-2016 01:43:39.699 CST
+Begin processing the 37101st record. Run 276501, Event 437400634, LumiSection 266 at 13-Nov-2016 01:43:41.716 CST
+Begin processing the 37201st record. Run 276501, Event 438369939, LumiSection 266 at 13-Nov-2016 01:43:43.838 CST
+Begin processing the 37301st record. Run 276501, Event 439155929, LumiSection 267 at 13-Nov-2016 01:43:46.326 CST
+Begin processing the 37401st record. Run 276501, Event 439412831, LumiSection 267 at 13-Nov-2016 01:43:50.257 CST
+Begin processing the 37501st record. Run 276501, Event 439184271, LumiSection 267 at 13-Nov-2016 01:43:55.202 CST
+Begin processing the 37601st record. Run 276501, Event 439746039, LumiSection 267 at 13-Nov-2016 01:43:57.381 CST
+Begin processing the 37701st record. Run 276501, Event 440289468, LumiSection 267 at 13-Nov-2016 01:43:59.542 CST
+Begin processing the 37801st record. Run 276501, Event 439938620, LumiSection 267 at 13-Nov-2016 01:44:01.946 CST
+Begin processing the 37901st record. Run 276501, Event 439146236, LumiSection 267 at 13-Nov-2016 01:44:05.959 CST
+Begin processing the 38001st record. Run 276501, Event 439309594, LumiSection 267 at 13-Nov-2016 01:44:10.335 CST
+Begin processing the 38101st record. Run 276501, Event 441184492, LumiSection 268 at 13-Nov-2016 01:44:12.611 CST
+Begin processing the 38201st record. Run 276501, Event 440664048, LumiSection 268 at 13-Nov-2016 01:44:14.983 CST
+Begin processing the 38301st record. Run 276501, Event 441534115, LumiSection 268 at 13-Nov-2016 01:44:19.015 CST
+Begin processing the 38401st record. Run 276501, Event 441694982, LumiSection 268 at 13-Nov-2016 01:44:21.171 CST
+Begin processing the 38501st record. Run 276501, Event 441291824, LumiSection 268 at 13-Nov-2016 01:44:23.271 CST
+Begin processing the 38601st record. Run 276501, Event 440970693, LumiSection 268 at 13-Nov-2016 01:44:29.608 CST
+Begin processing the 38701st record. Run 276501, Event 441648063, LumiSection 268 at 13-Nov-2016 01:44:31.916 CST
+Begin processing the 38801st record. Run 276501, Event 441486285, LumiSection 268 at 13-Nov-2016 01:44:35.544 CST
+Begin processing the 38901st record. Run 276501, Event 441558961, LumiSection 268 at 13-Nov-2016 01:44:37.820 CST
+Begin processing the 39001st record. Run 276501, Event 692094686, LumiSection 426 at 13-Nov-2016 01:44:44.932 CST
+Begin processing the 39101st record. Run 276501, Event 691874629, LumiSection 426 at 13-Nov-2016 01:44:48.159 CST
+Begin processing the 39201st record. Run 276501, Event 692175795, LumiSection 426 at 13-Nov-2016 01:44:51.483 CST
+Begin processing the 39301st record. Run 276501, Event 690959190, LumiSection 426 at 13-Nov-2016 01:44:54.741 CST
+Begin processing the 39401st record. Run 276501, Event 690959655, LumiSection 426 at 13-Nov-2016 01:44:58.191 CST
+Begin processing the 39501st record. Run 276501, Event 691690674, LumiSection 426 at 13-Nov-2016 01:45:02.827 CST
+Begin processing the 39601st record. Run 276501, Event 690947641, LumiSection 426 at 13-Nov-2016 01:45:05.981 CST
+Begin processing the 39701st record. Run 276501, Event 691961932, LumiSection 426 at 13-Nov-2016 01:45:08.052 CST
+Begin processing the 39801st record. Run 276501, Event 691771170, LumiSection 426 at 13-Nov-2016 01:45:10.090 CST
+Begin processing the 39901st record. Run 276501, Event 693654388, LumiSection 427 at 13-Nov-2016 01:45:12.208 CST
+Begin processing the 40001st record. Run 276501, Event 694236179, LumiSection 427 at 13-Nov-2016 01:45:16.108 CST
+Begin processing the 40101st record. Run 276501, Event 694189135, LumiSection 427 at 13-Nov-2016 01:45:22.577 CST
+Begin processing the 40201st record. Run 276501, Event 694362287, LumiSection 427 at 13-Nov-2016 01:45:24.729 CST
+Begin processing the 40301st record. Run 276501, Event 693771521, LumiSection 427 at 13-Nov-2016 01:45:26.884 CST
+Begin processing the 40401st record. Run 276501, Event 692688781, LumiSection 427 at 13-Nov-2016 01:45:29.235 CST
+Begin processing the 40501st record. Run 276501, Event 693092702, LumiSection 427 at 13-Nov-2016 01:45:33.146 CST
+Begin processing the 40601st record. Run 276501, Event 692755903, LumiSection 427 at 13-Nov-2016 01:45:52.776 CST
+Begin processing the 40701st record. Run 276501, Event 694279290, LumiSection 427 at 13-Nov-2016 01:45:54.987 CST
+Begin processing the 40801st record. Run 276501, Event 694837218, LumiSection 428 at 13-Nov-2016 01:45:57.167 CST
+Begin processing the 40901st record. Run 276501, Event 694795028, LumiSection 428 at 13-Nov-2016 01:45:59.477 CST
+Begin processing the 41001st record. Run 276501, Event 695238949, LumiSection 428 at 13-Nov-2016 01:46:01.706 CST
+Begin processing the 41101st record. Run 276501, Event 694415140, LumiSection 428 at 13-Nov-2016 01:46:05.628 CST
+Begin processing the 41201st record. Run 276501, Event 695567750, LumiSection 428 at 13-Nov-2016 01:46:09.396 CST
+Begin processing the 41301st record. Run 276501, Event 695484323, LumiSection 428 at 13-Nov-2016 01:46:11.477 CST
+Begin processing the 41401st record. Run 276501, Event 695516393, LumiSection 428 at 13-Nov-2016 01:46:13.815 CST
+Begin processing the 41501st record. Run 276501, Event 695933199, LumiSection 428 at 13-Nov-2016 01:46:16.008 CST
+Begin processing the 41601st record. Run 276501, Event 694489572, LumiSection 428 at 13-Nov-2016 01:46:19.774 CST
+Begin processing the 41701st record. Run 276501, Event 697647370, LumiSection 429 at 13-Nov-2016 01:46:23.834 CST
+Begin processing the 41801st record. Run 276501, Event 696801927, LumiSection 429 at 13-Nov-2016 01:46:25.919 CST
+Begin processing the 41901st record. Run 276501, Event 697389929, LumiSection 429 at 13-Nov-2016 01:46:28.109 CST
+Begin processing the 42001st record. Run 276501, Event 697006669, LumiSection 429 at 13-Nov-2016 01:46:30.387 CST
+Begin processing the 42101st record. Run 276501, Event 696250591, LumiSection 429 at 13-Nov-2016 01:46:34.257 CST
+Begin processing the 42201st record. Run 276501, Event 696356350, LumiSection 429 at 13-Nov-2016 01:46:38.415 CST
+Begin processing the 42301st record. Run 276501, Event 696389379, LumiSection 429 at 13-Nov-2016 01:46:40.482 CST
+Begin processing the 42401st record. Run 276501, Event 696917224, LumiSection 429 at 13-Nov-2016 01:46:42.637 CST
+Begin processing the 42501st record. Run 276501, Event 696746887, LumiSection 429 at 13-Nov-2016 01:46:44.945 CST
+Begin processing the 42601st record. Run 276501, Event 698180821, LumiSection 430 at 13-Nov-2016 01:46:48.710 CST
+Begin processing the 42701st record. Run 276501, Event 699430013, LumiSection 430 at 13-Nov-2016 01:46:50.843 CST
+Begin processing the 42801st record. Run 276501, Event 698329537, LumiSection 430 at 13-Nov-2016 01:46:55.055 CST
+Begin processing the 42901st record. Run 276501, Event 698695534, LumiSection 430 at 13-Nov-2016 01:46:57.304 CST
+Begin processing the 43001st record. Run 276501, Event 699024749, LumiSection 430 at 13-Nov-2016 01:46:59.614 CST
+Begin processing the 43101st record. Run 276501, Event 698412522, LumiSection 430 at 13-Nov-2016 01:47:03.394 CST
+Begin processing the 43201st record. Run 276501, Event 698417120, LumiSection 430 at 13-Nov-2016 01:47:05.394 CST
+Begin processing the 43301st record. Run 276501, Event 699100849, LumiSection 430 at 13-Nov-2016 01:47:10.886 CST
+Begin processing the 43401st record. Run 276501, Event 699157410, LumiSection 430 at 13-Nov-2016 01:47:13.116 CST
+Begin processing the 43501st record. Run 276501, Event 700426334, LumiSection 431 at 13-Nov-2016 01:47:15.374 CST
+Begin processing the 43601st record. Run 276501, Event 700479211, LumiSection 431 at 13-Nov-2016 01:47:19.399 CST
+Begin processing the 43701st record. Run 276501, Event 700643794, LumiSection 431 at 13-Nov-2016 01:47:21.572 CST
+Begin processing the 43801st record. Run 276501, Event 701175402, LumiSection 431 at 13-Nov-2016 01:47:27.778 CST
+Begin processing the 43901st record. Run 276501, Event 701227490, LumiSection 431 at 13-Nov-2016 01:47:29.975 CST
+Begin processing the 44001st record. Run 276501, Event 700839261, LumiSection 431 at 13-Nov-2016 01:47:32.206 CST
+Begin processing the 44101st record. Run 276501, Event 699975031, LumiSection 431 at 13-Nov-2016 01:47:35.909 CST
+Begin processing the 44201st record. Run 276501, Event 701073047, LumiSection 431 at 13-Nov-2016 01:47:37.894 CST
+Begin processing the 44301st record. Run 276501, Event 700760148, LumiSection 431 at 13-Nov-2016 01:47:39.948 CST
+Begin processing the 44401st record. Run 276501, Event 988464628, LumiSection 613 at 13-Nov-2016 01:47:45.477 CST
+Begin processing the 44501st record. Run 276501, Event 988603169, LumiSection 613 at 13-Nov-2016 01:47:48.545 CST
+Begin processing the 44601st record. Run 276501, Event 989163389, LumiSection 613 at 13-Nov-2016 01:47:51.973 CST
+Begin processing the 44701st record. Run 276501, Event 989433033, LumiSection 613 at 13-Nov-2016 01:47:55.322 CST
+Begin processing the 44801st record. Run 276501, Event 989018294, LumiSection 613 at 13-Nov-2016 01:48:06.882 CST
+Begin processing the 44901st record. Run 276501, Event 989520286, LumiSection 613 at 13-Nov-2016 01:48:10.679 CST
+Begin processing the 45001st record. Run 276501, Event 989113430, LumiSection 613 at 13-Nov-2016 01:48:12.741 CST
+Begin processing the 45101st record. Run 276501, Event 988475053, LumiSection 613 at 13-Nov-2016 01:48:14.789 CST
+Begin processing the 45201st record. Run 276501, Event 990600043, LumiSection 614 at 13-Nov-2016 01:48:17.003 CST
+Begin processing the 45301st record. Run 276501, Event 991307810, LumiSection 614 at 13-Nov-2016 01:48:19.225 CST
+Begin processing the 45401st record. Run 276501, Event 991266121, LumiSection 614 at 13-Nov-2016 01:48:23.167 CST
+Begin processing the 45501st record. Run 276501, Event 991007558, LumiSection 614 at 13-Nov-2016 01:48:38.211 CST
+Begin processing the 45601st record. Run 276501, Event 990919682, LumiSection 614 at 13-Nov-2016 01:48:40.409 CST
+Begin processing the 45701st record. Run 276501, Event 991539398, LumiSection 614 at 13-Nov-2016 01:48:42.453 CST
+Begin processing the 45801st record. Run 276501, Event 990442002, LumiSection 614 at 13-Nov-2016 01:48:44.775 CST
+Begin processing the 45901st record. Run 276501, Event 991239325, LumiSection 614 at 13-Nov-2016 01:48:51.830 CST
+Begin processing the 46001st record. Run 276501, Event 992641066, LumiSection 615 at 13-Nov-2016 01:48:53.901 CST
+Begin processing the 46101st record. Run 276501, Event 992049679, LumiSection 615 at 13-Nov-2016 01:48:56.014 CST
+Begin processing the 46201st record. Run 276501, Event 992858461, LumiSection 615 at 13-Nov-2016 01:48:58.041 CST
+Begin processing the 46301st record. Run 276501, Event 991854735, LumiSection 615 at 13-Nov-2016 01:49:00.322 CST
+Begin processing the 46401st record. Run 276501, Event 992602666, LumiSection 615 at 13-Nov-2016 01:49:04.036 CST
+Begin processing the 46501st record. Run 276501, Event 992370442, LumiSection 615 at 13-Nov-2016 01:49:08.890 CST
+Begin processing the 46601st record. Run 276501, Event 992006641, LumiSection 615 at 13-Nov-2016 01:49:10.936 CST
+Begin processing the 46701st record. Run 276501, Event 993137837, LumiSection 615 at 13-Nov-2016 01:49:12.880 CST
+Begin processing the 46801st record. Run 276501, Event 992637894, LumiSection 615 at 13-Nov-2016 01:49:15.053 CST
+Begin processing the 46901st record. Run 276501, Event 993319138, LumiSection 616 at 13-Nov-2016 01:49:18.862 CST
+Begin processing the 47001st record. Run 276501, Event 994004099, LumiSection 616 at 13-Nov-2016 01:49:22.717 CST
+Begin processing the 47101st record. Run 276501, Event 994127341, LumiSection 616 at 13-Nov-2016 01:49:24.745 CST
+Begin processing the 47201st record. Run 276501, Event 994141243, LumiSection 616 at 13-Nov-2016 01:49:26.858 CST
+Begin processing the 47301st record. Run 276501, Event 993844805, LumiSection 616 at 13-Nov-2016 01:49:29.040 CST
+Begin processing the 47401st record. Run 276501, Event 994473148, LumiSection 616 at 13-Nov-2016 01:49:32.906 CST
+Begin processing the 47501st record. Run 276501, Event 994845934, LumiSection 616 at 13-Nov-2016 01:49:36.680 CST
+Begin processing the 47601st record. Run 276501, Event 993664120, LumiSection 616 at 13-Nov-2016 01:49:38.636 CST
+Begin processing the 47701st record. Run 276501, Event 995371285, LumiSection 617 at 13-Nov-2016 01:49:40.658 CST
+Begin processing the 47801st record. Run 276501, Event 995103398, LumiSection 617 at 13-Nov-2016 01:49:42.810 CST
+Begin processing the 47901st record. Run 276501, Event 996445746, LumiSection 617 at 13-Nov-2016 01:49:46.667 CST
+Begin processing the 48001st record. Run 276501, Event 996454668, LumiSection 617 at 13-Nov-2016 01:49:50.863 CST
+Begin processing the 48101st record. Run 276501, Event 995765175, LumiSection 617 at 13-Nov-2016 01:49:52.904 CST
+Begin processing the 48201st record. Run 276501, Event 995491204, LumiSection 617 at 13-Nov-2016 01:49:54.932 CST
+Begin processing the 48301st record. Run 276501, Event 996059462, LumiSection 617 at 13-Nov-2016 01:49:57.022 CST
+Begin processing the 48401st record. Run 276501, Event 996221266, LumiSection 617 at 13-Nov-2016 01:50:00.981 CST
+Begin processing the 48501st record. Run 276501, Event 995455100, LumiSection 617 at 13-Nov-2016 01:50:03.127 CST
+Begin processing the 48601st record. Run 276501, Event 997456046, LumiSection 618 at 13-Nov-2016 01:50:17.488 CST
+Begin processing the 48701st record. Run 276501, Event 998004553, LumiSection 618 at 13-Nov-2016 01:50:19.605 CST
+Begin processing the 48801st record. Run 276501, Event 997575343, LumiSection 618 at 13-Nov-2016 01:50:21.870 CST
+Begin processing the 48901st record. Run 276501, Event 997942606, LumiSection 618 at 13-Nov-2016 01:50:25.936 CST
+Begin processing the 49001st record. Run 276501, Event 997911873, LumiSection 618 at 13-Nov-2016 01:50:28.111 CST
+Begin processing the 49101st record. Run 276501, Event 998102109, LumiSection 618 at 13-Nov-2016 01:50:32.698 CST
+Begin processing the 49201st record. Run 276501, Event 996838641, LumiSection 618 at 13-Nov-2016 01:50:34.713 CST
+Begin processing the 49301st record. Run 276501, Event 997786954, LumiSection 618 at 13-Nov-2016 01:50:36.832 CST
+Begin processing the 49401st record. Run 276501, Event 998934550, LumiSection 619 at 13-Nov-2016 01:50:40.644 CST
+Begin processing the 49501st record. Run 276501, Event 999306297, LumiSection 619 at 13-Nov-2016 01:50:42.643 CST
+Begin processing the 49601st record. Run 276501, Event 998190027, LumiSection 619 at 13-Nov-2016 01:50:47.907 CST
+Begin processing the 49701st record. Run 276501, Event 999425761, LumiSection 619 at 13-Nov-2016 01:50:49.979 CST
+Begin processing the 49801st record. Run 276501, Event 998697143, LumiSection 619 at 13-Nov-2016 01:50:52.140 CST
+Begin processing the 49901st record. Run 276501, Event 998570917, LumiSection 619 at 13-Nov-2016 01:50:54.153 CST
+Begin processing the 50001st record. Run 276501, Event 999536966, LumiSection 619 at 13-Nov-2016 01:50:57.557 CST
+Begin processing the 50101st record. Run 276501, Event 999515204, LumiSection 619 at 13-Nov-2016 01:50:59.681 CST
+Begin processing the 50201st record. Run 276501, Event 1147265218, LumiSection 711 at 13-Nov-2016 01:51:04.195 CST
+Begin processing the 50301st record. Run 276501, Event 1146092368, LumiSection 711 at 13-Nov-2016 01:51:07.514 CST
+Begin processing the 50401st record. Run 276501, Event 1146050523, LumiSection 711 at 13-Nov-2016 01:51:10.834 CST
+Begin processing the 50501st record. Run 276501, Event 1147301858, LumiSection 711 at 13-Nov-2016 01:51:14.149 CST
+Begin processing the 50601st record. Run 276501, Event 1145839969, LumiSection 711 at 13-Nov-2016 01:51:26.267 CST
+Begin processing the 50701st record. Run 276501, Event 1146731376, LumiSection 711 at 13-Nov-2016 01:51:31.057 CST
+Begin processing the 50801st record. Run 276501, Event 1146712938, LumiSection 711 at 13-Nov-2016 01:51:33.060 CST
+Begin processing the 50901st record. Run 276501, Event 1145902672, LumiSection 711 at 13-Nov-2016 01:51:35.033 CST
+Begin processing the 51001st record. Run 276501, Event 1147181237, LumiSection 711 at 13-Nov-2016 01:51:37.003 CST
+Begin processing the 51101st record. Run 276501, Event 1147460289, LumiSection 712 at 13-Nov-2016 01:51:39.005 CST
+Begin processing the 51201st record. Run 276501, Event 1147411451, LumiSection 712 at 13-Nov-2016 01:51:43.597 CST
+Begin processing the 51301st record. Run 276501, Event 1148373977, LumiSection 712 at 13-Nov-2016 01:51:47.336 CST
+Begin processing the 51401st record. Run 276501, Event 1148290087, LumiSection 712 at 13-Nov-2016 01:51:49.353 CST
+Begin processing the 51501st record. Run 276501, Event 1148390897, LumiSection 712 at 13-Nov-2016 01:51:51.412 CST
+Begin processing the 51601st record. Run 276501, Event 1148306748, LumiSection 712 at 13-Nov-2016 01:51:53.381 CST
+Begin processing the 51701st record. Run 276501, Event 1148684731, LumiSection 712 at 13-Nov-2016 01:51:57.920 CST
+Begin processing the 51801st record. Run 276501, Event 1148546398, LumiSection 712 at 13-Nov-2016 01:52:01.727 CST
+Begin processing the 51901st record. Run 276501, Event 1150371479, LumiSection 713 at 13-Nov-2016 01:52:03.834 CST
+Begin processing the 52001st record. Run 276501, Event 1149148668, LumiSection 713 at 13-Nov-2016 01:52:05.878 CST
+Begin processing the 52101st record. Run 276501, Event 1149527697, LumiSection 713 at 13-Nov-2016 01:52:07.935 CST
+Begin processing the 52201st record. Run 276501, Event 1148985579, LumiSection 713 at 13-Nov-2016 01:52:11.531 CST
+Begin processing the 52301st record. Run 276501, Event 1149323251, LumiSection 713 at 13-Nov-2016 01:52:15.358 CST
+Begin processing the 52401st record. Run 276501, Event 1149558835, LumiSection 713 at 13-Nov-2016 01:52:17.375 CST
+Begin processing the 52501st record. Run 276501, Event 1150277174, LumiSection 713 at 13-Nov-2016 01:52:19.492 CST
+Begin processing the 52601st record. Run 276501, Event 1149587345, LumiSection 713 at 13-Nov-2016 01:52:21.557 CST
+Begin processing the 52701st record. Run 276501, Event 1150247749, LumiSection 713 at 13-Nov-2016 01:52:23.728 CST
+Begin processing the 52801st record. Run 276501, Event 1150605519, LumiSection 714 at 13-Nov-2016 01:52:29.235 CST
+Begin processing the 52901st record. Run 276501, Event 1151047180, LumiSection 714 at 13-Nov-2016 01:52:31.370 CST
+Begin processing the 53001st record. Run 276501, Event 1150949828, LumiSection 714 at 13-Nov-2016 01:52:33.382 CST
+Begin processing the 53101st record. Run 276501, Event 1152047019, LumiSection 714 at 13-Nov-2016 01:52:35.356 CST
+Begin processing the 53201st record. Run 276501, Event 1151424426, LumiSection 714 at 13-Nov-2016 01:52:37.477 CST
+Begin processing the 53301st record. Run 276501, Event 1150950643, LumiSection 714 at 13-Nov-2016 01:52:43.830 CST
+Begin processing the 53401st record. Run 276501, Event 1151241375, LumiSection 714 at 13-Nov-2016 01:52:45.782 CST
+Begin processing the 53501st record. Run 276501, Event 1151981234, LumiSection 714 at 13-Nov-2016 01:52:47.927 CST
+Begin processing the 53601st record. Run 276501, Event 1152477618, LumiSection 715 at 13-Nov-2016 01:52:50.013 CST
+Begin processing the 53701st record. Run 276501, Event 1152666610, LumiSection 715 at 13-Nov-2016 01:52:52.306 CST
+Begin processing the 53801st record. Run 276501, Event 1153350221, LumiSection 715 at 13-Nov-2016 01:52:58.407 CST
+Begin processing the 53901st record. Run 276501, Event 1153334889, LumiSection 715 at 13-Nov-2016 01:53:00.474 CST
+Begin processing the 54001st record. Run 276501, Event 1153544156, LumiSection 715 at 13-Nov-2016 01:53:02.570 CST
+Begin processing the 54101st record. Run 276501, Event 1153253002, LumiSection 715 at 13-Nov-2016 01:53:04.666 CST
+Begin processing the 54201st record. Run 276501, Event 1152406009, LumiSection 715 at 13-Nov-2016 01:53:06.783 CST
+Begin processing the 54301st record. Run 276501, Event 1152874239, LumiSection 715 at 13-Nov-2016 01:53:10.578 CST
+Begin processing the 54401st record. Run 276501, Event 1153194074, LumiSection 715 at 13-Nov-2016 01:53:14.237 CST
+Begin processing the 54501st record. Run 276501, Event 1154061243, LumiSection 716 at 13-Nov-2016 01:53:16.292 CST
+Begin processing the 54601st record. Run 276501, Event 1154046518, LumiSection 716 at 13-Nov-2016 01:53:18.236 CST
+Begin processing the 54701st record. Run 276501, Event 1154568495, LumiSection 716 at 13-Nov-2016 01:53:20.369 CST
+Begin processing the 54801st record. Run 276501, Event 1154182030, LumiSection 716 at 13-Nov-2016 01:53:22.637 CST
+Begin processing the 54901st record. Run 276501, Event 1154243316, LumiSection 716 at 13-Nov-2016 01:53:28.839 CST
+Begin processing the 55001st record. Run 276501, Event 1154693019, LumiSection 716 at 13-Nov-2016 01:53:30.916 CST
+Begin processing the 55101st record. Run 276501, Event 1155332269, LumiSection 716 at 13-Nov-2016 01:53:33.078 CST
+Begin processing the 55201st record. Run 276501, Event 1154855139, LumiSection 716 at 13-Nov-2016 01:53:35.273 CST
+Begin processing the 55301st record. Run 276501, Event 1155272424, LumiSection 716 at 13-Nov-2016 01:53:37.542 CST
+Begin processing the 55401st record. Run 276501, Event 1166654942, LumiSection 724 at 13-Nov-2016 01:54:41.642 CST
+Begin processing the 55501st record. Run 276501, Event 1166734571, LumiSection 724 at 13-Nov-2016 01:54:44.877 CST
+Begin processing the 55601st record. Run 276501, Event 1167633146, LumiSection 724 at 13-Nov-2016 01:54:48.054 CST
+Begin processing the 55701st record. Run 276501, Event 1166683743, LumiSection 724 at 13-Nov-2016 01:54:51.142 CST
+Begin processing the 55801st record. Run 276501, Event 1166800346, LumiSection 724 at 13-Nov-2016 01:54:54.321 CST
+[2016-11-13 01:58:02.913119 -0600][Error  ][XRootD            ] [seg.accre.vanderbilt.edu:1094] Unable to get the response to request kXR_readv (handle: 0x00000000, chunks: 61, total size: 19415394)
+[2016-11-13 01:58:02.913443 -0600][Error  ][File              ] [0x9f4a4340@root://cmsxrootd.fnal.gov:1094//store/data/Run2016D/SinglePhoton/MINIAOD/PromptReco-v2/000/276/501/00000/FCC62BD4-5C48-E611-92A7-02163E0126E9.root?tried=seh.accre.vanderbilt.edu] Fatal file state error. Message kXR_readv (handle: 0x00000000, chunks: 61, total size: 19415394) returned with [ERROR] Operation expired
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 13-Nov-2016 01:58:02 CST pre-events
+XrdRequestManager::handle(name='root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/PromptReco-v2/000/276/501/00000/FCC62BD4-5C48-E611-92A7-02163E0126E9.root) failure when reading from seg.accre.vanderbilt.edu:1094 (site T2_US_Vanderbilt); failed with error '[ERROR] Operation expired' (errno=0, code=206).
+%MSG
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 13-Nov-2016 01:58:02 CST pre-events
+Request failure when reading from seg.accre.vanderbilt.edu:1094 (site T2_US_Vanderbilt)
+%MSG
+%MSG-w XrdAdaptor:  (NoModuleName) 13-Nov-2016 01:58:02 CST pre-events
+Data is now served from  instead of previous T2_US_Vanderbilt
+%MSG
+%MSG-w XrdAdaptorInternal:  (NoModuleName) 13-Nov-2016 01:58:02 CST pre-events
+Caught a CMSSW exception when running connection recovery.
+%MSG
+----- Begin Fatal Exception 13-Nov-2016 01:58:02 CST-----------------------
+An exception of category 'FileReadError' occurred while
+   [0] Processing run: 276501 lumi: 724 event: 1167048798
+   [1] Running path 'WriteTree'
+   [2] Calling event method for module TreeMaker/'LQTreeMaker2'
+   [3] Calling produce method for unscheduled module BadChargedCandidateFilter/'BadChargedCandidateFilter'
+   [4] Reading branch patPackedCandidates_packedPFCandidates__RECO.
+   [5] Calling XrdFile::readv()
+   [6] XrdAdaptor::ClientRequest::HandleResponse() failure while running connection recovery
+   [7] In XrdAdaptor::RequestManager::requestFailure()
+Exception Message:
+XrdAdaptor::RequestManager::requestFailure Open(name='root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/PromptReco-v2/000/276/501/00000/FCC62BD4-5C48-E611-92A7-02163E0126E9.root', flags=0x10, permissions=0660, old source=seg.accre.vanderbilt.edu:1094 (site T2_US_Vanderbilt), new source=seg.accre.vanderbilt.edu:1094 (site T2_US_Vanderbilt)) => Xrootd server returned an excluded source
+   Additional Info:
+      [a] Original error: '[ERROR] Operation expired' (errno=0, code=206, source=seg.accre.vanderbilt.edu:1094 (site T2_US_Vanderbilt)).
+      [b] Disabled source: seg.accre.vanderbilt.edu:1094
+----- End Fatal Exception -------------------------------------------------
+13-Nov-2016 01:58:02 CST  Closed file root://cmsxrootd.fnal.gov//store/data/Run2016D/SinglePhoton/MINIAOD/PromptReco-v2/000/276/501/00000/FCC62BD4-5C48-E611-92A7-02163E0126E9.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w (NoModuleName)                         1        1
+    2 XrdAdaptor           -w file_open                              1        1
+    3 XrdAdaptorInternal   -w (NoModuleName)                         3        3
+    4 Fatal Exception      -s PostProcessPath                        1        1
+    5 fileAction           -s file_close                             1        1
+    6 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events                        
+    2 XrdAdaptor           pre-events                        
+    3 XrdAdaptorInternal   pre-events       pre-events       pre-events
+    4 Fatal Exception      276501/116704879                  
+    5 fileAction           PostEndRun                        
+    6 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 5                   5
+System                  4                   4
+exit code 85, skipping xrdcp

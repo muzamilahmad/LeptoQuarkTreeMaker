@@ -1,0 +1,88 @@
+Starting job on  Thu Jan 26 03:31:58 CST 2017
+Running on  Linux cmswn1822.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_25
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/Data2016_11_01_2017
+SAMPLE:     Run2016H-PromptReco-v2.SinglePhoton
+NPART:      341
+NSTART:     341
+NFILES:     1
+SCENARIO:   2016H
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_1807755
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root')
+ outfile: Run2016H-PromptReco-v2.SinglePhoton_341_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: 2016H
+ global tag: 80X_dataRun2_Prompt_v14
+ Instance name of tag information: RECO
+ Including gen-level information: False
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JSON file applied: data/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt
+ JECs applied: data/jec/Spring16_25nsV6_DATA
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+26-Jan-2017 03:32:41 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root
+[2017-01-26 03:32:43.483068 -0600][Error  ][XRootDTransport   ] [cabinet-0-0-6.t2.ucsd.edu:1094 #0.0] No protocols left to try
+[2017-01-26 03:32:43.483229 -0600][Error  ][AsyncSock         ] [cabinet-0-0-6.t2.ucsd.edu:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:32:43.483446 -0600][Error  ][PostMaster        ] [cabinet-0-0-6.t2.ucsd.edu:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:32:43.483493 -0600][Error  ][XRootD            ] [cabinet-0-0-6.t2.ucsd.edu:1094] Impossible to send message kXR_open (file: /store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-01-26 03:32:43.812154 -0600][Error  ][XRootDTransport   ] [cabinet-4-4-26.t2.ucsd.edu:1094 #0.0] No protocols left to try
+[2017-01-26 03:32:43.812199 -0600][Error  ][AsyncSock         ] [cabinet-4-4-26.t2.ucsd.edu:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:32:43.812243 -0600][Error  ][PostMaster        ] [cabinet-4-4-26.t2.ucsd.edu:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:32:43.812254 -0600][Error  ][XRootD            ] [cabinet-4-4-26.t2.ucsd.edu:1094] Impossible to send message kXR_open (file: /store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root?tried=cabinet-0-0-6.t2.ucsd.edu, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-01-26 03:32:43.931017 -0600][Error  ][XRootDTransport   ] [s17n02.hep.wisc.edu:1094 #0.0] No protocols left to try
+[2017-01-26 03:32:43.931068 -0600][Error  ][AsyncSock         ] [s17n02.hep.wisc.edu:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:32:43.931106 -0600][Error  ][PostMaster        ] [s17n02.hep.wisc.edu:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:32:43.931129 -0600][Error  ][XRootD            ] [s17n02.hep.wisc.edu:1094] Impossible to send message kXR_open (file: /store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root?tried=cabinet-0-0-6.t2.ucsd.edu,cabinet-4-4-26.t2.ucsd.edu,xrootd.t2.ucsd.edu&triedrc=enoent, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+%MSG-w XrdAdaptorInternal:  file_open 26-Jan-2017 03:35:41 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root.
+%MSG
+[2017-01-26 03:35:42.137926 -0600][Error  ][XRootDTransport   ] [cabinet-4-4-30.t2.ucsd.edu:1094 #0.0] No protocols left to try
+[2017-01-26 03:35:42.137962 -0600][Error  ][AsyncSock         ] [cabinet-4-4-30.t2.ucsd.edu:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:35:42.137994 -0600][Error  ][PostMaster        ] [cabinet-4-4-30.t2.ucsd.edu:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:35:42.138003 -0600][Error  ][XRootD            ] [cabinet-4-4-30.t2.ucsd.edu:1094] Impossible to send message kXR_open (file: /store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root?tried=, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+[2017-01-26 03:35:42.524474 -0600][Error  ][XRootDTransport   ] [cabinet-5-5-32.t2.ucsd.edu:1094 #0.0] No protocols left to try
+[2017-01-26 03:35:42.524502 -0600][Error  ][AsyncSock         ] [cabinet-5-5-32.t2.ucsd.edu:1094 #0.0] Socket error while handshaking: [FATAL] Auth failed
+[2017-01-26 03:35:42.524532 -0600][Error  ][PostMaster        ] [cabinet-5-5-32.t2.ucsd.edu:1094 #0] Unable to recover: [FATAL] Auth failed.
+[2017-01-26 03:35:42.524540 -0600][Error  ][XRootD            ] [cabinet-5-5-32.t2.ucsd.edu:1094] Impossible to send message kXR_open (file: /store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root?tried=cabinet-4-4-30.t2.ucsd.edu, mode: 0660, flags: kXR_open_read kXR_async kXR_retstat ). Trying to recover.
+%MSG-w XrdAdaptorInternal:  file_open 26-Jan-2017 03:38:40 CST pre-events
+Failed to open file at URL root://cmsxrootd.fnal.gov:1094//store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root?tried=.
+%MSG
+----- Begin Fatal Exception 26-Jan-2017 03:38:41 CST-----------------------
+An exception of category 'FileOpenError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing input source of type PoolSource
+   [2] Calling RootFileSequenceBase::initTheFile()
+   [3] Calling StorageFactory::open()
+   [4] Calling XrdFile::open()
+Exception Message:
+Failed to open the file 'root://cmsxrootd.fnal.gov//store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root'
+   Additional Info:
+      [a] Input file root://cmsxrootd.fnal.gov//store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root could not be opened.
+      [b] XrdCl::File::Open(name='root://cmsxrootd.fnal.gov//store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root', flags=0x10, permissions=0660) => error '[ERROR] Operation expired' (errno=0, code=206). No additional data servers were found.
+      [c] Last URL tried: root://cmsxrootd.fnal.gov:1094//store/data/Run2016H/SinglePhoton/MINIAOD/PromptReco-v2/000/283/408/00000/04BEC34B-9498-E611-9D7D-02163E01398B.root?tried=
+      [d] Problematic data server: cmsxrootd.fnal.gov:1094
+      [e] Disabled source: cmsxrootd.fnal.gov:1094
+----- End Fatal Exception -------------------------------------------------
+exit code 84, skipping xrdcp

@@ -1,0 +1,363 @@
+Starting job on  Fri Feb 3 15:02:11 CST 2017
+Running on  Linux cmswn1928.fnal.gov 2.6.32-642.6.2.el6.x86_64 #1 SMP Tue Oct 25 15:06:33 CDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+System release  Scientific Linux Fermi release 6.8 (Ramsey)
+CMSSW on Condor
+
+parameter set:
+CMSSWVER:   CMSSW_8_0_25
+OUTDIR:     root://cmseos.fnal.gov//store/user/mbhat/MC2016_30_01_2017
+SAMPLE:     Summer16.WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1
+NPART:      77
+NSTART:     77
+NFILES:     1
+SCENARIO:   Summer16
+REDIR:      
+Done: ProjectRename
+/storage/local/data1/condor/execute/dir_2724162
+***** SETUP ************************************
+ dataset: cms.untracked.vstring('root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/6AA2F326-44C0-E611-A9DC-001E674FAF23.root')
+ outfile: Summer16.WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1_77_RA2AnalysisTree
+ 
+ 
+ storing PDF weights: True
+ 
+ 
+ scenario: Summer16
+ global tag: 80X_mcRun2_asymptotic_2016_TrancheIV_v6
+ Instance name of tag information: PAT
+ Including gen-level information: True
+ Including pMSSM-related information: False
+ Using fastsim settings: False
+ Running signal uncertainties: False
+ JECs applied: data/jec/Summer16_23Sep2016V3_MC
+ JERs applied: data/jer/Spring16_25nsV6_MC
+ PU weights stored: LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root
+ era of this dataset: Run2_25ns
+************************************************
+# Conditions read from  CMS_CONDITIONS  via FrontierProd 
+WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8, PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1 : 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/6AA2F326-44C0-E611-A9DC-001E674FAF23.root'
+Setup WeightProducer for 'root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/6AA2F326-44C0-E611-A9DC-001E674FAF23.root'
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+ ################################################################### 
+ # WARNING: this module is deprecated.                             # 
+ # Please use CondCore.CondDB.CondDB_cfi.py                        # 
+ ################################################################### 
+03-Feb-2017 15:02:53 CST  Initiating request to open file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/6AA2F326-44C0-E611-A9DC-001E674FAF23.root
+%MSG-w XrdAdaptor:  file_open 03-Feb-2017 15:03:33 CST pre-events
+Data is served from T2_FR_CCIN2P3 instead of original site T1_US_FNAL
+%MSG
+03-Feb-2017 15:03:36 CST  Successfully opened file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/6AA2F326-44C0-E611-A9DC-001E674FAF23.root
+%MSG-w XrdAdaptor:  (NoModuleName) 03-Feb-2017 15:03:44 CST pre-events
+Data is now served from T2_FR_CCIN2P3, cern.ch instead of previous T2_FR_CCIN2P3
+%MSG
+VarsBool:
+full name: BadChargedCandidateFilter -> tag: BadChargedCandidateFilter nameInTree: BadChargedCandidateFilter
+full name: BadPFMuonFilter -> tag: BadPFMuonFilter nameInTree: BadPFMuonFilter
+full name: GoodJets:JetID(JetID) -> tag: GoodJets:JetID nameInTree: JetID
+full name: GoodJetsJECup:JetID(JetIDJECup) -> tag: GoodJetsJECup:JetID nameInTree: JetIDJECup
+full name: GoodJetsJECdown:JetID(JetIDJECdown) -> tag: GoodJetsJECdown:JetID nameInTree: JetIDJECdown
+full name: GoodJetsJERup:JetID(JetIDJERup) -> tag: GoodJetsJERup:JetID nameInTree: JetIDJERup
+full name: GoodJetsJERdown:JetID(JetIDJERdown) -> tag: GoodJetsJERdown:JetID nameInTree: JetIDJERdown
+VarsInt:
+full name: WeightProducer:NumInteractions -> tag: WeightProducer:NumInteractions nameInTree: NumInteractions
+full name: NVtx -> tag: NVtx nameInTree: NVtx
+full name: nAllVertices -> tag: nAllVertices nameInTree: nAllVertices
+full name: CSCTightHaloFilter -> tag: CSCTightHaloFilter nameInTree: CSCTightHaloFilter
+full name: globalTightHalo2016Filter -> tag: globalTightHalo2016Filter nameInTree: globalTightHalo2016Filter
+full name: HBHENoiseFilter -> tag: HBHENoiseFilter nameInTree: HBHENoiseFilter
+full name: HBHEIsoNoiseFilter -> tag: HBHEIsoNoiseFilter nameInTree: HBHEIsoNoiseFilter
+full name: EcalDeadCellTriggerPrimitiveFilter -> tag: EcalDeadCellTriggerPrimitiveFilter nameInTree: EcalDeadCellTriggerPrimitiveFilter
+full name: eeBadScFilter -> tag: eeBadScFilter nameInTree: eeBadScFilter
+VarsDouble:
+full name: WeightProducer:weight(Weight) -> tag: WeightProducer:weight nameInTree: Weight
+full name: WeightProducer:xsec(CrossSection) -> tag: WeightProducer:xsec nameInTree: CrossSection
+full name: WeightProducer:nevents(NumEvents) -> tag: WeightProducer:nevents nameInTree: NumEvents
+full name: WeightProducer:TrueNumInteractions -> tag: WeightProducer:TrueNumInteractions nameInTree: TrueNumInteractions
+full name: WeightProducer:PUweight(puWeight) -> tag: WeightProducer:PUweight nameInTree: puWeight
+full name: WeightProducer:PUSysUp(puSysUp) -> tag: WeightProducer:PUSysUp nameInTree: puSysUp
+full name: WeightProducer:PUSysDown(puSysDown) -> tag: WeightProducer:PUSysDown nameInTree: puSysDown
+full name: MadHT:genHT(madHT) -> tag: MadHT:genHT nameInTree: madHT
+full name: GenHT -> tag: GenHT nameInTree: GenHT
+full name: MET:Pt(MET) -> tag: MET:Pt nameInTree: MET
+full name: MET:Phi(METPhi) -> tag: MET:Phi nameInTree: METPhi
+full name: MET:CaloPt(CaloMET) -> tag: MET:CaloPt nameInTree: CaloMET
+full name: MET:CaloPhi(CaloMETPhi) -> tag: MET:CaloPhi nameInTree: CaloMETPhi
+full name: MET:PFCaloPtRatio(PFCaloMETRatio) -> tag: MET:PFCaloPtRatio nameInTree: PFCaloMETRatio
+full name: MET:GenPt(GenMET) -> tag: MET:GenPt nameInTree: GenMET
+full name: MET:GenPhi(GenMETPhi) -> tag: MET:GenPhi nameInTree: GenMETPhi
+VarsString:
+VarsTLorentzVector:
+VectorBool:
+full name: HEEPProducer:ecalDriven(Electron_ecalDriven) -> tag: HEEPProducer:ecalDriven nameInTree: Electron_ecalDriven
+full name: GoodJets:JetIDMask(Jets_ID) -> tag: GoodJets:JetIDMask nameInTree: Jets_ID
+full name: GoodJetsJECup:JetIDMask(JetsJECup_ID) -> tag: GoodJetsJECup:JetIDMask nameInTree: JetsJECup_ID
+full name: GoodJetsJECdown:JetIDMask(JetsJECdown_ID) -> tag: GoodJetsJECdown:JetIDMask nameInTree: JetsJECdown_ID
+full name: GoodJetsJERup:JetIDMask(JetsJERup_ID) -> tag: GoodJetsJERup:JetIDMask nameInTree: JetsJERup_ID
+full name: GoodJetsJERdown:JetIDMask(JetsJERdown_ID) -> tag: GoodJetsJERdown:JetIDMask nameInTree: JetsJERdown_ID
+full name: GenHTJets:SubJetMask(GenJets_HTMask) -> tag: GenHTJets:SubJetMask nameInTree: GenJets_HTMask
+full name: GenMHTJets:SubJetMask(GenJets_MHTMask) -> tag: GenMHTJets:SubJetMask nameInTree: GenJets_MHTMask
+VectorInt:
+full name: PDFWeights:PDFids -> tag: PDFWeights:PDFids nameInTree: PDFids
+full name: HEEPProducer:Charge(Electron_Charge) -> tag: HEEPProducer:Charge nameInTree: Electron_Charge
+full name: HEEPProducer:losthits(Electron_losthits) -> tag: HEEPProducer:losthits nameInTree: Electron_losthits
+full name: HEEPProducer:PDGID(PDGID) -> tag: HEEPProducer:PDGID nameInTree: PDGID
+full name: HEEPProducer:gencharge(gencharge) -> tag: HEEPProducer:gencharge nameInTree: gencharge
+full name: HEEPProducer:motherPDGID(motherPDGID) -> tag: HEEPProducer:motherPDGID nameInTree: motherPDGID
+full name: HEEPProducer:elstatus(elstatus) -> tag: HEEPProducer:elstatus nameInTree: elstatus
+full name: MuonProducer:MuonPassID(MuonPassID) -> tag: MuonProducer:MuonPassID nameInTree: MuonPassID
+full name: MuonProducer:MuonIsGlobal(MuonIsGlobal) -> tag: MuonProducer:MuonIsGlobal nameInTree: MuonIsGlobal
+full name: TriggerProducer:TriggerPass -> tag: TriggerProducer:TriggerPass nameInTree: TriggerPass
+full name: TriggerProducer:TriggerPrescales -> tag: TriggerProducer:TriggerPrescales nameInTree: TriggerPrescales
+VectorDouble:
+full name: PDFWeights:PDFweights -> tag: PDFWeights:PDFweights nameInTree: PDFweights
+full name: PDFWeights:ScaleWeights -> tag: PDFWeights:ScaleWeights nameInTree: ScaleWeights
+full name: HEEPProducer:trackiso(Electron_trackiso) -> tag: HEEPProducer:trackiso nameInTree: Electron_trackiso
+full name: HEEPProducer:Et(Electron_Et) -> tag: HEEPProducer:Et nameInTree: Electron_Et
+full name: HEEPProducer:DeltaEtain(Electron_DeltaEtain) -> tag: HEEPProducer:DeltaEtain nameInTree: Electron_DeltaEtain
+full name: HEEPProducer:DeltaPhiin(Electron_DeltaPhiin) -> tag: HEEPProducer:DeltaPhiin nameInTree: Electron_DeltaPhiin
+full name: HEEPProducer:HbE(Electron_HOverE) -> tag: HEEPProducer:HbE nameInTree: Electron_HOverE
+full name: HEEPProducer:Ecaliso(Electron_Ecaliso) -> tag: HEEPProducer:Ecaliso nameInTree: Electron_Ecaliso
+full name: HEEPProducer:HD1iso(Electron_HD1iso) -> tag: HEEPProducer:HD1iso nameInTree: Electron_HD1iso
+full name: HEEPProducer:e25bye55(Electron_e25bye55) -> tag: HEEPProducer:e25bye55 nameInTree: Electron_e25bye55
+full name: HEEPProducer:Fullsce25bye55(Electron_Fullsce25bye55) -> tag: HEEPProducer:Fullsce25bye55 nameInTree: Electron_Fullsce25bye55
+full name: HEEPProducer:Fulle15bye55(Electron_Fulle15bye55) -> tag: HEEPProducer:Fulle15bye55 nameInTree: Electron_Fulle15bye55
+full name: HEEPProducer:scEnergy(Electron_scEnergy) -> tag: HEEPProducer:scEnergy nameInTree: Electron_scEnergy
+full name: HEEPProducer:DeltaEtaSeed(Electron_DeltaEtaSeed) -> tag: HEEPProducer:DeltaEtaSeed nameInTree: Electron_DeltaEtaSeed
+full name: HEEPProducer:rho(rho) -> tag: HEEPProducer:rho nameInTree: rho
+full name: HEEPProducer:ecalEnergy(Electron_ecalEnergy) -> tag: HEEPProducer:ecalEnergy nameInTree: Electron_ecalEnergy
+full name: HEEPProducer:full55SiEtaiEta(Electron_full55SiEtaiEta) -> tag: HEEPProducer:full55SiEtaiEta nameInTree: Electron_full55SiEtaiEta
+full name: HEEPProducer:sce25bye55(Electron_sce25bye55) -> tag: HEEPProducer:sce25bye55 nameInTree: Electron_sce25bye55
+full name: HEEPProducer:e15bye55(Electron_e15bye55) -> tag: HEEPProducer:e15bye55 nameInTree: Electron_e15bye55
+full name: HEEPProducer:Phi(Electron_Phi) -> tag: HEEPProducer:Phi nameInTree: Electron_Phi
+full name: HEEPProducer:eEnergy(Electron_Energy) -> tag: HEEPProducer:eEnergy nameInTree: Electron_Energy
+full name: HEEPProducer:dxy(dxy) -> tag: HEEPProducer:dxy nameInTree: dxy
+full name: HEEPProducer:ePz(Electron_Pz) -> tag: HEEPProducer:ePz nameInTree: Electron_Pz
+full name: HEEPProducer:ePx(Electron_Px) -> tag: HEEPProducer:ePx nameInTree: Electron_Px
+full name: HEEPProducer:ePy(Electron_Py) -> tag: HEEPProducer:ePy nameInTree: Electron_Py
+full name: HEEPProducer:genPt(genPt) -> tag: HEEPProducer:genPt nameInTree: genPt
+full name: HEEPProducer:genEta(genEta) -> tag: HEEPProducer:genEta nameInTree: genEta
+full name: HEEPProducer:genPhi(genPhi) -> tag: HEEPProducer:genPhi nameInTree: genPhi
+full name: HEEPProducer:genEnergy(genEnergy) -> tag: HEEPProducer:genEnergy nameInTree: genEnergy
+full name: HEEPProducer:PtHEEP(Electron_PtHEEP) -> tag: HEEPProducer:PtHEEP nameInTree: Electron_PtHEEP
+full name: HEEPProducer:scEta(Electron_scEta) -> tag: HEEPProducer:scEta nameInTree: Electron_scEta
+full name: HEEPProducer:heep70TrkIso(Electron_heep70TrkIso) -> tag: HEEPProducer:heep70TrkIso nameInTree: Electron_heep70TrkIso
+full name: MuonProducer:MuonEta(MuonEta) -> tag: MuonProducer:MuonEta nameInTree: MuonEta
+full name: MuonProducer:MuonPhi(MuonPhi) -> tag: MuonProducer:MuonPhi nameInTree: MuonPhi
+full name: MuonProducer:MuonPt(MuonPt) -> tag: MuonProducer:MuonPt nameInTree: MuonPt
+full name: MuonProducer:MuonEnergy(MuonEnergy) -> tag: MuonProducer:MuonEnergy nameInTree: MuonEnergy
+full name: TauProducer:tEta(TauEta) -> tag: TauProducer:tEta nameInTree: TauEta
+full name: TauProducer:tPhi(TauPhi) -> tag: TauProducer:tPhi nameInTree: TauPhi
+full name: TauProducer:tPt(TauPt) -> tag: TauProducer:tPt nameInTree: TauPt
+full name: TriggerProducer:objectPt -> tag: TriggerProducer:objectPt nameInTree: objectPt
+full name: TriggerProducer:objecteta -> tag: TriggerProducer:objecteta nameInTree: objecteta
+full name: TriggerProducer:objectphi -> tag: TriggerProducer:objectphi nameInTree: objectphi
+full name: TriggerProducer:objectE -> tag: TriggerProducer:objectE nameInTree: objectE
+full name: TriggerProducer:ColumnNum -> tag: TriggerProducer:ColumnNum nameInTree: ColumnNum
+full name: MET:PtUp(METUp) -> tag: MET:PtUp nameInTree: METUp
+full name: MET:PtDown(METDown) -> tag: MET:PtDown nameInTree: METDown
+full name: MET:PhiUp(METPhiUp) -> tag: MET:PhiUp nameInTree: METPhiUp
+full name: MET:PhiDown(METPhiDown) -> tag: MET:PhiDown nameInTree: METPhiDown
+VectorString:
+full name: TriggerProducer:TriggerNames -> tag: TriggerProducer:TriggerNames nameInTree: TriggerNames
+VectorTLorentzVector:
+VectorRecoCand:
+full name: GoodJets(Jets) -> tag: GoodJets nameInTree: Jets
+full name: GoodJetsJECup(JetsJECup) -> tag: GoodJetsJECup nameInTree: JetsJECup
+full name: GoodJetsJECdown(JetsJECdown) -> tag: GoodJetsJECdown nameInTree: JetsJECdown
+full name: GoodJetsJERup(JetsJERup) -> tag: GoodJetsJERup nameInTree: JetsJERup
+full name: GoodJetsJERdown(JetsJERdown) -> tag: GoodJetsJERdown nameInTree: JetsJERdown
+full name: slimmedGenJets(GenJets) -> tag: slimmedGenJets nameInTree: GenJets
+List of stored triggers:
+0: HLT_CaloJet500_NoJetID_v
+1: HLT_DoubleEle8_CaloIdM_TrackIdM_Mass8_PFHT300_v
+2: HLT_DoubleMu8_Mass8_PFHT300_v
+3: HLT_Ele105_CaloIdVT_GsfTrkIdT_v
+4: HLT_Ele115_CaloIdVT_GsfTrkIdT_v
+5: HLT_Ele15_IsoVVVL_PFHT350_PFMET50_v
+6: HLT_Ele15_IsoVVVL_PFHT350_v
+7: HLT_Ele15_IsoVVVL_PFHT400_v
+8: HLT_Ele15_IsoVVVL_PFHT600_v
+9: HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v
+10: HLT_Ele25_eta2p1_WPTight_Gsf_v 
+11: HLT_Ele27_WPTight_Gsf_v
+12: HLT_Ele27_eta2p1_WPLoose_Gsf_v 
+13: HLT_Ele45_WPLoose_Gsf_v
+14: HLT_Ele50_IsoVVVL_PFHT400_v
+15: HLT_IsoMu16_eta2p1_MET30_v
+16: HLT_IsoMu22_eta2p1_v
+17: HLT_IsoMu22_v
+18: HLT_IsoMu24_v 
+19: HLT_IsoTkMu22_v
+20: HLT_Mu15_IsoVVVL_PFHT350_PFMET50_v
+21: HLT_Mu15_IsoVVVL_PFHT350_v
+22: HLT_Mu15_IsoVVVL_PFHT400_v
+23: HLT_Mu15_IsoVVVL_PFHT600_v
+24: HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_v
+25: HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_v
+26: HLT_Mu45_eta2p1_v
+27: HLT_Mu50_IsoVVVL_PFHT400_v
+28: HLT_Mu50_v
+29: HLT_PFHT200_v
+30: HLT_PFHT250_v
+31: HLT_PFHT300_PFMET100_v
+32: HLT_PFHT300_PFMET110_v
+33: HLT_PFHT300_v
+34: HLT_PFHT350_v
+35: HLT_PFHT400_v
+36: HLT_PFHT475_v
+37: HLT_PFHT600_v
+38: HLT_PFHT650_v
+39: HLT_PFHT800_v
+40: HLT_PFHT900_v
+41: HLT_PFMET100_PFMHT100_IDTight_v
+42: HLT_PFMET110_PFMHT110_IDTight_v
+43: HLT_PFMET120_PFMHT120_IDTight_v
+44: HLT_PFMET90_PFMHT90_IDTight_v
+45: HLT_PFMETNoMu100_PFMHTNoMu100_IDTight_v
+46: HLT_PFMETNoMu110_PFMHTNoMu110_IDTight_v
+47: HLT_PFMETNoMu120_PFMHTNoMu120_IDTight_v
+48: HLT_PFMETNoMu90_PFMHTNoMu90_IDTight_v
+49: HLT_Photon120_v
+50: HLT_Photon165_HE10_v
+51: HLT_Photon175_v
+52: HLT_Photon22_v
+53: HLT_Photon30_v
+54: HLT_Photon36_v
+55: HLT_Photon50_v
+56: HLT_Photon75_v
+57: HLT_Photon90_CaloIdL_PFHT500_v
+58: HLT_Photon90_v
+59: HLT_TkMu50_v
+WeightProducer: Using constant event weight of 7.80202e-07
+  Target luminosity (1/pb) : 1
+        Cross section (pb) : 14.58
+          Number of events : 1.86875e+07
+WeightProducer: Applying multiplicative PU weights
+  Reading PU scenario from '/storage/local/data1/condor/execute/dir_2724162/CMSSW_8_0_25/src/LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root'
+[STATUS] Reading energy scale correction  values from file: EgammaAnalysis/ElectronTools/data/ScalesSmearings/Winter_2016_reReco_v1_ele_scales.dat
+[STATUS] Reading energy scale correction  values from file: EgammaAnalysis/ElectronTools/data/ScalesSmearings/Winter_2016_reReco_v1_ele_scales.dat
+Begin processing the 1st record. Run 1, Event 3195206, LumiSection 1429 at 03-Feb-2017 15:04:37.208 CST
+Begin processing the 1001st record. Run 1, Event 6012876, LumiSection 2688 at 03-Feb-2017 15:06:32.559 CST
+Begin processing the 2001st record. Run 1, Event 41261463, LumiSection 18441 at 03-Feb-2017 15:07:55.103 CST
+Begin processing the 3001st record. Run 1, Event 86028976, LumiSection 38449 at 03-Feb-2017 15:09:15.108 CST
+Begin processing the 4001st record. Run 1, Event 87500904, LumiSection 39107 at 03-Feb-2017 15:10:39.419 CST
+Begin processing the 5001st record. Run 1, Event 91965972, LumiSection 41103 at 03-Feb-2017 15:12:00.037 CST
+Begin processing the 6001st record. Run 1, Event 92864863, LumiSection 41504 at 03-Feb-2017 15:13:19.429 CST
+Begin processing the 7001st record. Run 1, Event 93942792, LumiSection 41986 at 03-Feb-2017 15:14:46.284 CST
+Begin processing the 8001st record. Run 1, Event 131262217, LumiSection 58665 at 03-Feb-2017 15:16:17.888 CST
+Begin processing the 9001st record. Run 1, Event 37866263, LumiSection 16924 at 03-Feb-2017 15:17:42.177 CST
+Begin processing the 10001st record. Run 1, Event 46726287, LumiSection 20884 at 03-Feb-2017 15:19:01.499 CST
+Begin processing the 11001st record. Run 1, Event 143646742, LumiSection 64200 at 03-Feb-2017 15:20:26.319 CST
+Begin processing the 12001st record. Run 1, Event 92502602, LumiSection 41342 at 03-Feb-2017 15:21:49.618 CST
+Begin processing the 13001st record. Run 1, Event 92784384, LumiSection 41468 at 03-Feb-2017 15:23:12.138 CST
+Begin processing the 14001st record. Run 1, Event 97165353, LumiSection 43426 at 03-Feb-2017 15:24:36.513 CST
+Begin processing the 15001st record. Run 1, Event 100056271, LumiSection 44718 at 03-Feb-2017 15:25:59.850 CST
+Begin processing the 16001st record. Run 1, Event 31328867, LumiSection 14002 at 03-Feb-2017 15:27:29.905 CST
+Begin processing the 17001st record. Run 1, Event 48186095, LumiSection 21536 at 03-Feb-2017 15:32:52.974 CST
+Begin processing the 18001st record. Run 1, Event 125885368, LumiSection 56262 at 03-Feb-2017 15:34:17.787 CST
+Begin processing the 19001st record. Run 1, Event 163300855, LumiSection 72984 at 03-Feb-2017 15:35:45.619 CST
+Begin processing the 20001st record. Run 1, Event 191443612, LumiSection 85562 at 03-Feb-2017 15:37:05.220 CST
+Begin processing the 21001st record. Run 1, Event 193013526, LumiSection 86263 at 03-Feb-2017 15:38:34.691 CST
+Begin processing the 22001st record. Run 1, Event 14112005, LumiSection 6307 at 03-Feb-2017 15:40:03.246 CST
+Begin processing the 23001st record. Run 1, Event 51240995, LumiSection 22901 at 03-Feb-2017 15:41:21.779 CST
+Begin processing the 24001st record. Run 1, Event 154125141, LumiSection 68883 at 03-Feb-2017 15:42:50.024 CST
+Begin processing the 25001st record. Run 1, Event 166596607, LumiSection 74457 at 03-Feb-2017 15:44:17.646 CST
+Begin processing the 26001st record. Run 1, Event 190197318, LumiSection 85005 at 03-Feb-2017 15:45:40.537 CST
+Begin processing the 27001st record. Run 1, Event 6149006, LumiSection 2749 at 03-Feb-2017 15:47:11.749 CST
+%MSG-w XrdAdaptor:  PATMETProducer:patPFMet 03-Feb-2017 15:47:25 CST  Run: 1 Event: 6149820
+Data is now served from T2_FR_CCIN2P3 instead of previous T2_FR_CCIN2P3, cern.ch
+%MSG
+Begin processing the 28001st record. Run 1, Event 30335467, LumiSection 13558 at 03-Feb-2017 15:48:52.751 CST
+Begin processing the 29001st record. Run 1, Event 34859128, LumiSection 15580 at 03-Feb-2017 15:50:17.827 CST
+Begin processing the 30001st record. Run 1, Event 36590717, LumiSection 16354 at 03-Feb-2017 15:51:40.448 CST
+Begin processing the 31001st record. Run 1, Event 48981426, LumiSection 21892 at 03-Feb-2017 15:53:00.539 CST
+Begin processing the 32001st record. Run 1, Event 123463261, LumiSection 55179 at 03-Feb-2017 15:54:28.820 CST
+Begin processing the 33001st record. Run 1, Event 123691289, LumiSection 55281 at 03-Feb-2017 15:55:52.760 CST
+Begin processing the 34001st record. Run 1, Event 132574727, LumiSection 59252 at 03-Feb-2017 15:57:12.869 CST
+Begin processing the 35001st record. Run 1, Event 203959784, LumiSection 91156 at 03-Feb-2017 15:58:38.075 CST
+Begin processing the 36001st record. Run 1, Event 8697616, LumiSection 3888 at 03-Feb-2017 16:00:05.208 CST
+Begin processing the 37001st record. Run 1, Event 45226752, LumiSection 20213 at 03-Feb-2017 16:01:28.712 CST
+Begin processing the 38001st record. Run 1, Event 108700586, LumiSection 48582 at 03-Feb-2017 16:02:49.191 CST
+Begin processing the 39001st record. Run 1, Event 150827267, LumiSection 67409 at 03-Feb-2017 16:04:11.172 CST
+Begin processing the 40001st record. Run 1, Event 174056059, LumiSection 77791 at 03-Feb-2017 16:05:27.399 CST
+Begin processing the 41001st record. Run 1, Event 188313732, LumiSection 84163 at 03-Feb-2017 16:06:51.389 CST
+Begin processing the 42001st record. Run 1, Event 205788852, LumiSection 91973 at 03-Feb-2017 16:08:15.800 CST
+Begin processing the 43001st record. Run 1, Event 6592191, LumiSection 2947 at 03-Feb-2017 16:09:44.632 CST
+Begin processing the 44001st record. Run 1, Event 41703513, LumiSection 18639 at 03-Feb-2017 16:11:03.164 CST
+Begin processing the 45001st record. Run 1, Event 100741671, LumiSection 45025 at 03-Feb-2017 16:12:26.517 CST
+Begin processing the 46001st record. Run 1, Event 81436520, LumiSection 36397 at 03-Feb-2017 16:13:46.667 CST
+Begin processing the 47001st record. Run 1, Event 81597494, LumiSection 36469 at 03-Feb-2017 16:15:04.503 CST
+Begin processing the 48001st record. Run 1, Event 81646022, LumiSection 36490 at 03-Feb-2017 16:16:19.041 CST
+Begin processing the 49001st record. Run 1, Event 104146202, LumiSection 46546 at 03-Feb-2017 16:17:41.009 CST
+Begin processing the 50001st record. Run 1, Event 175289801, LumiSection 78342 at 03-Feb-2017 16:19:04.932 CST
+Begin processing the 51001st record. Run 1, Event 113588270, LumiSection 50766 at 03-Feb-2017 16:20:36.681 CST
+Begin processing the 52001st record. Run 1, Event 118398777, LumiSection 52916 at 03-Feb-2017 16:21:59.115 CST
+Begin processing the 53001st record. Run 1, Event 145803650, LumiSection 65164 at 03-Feb-2017 16:23:13.743 CST
+Begin processing the 54001st record. Run 1, Event 148993951, LumiSection 66590 at 03-Feb-2017 16:24:33.494 CST
+Begin processing the 55001st record. Run 1, Event 200340108, LumiSection 89538 at 03-Feb-2017 16:25:54.110 CST
+Begin processing the 56001st record. Run 1, Event 205597695, LumiSection 91888 at 03-Feb-2017 16:27:20.107 CST
+Begin processing the 57001st record. Run 1, Event 12447440, LumiSection 5563 at 03-Feb-2017 16:28:47.718 CST
+Begin processing the 58001st record. Run 1, Event 24959046, LumiSection 11155 at 03-Feb-2017 16:30:10.105 CST
+Begin processing the 59001st record. Run 1, Event 63351798, LumiSection 28314 at 03-Feb-2017 16:31:36.134 CST
+Begin processing the 60001st record. Run 1, Event 96952697, LumiSection 43331 at 03-Feb-2017 16:32:55.626 CST
+Begin processing the 61001st record. Run 1, Event 98895078, LumiSection 44199 at 03-Feb-2017 16:34:18.435 CST
+Begin processing the 62001st record. Run 1, Event 195581134, LumiSection 87411 at 03-Feb-2017 16:35:43.536 CST
+Begin processing the 63001st record. Run 1, Event 13798013, LumiSection 6167 at 03-Feb-2017 16:37:20.548 CST
+Begin processing the 64001st record. Run 1, Event 25137599, LumiSection 11235 at 03-Feb-2017 16:38:42.476 CST
+Begin processing the 65001st record. Run 1, Event 104620841, LumiSection 46758 at 03-Feb-2017 16:40:06.538 CST
+Begin processing the 66001st record. Run 1, Event 114358420, LumiSection 51110 at 03-Feb-2017 16:41:35.071 CST
+Begin processing the 67001st record. Run 1, Event 136415982, LumiSection 60969 at 03-Feb-2017 16:42:53.765 CST
+Begin processing the 68001st record. Run 1, Event 164052582, LumiSection 73320 at 03-Feb-2017 16:44:16.686 CST
+Begin processing the 69001st record. Run 1, Event 191246628, LumiSection 85474 at 03-Feb-2017 16:45:40.012 CST
+Begin processing the 70001st record. Run 1, Event 14557494, LumiSection 6507 at 03-Feb-2017 16:47:13.342 CST
+Begin processing the 71001st record. Run 1, Event 18240435, LumiSection 8153 at 03-Feb-2017 16:48:37.711 CST
+Begin processing the 72001st record. Run 1, Event 19850133, LumiSection 8872 at 03-Feb-2017 16:49:58.472 CST
+Begin processing the 73001st record. Run 1, Event 96712641, LumiSection 43224 at 03-Feb-2017 16:51:23.898 CST
+Begin processing the 74001st record. Run 1, Event 109675576, LumiSection 49017 at 03-Feb-2017 16:52:42.278 CST
+Begin processing the 75001st record. Run 1, Event 159746225, LumiSection 71395 at 03-Feb-2017 16:54:03.209 CST
+Begin processing the 76001st record. Run 1, Event 21531702, LumiSection 9623 at 03-Feb-2017 16:55:29.212 CST
+Begin processing the 77001st record. Run 1, Event 21741941, LumiSection 9717 at 03-Feb-2017 16:56:52.475 CST
+Begin processing the 78001st record. Run 1, Event 109462424, LumiSection 48922 at 03-Feb-2017 16:58:15.537 CST
+Begin processing the 79001st record. Run 1, Event 166833749, LumiSection 74563 at 03-Feb-2017 16:59:35.193 CST
+Begin processing the 80001st record. Run 1, Event 179375043, LumiSection 80168 at 03-Feb-2017 17:01:03.454 CST
+Begin processing the 81001st record. Run 1, Event 197056018, LumiSection 88070 at 03-Feb-2017 17:02:25.316 CST
+Begin processing the 82001st record. Run 1, Event 206787959, LumiSection 92420 at 03-Feb-2017 17:03:48.265 CST
+Begin processing the 83001st record. Run 1, Event 40452578, LumiSection 18080 at 03-Feb-2017 17:05:19.213 CST
+Begin processing the 84001st record. Run 1, Event 47516407, LumiSection 21237 at 03-Feb-2017 17:06:43.026 CST
+Begin processing the 85001st record. Run 1, Event 85272002, LumiSection 38111 at 03-Feb-2017 17:08:03.142 CST
+Begin processing the 86001st record. Run 1, Event 92516648, LumiSection 41349 at 03-Feb-2017 17:09:23.294 CST
+Begin processing the 87001st record. Run 1, Event 99313856, LumiSection 44387 at 03-Feb-2017 17:10:50.263 CST
+Begin processing the 88001st record. Run 1, Event 147038488, LumiSection 65716 at 03-Feb-2017 17:12:10.185 CST
+Begin processing the 89001st record. Run 1, Event 191667777, LumiSection 85662 at 03-Feb-2017 17:13:31.163 CST
+03-Feb-2017 17:13:52 CST  Closed file root://cmsxrootd.fnal.gov//store/mc/RunIISummer16MiniAODv2/WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/70000/6AA2F326-44C0-E611-A9DC-001E674FAF23.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w (NoModuleName)                         1        1
+    2 XrdAdaptor           -w PATMETProducer:p                       1        1
+    3 XrdAdaptor           -w file_open                              1        1
+    4 fileAction           -s file_close                             1        1
+    5 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           pre-events                        
+    2 XrdAdaptor           1/6149820                         
+    3 XrdAdaptor           pre-events                        
+    4 fileAction           PostEndRun                        
+    5 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 3                   3
+System                  3                   3
+xrdcp output for condor
+xrdcp -f Summer16.WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1_77.root root://cmseos.fnal.gov//store/user/mbhat/MC2016_30_01_2017/Summer16.WJetsToLNu_HT-600To800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext1_77.root
+[16MB/242.2MB][  6%][===>                                              ][16MB/s]  [96MB/242.2MB][ 39%][===================>                              ][96MB/s]  [208MB/242.2MB][ 85%][==========================================>       ][104MB/s]  [242.2MB/242.2MB][100%][==================================================][121.1MB/s]  [242.2MB/242.2MB][100%][==================================================][121.1MB/s]  
