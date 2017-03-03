@@ -5,8 +5,8 @@
 The following installation instructions assume the user wants to process Spring16 MC (miniAOD v1 or v2 format) or Run2016 data.
 
 ```
-cmsrel CMSSW_8_0_22
-cd CMSSW_8_0_22/src/
+cmsrel CMSSW_8_0_26_patch1
+cd CMSSW_8_0_26_patch1/src/
 cmsenv
 git cms-init
 git remote add btv-cmssw https://github.com/cms-btv-pog/cmssw.git
