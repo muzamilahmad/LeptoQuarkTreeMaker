@@ -30,6 +30,30 @@
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 #include "RecoEgamma/EgammaTools/interface/ConversionTools.h"
+
+#include "DataFormats/RecoCandidate/interface/IsoDepositDirection.h"
+#include "DataFormats/RecoCandidate/interface/IsoDeposit.h"
+#include "DataFormats/RecoCandidate/interface/IsoDepositVetos.h"
+#include "DataFormats/PatCandidates/interface/Isolation.h"
+#include "DataFormats/GeometryVector/interface/Vector3DBase.h"
+#include "DataFormats/EcalDetId/interface/EcalSubdetector.h"
+
+#include "TrackingTools/TransientTrack/interface/TransientTrackBuilder.h"
+#include "TrackingTools/Records/interface/TransientTrackRecord.h"
+#include "TrackingTools/TransientTrack/interface/TransientTrack.h"
+#include "TrackingTools/IPTools/interface/IPTools.h"
+#include "DataFormats/Scalers/interface/DcsStatus.h"
+#include "FWCore/Framework/interface/ESHandle.h"
+#include "FWCore/Utilities/interface/InputTag.h"
+#include "DataFormats/Common/interface/ValueMap.h"
+#include "DataFormats/PatCandidates/interface/VIDCutFlowResult.h"
+#include "DataFormats/EcalRecHit/interface/EcalRecHitCollections.h"
+
+//#include "LeptoQuarkTreeMaker/Utils/interface/CutNrs.h"
+//#include "LeptoQuarkTreeMaker/Utils/interface/VIDCutCodes.h"
+#include "HEEP/VID/interface/CutNrs.h"
+#include "HEEP/VID/interface/VIDCutCodes.h"
+
 #include "TVector2.h"
 class HEEPProducer : public edm::EDProducer {
    public:
@@ -59,12 +83,47 @@ class HEEPProducer : public edm::EDProducer {
  edm::EDGetTokenT<edm::View<pat::Electron>> ElecTok_;
  edm::EDGetTokenT<reco::VertexCollection> PrimVtxTok_;
  edm::EDGetTokenT<double> RhoTok_;
+
+
  const edm::EDGetTokenT<reco::GenParticleCollection> genPartInputToken_;
+
+edm::EDGetTokenT<edm::ValueMap<float> > heep70trkIsolMapToken_;
+edm::EDGetTokenT<edm::ValueMap<bool> > electronVetoIdMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<bool> > electronLooseIdMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<bool> > electronMediumIdMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<bool> > electronTightIdMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<bool> > electronHEEPIdMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<vid::CutFlowResult> > eleVetoIdCutFlowResultMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<vid::CutFlowResult> > eleLooseIdCutFlowResultMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<vid::CutFlowResult> > eleMediumIdCutFlowResultMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<vid::CutFlowResult> > eleTightIdCutFlowResultMapToken_;
+  edm::EDGetTokenT<edm::ValueMap<vid::CutFlowResult> > eleHEEPIdCutFlowResultMapToken_;
+ edm::EDGetTokenT<edm::ValueMap<unsigned int> > vidBitmapToken_;
+
+typedef std::vector< edm::Handle< edm::ValueMap<double> > > IsoDepositVals;
+
+
+
+
 };
 
 
 HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
- genPartInputToken_ (consumes<reco::GenParticleCollection>(iConfig.getParameter<edm::InputTag>("gentag")))
+ genPartInputToken_ (consumes<reco::GenParticleCollection>(iConfig.getParameter<edm::InputTag>("gentag"))),
+ heep70trkIsolMapToken_            (consumes<edm::ValueMap<float> >(iConfig.getParameter<edm::InputTag>("heep70trkIsolMap"))),
+ electronVetoIdMapToken_      (consumes<edm::ValueMap<bool> >(iConfig.getParameter<edm::InputTag>("ElectronVetoIdMap"))),
+  electronLooseIdMapToken_     (consumes<edm::ValueMap<bool> >(iConfig.getParameter<edm::InputTag>("ElectronLooseIdMap"))),
+  electronMediumIdMapToken_    (consumes<edm::ValueMap<bool> >(iConfig.getParameter<edm::InputTag>("ElectronMediumIdMap"))),
+  electronTightIdMapToken_     (consumes<edm::ValueMap<bool> >(iConfig.getParameter<edm::InputTag>("ElectronTightIdMap"))),
+ electronHEEPIdMapToken_      (consumes<edm::ValueMap<bool> >(iConfig.getParameter<edm::InputTag>("ElectronHEEPIdMap"))),
+  eleVetoIdCutFlowResultMapToken_   (consumes<edm::ValueMap<vid::CutFlowResult> >(iConfig.getParameter<edm::InputTag>("eleVetoIdCutFlowResultMap"))),
+  eleLooseIdCutFlowResultMapToken_  (consumes<edm::ValueMap<vid::CutFlowResult> >(iConfig.getParameter<edm::InputTag>("eleLooseIdCutFlowResultMap"))),
+  eleMediumIdCutFlowResultMapToken_ (consumes<edm::ValueMap<vid::CutFlowResult> >(iConfig.getParameter<edm::InputTag>("eleMediumIdCutFlowResultMap"))),
+  eleTightIdCutFlowResultMapToken_  (consumes<edm::ValueMap<vid::CutFlowResult> >(iConfig.getParameter<edm::InputTag>("eleTightIdCutFlowResultMap"))),
+  eleHEEPIdCutFlowResultMapToken_   (consumes<edm::ValueMap<vid::CutFlowResult> >(iConfig.getParameter<edm::InputTag>("eleHEEPIdCutFlowResultMap"))),
+ vidBitmapToken_   (consumes<edm::ValueMap<unsigned int> >(iConfig.getParameter<edm::InputTag>("vidBitmap")))
+
+
 { 
     eletag_  = iConfig.getParameter<edm::InputTag>( "eletag" );
    
@@ -138,6 +197,7 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
     produces< std::vector< double > >("refeta");
     produces< std::vector< double > >("refphi");
    */
+   produces <std::vector<double> > ("heep70TrkIso" );
  
     produces< std::vector< int > >("motherPDGID");
     produces< std::vector< int > >("elstatus");
@@ -147,7 +207,16 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
     produces< std::vector< double > >("refdrjt");
     produces<std::vector<bool>>( "isMatched");
 
-   */
+*/   
+    produces<std::vector<bool>>( "passShowerShape");
+    produces<std::vector<bool>>( "passDeltaEta");
+    produces<std::vector<bool>>( "passDeltaPhi");
+    produces<std::vector<bool>>( "passEMHD1iso");
+    produces<std::vector<bool>>( "passHoverE");
+    produces<std::vector<bool>>( "passDXY");
+    produces<std::vector<bool>>( "passMissingHits");
+    produces<std::vector<bool>>( "passEcaldriven");
+    produces<std::vector<bool>>( "passN1TrkIso");
 
 }
 
@@ -162,6 +231,34 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     using namespace edm; 
     using namespace reco; 
     using namespace std;
+edm::Handle<edm::ValueMap<float> > heep70trkIsolMapHandle;
+iEvent.getByToken(heep70trkIsolMapToken_,heep70trkIsolMapHandle);
+
+
+  edm::Handle<edm::ValueMap<bool> > veto_id_decisions;
+  edm::Handle<edm::ValueMap<bool> > loose_id_decisions;
+  edm::Handle<edm::ValueMap<bool> > medium_id_decisions;
+  edm::Handle<edm::ValueMap<bool> > tight_id_decisions;
+  edm::Handle<edm::ValueMap<bool> > heep_id_decisions;
+  edm::Handle<edm::ValueMap<vid::CutFlowResult> > veto_id_cutflow_data;
+  edm::Handle<edm::ValueMap<vid::CutFlowResult> > loose_id_cutflow_data;
+  edm::Handle<edm::ValueMap<vid::CutFlowResult> > medium_id_cutflow_data;
+  edm::Handle<edm::ValueMap<vid::CutFlowResult> > tight_id_cutflow_data;
+  edm::Handle<edm::ValueMap<vid::CutFlowResult> > heep_id_cutflow_data;
+  edm::Handle<edm::ValueMap<unsigned int> > vidBitmap;
+  iEvent.getByToken(electronVetoIdMapToken_,veto_id_decisions);
+  iEvent.getByToken(electronLooseIdMapToken_,loose_id_decisions);
+  iEvent.getByToken(electronMediumIdMapToken_,medium_id_decisions);
+  iEvent.getByToken(electronTightIdMapToken_,tight_id_decisions);
+  iEvent.getByToken(electronHEEPIdMapToken_,heep_id_decisions);
+  iEvent.getByToken(eleVetoIdCutFlowResultMapToken_,veto_id_cutflow_data);
+  iEvent.getByToken(eleLooseIdCutFlowResultMapToken_,loose_id_cutflow_data);
+  iEvent.getByToken(eleMediumIdCutFlowResultMapToken_,medium_id_cutflow_data);
+  iEvent.getByToken(eleTightIdCutFlowResultMapToken_,tight_id_cutflow_data);
+  iEvent.getByToken(eleHEEPIdCutFlowResultMapToken_,heep_id_cutflow_data);
+  iEvent.getByToken(vidBitmapToken_,vidBitmap);
+
+
   edm::Handle<edm::View<pat::Electron> > electron;
   iEvent.getByToken(ElecTok_, electron);
 
@@ -230,7 +327,25 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
     std::auto_ptr<std::vector<double > >genEnergy (new std::vector<double>());
     std::auto_ptr< std::vector< int > > motherPDGID( new std::vector< int > () );
     std::auto_ptr< std::vector< int > > elstatus( new std::vector< int > () );
-    
+  std::auto_ptr<std::vector<double> > heep70TrkIso ( new std::vector<double>() );
+   
+
+
+
+
+
+std::auto_ptr<std::vector<bool> > passShowerShape ( new std::vector<bool>() );
+std::auto_ptr<std::vector<bool> > passDeltaEta ( new std::vector<bool>() );
+std::auto_ptr<std::vector<bool> > passDeltaPhi ( new std::vector<bool>() );
+std::auto_ptr<std::vector<bool> > passEMHD1iso ( new std::vector<bool>() );
+std::auto_ptr<std::vector<bool> > passHoverE ( new std::vector<bool>() );
+std::auto_ptr<std::vector<bool> > passDXY ( new std::vector<bool>() );
+std::auto_ptr<std::vector<bool> > passMissingHits ( new std::vector<bool>() );
+std::auto_ptr<std::vector<bool> > passEcaldriven ( new std::vector<bool>() );
+std::auto_ptr<std::vector<bool> > passN1TrkIso ( new std::vector<bool>() );
+
+
+
 
 
     for(edm::View<pat::Electron>::const_iterator elect=electron->begin(); elect!=electron->end(); ++elect){
@@ -283,6 +398,40 @@ void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
      scEta->push_back( elect->superCluster()->eta() );
 
 
+
+const edm::Ptr<pat::Electron> elPtr(electron, elect - electron->begin() );
+ unsigned int heepV70Bitmap = (*vidBitmap)[elPtr];
+
+using HEEPV70 = VIDCutCodes<cutnrs::HEEPV70>; 
+
+const bool passShowerShape1 = HEEPV70::pass(heepV70Bitmap,{HEEPV70::SIGMAIETAIETA,HEEPV70::E2X5OVER5X5});
+passShowerShape->push_back(passShowerShape1);
+const bool passDeltaEta1 = HEEPV70::pass(heepV70Bitmap,{HEEPV70::DETAINSEED});
+passDeltaEta->push_back(passDeltaEta1);
+const bool passDeltaPhi1 = HEEPV70::pass(heepV70Bitmap,{HEEPV70::DPHIIN});
+passDeltaPhi->push_back(passDeltaPhi1);
+const bool passEMHD1 = HEEPV70::pass(heepV70Bitmap,{HEEPV70::EMHADD1ISO});
+passEMHD1iso->push_back(passEMHD1);
+const bool passHE = HEEPV70::pass(heepV70Bitmap,{HEEPV70::HADEM});
+passHoverE->push_back(passHE);
+const bool passDX = HEEPV70::pass(heepV70Bitmap,{HEEPV70::DXY});
+passDXY->push_back(passDX);
+const bool passMHits = HEEPV70::pass(heepV70Bitmap,{HEEPV70::MISSHITS});
+passMissingHits->push_back(passMHits);
+const bool passEdriven = HEEPV70::pass(heepV70Bitmap,{HEEPV70::ECALDRIVEN});
+passEcaldriven->push_back(passEdriven);
+const bool passN1TrkIso1 = HEEPV70::pass(heepV70Bitmap,HEEPV70::TRKISO,HEEPV70::IGNORE);
+passN1TrkIso->push_back(passN1TrkIso1);
+
+
+     if(!heep70trkIsolMapHandle.isValid())
+      std::cout<<"hey handle hasn't been found"<<std::endl;
+       else
+      //std::cout<<"valus is       :"<<(*heep70trkIsolMapHandle)[ elPtr ]<<std::endl;
+              heep70TrkIso        -> push_back((*heep70trkIsolMapHandle)[ elPtr ]);
+      
+                     // std::cout<<"valus is       :"<<(*heep70trkIsolMapHandle)[ elPtr ]<<std::endl;
+
 //}//pt cut
 }
 
@@ -317,6 +466,8 @@ if(genParticles.isValid()) {//gen level stuff
     genPhi->push_back(iPart->phi());
     genEnergy->push_back(iPart->energy());
     motherPDGID->push_back(mom->pdgId());
+if(mom->pdgId() == 42)    
+std::cout<<"mother charge is      "<<mom->threeCharge()<<"                                   "<<mom->pdgId()<<endl;
     }
     }
 }//gen level stuff
@@ -327,44 +478,44 @@ if(genParticles.isValid()) {//gen level stuff
 
 
 
-      iEvent.put(Eta , "Eta");
+     // iEvent.put(Eta , "Eta");
       iEvent.put(Et , "Et");
       iEvent.put(ecalDriven , "ecalDriven");
       iEvent.put(DeltaEtain , "DeltaEtain");
       iEvent.put(DeltaPhiin ,"DeltaPhiin");
       iEvent.put(HbE ,"HbE");
-      iEvent.put(SiEtaiEta , "SiEtaiEta");
+     // iEvent.put(SiEtaiEta , "SiEtaiEta");
       iEvent.put(Ecaliso ,"Ecaliso");
       iEvent.put(HD1iso ,"HD1iso");
-      iEvent.put(HD2iso , "HD2iso");
+      //iEvent.put(HD2iso , "HD2iso");
       iEvent.put(trackiso , "trackiso");
-      iEvent.put(e25max , "e25max");
-      iEvent.put(e55 , "e55");
+      //iEvent.put(e25max , "e25max");
+      //iEvent.put(e55 , "e55");
       iEvent.put(e25bye55 , "e25bye55");
       iEvent.put(DeltaEtaSeed , "DeltaEtaSeed");
       iEvent.put(rho , "rho");
       iEvent.put(Charge , "Charge");
-      iEvent.put(ePt , "ePt");
-      iEvent.put(e15 , "e15");
+     // iEvent.put(ePt , "ePt");
+     // iEvent.put(e15 , "e15");
       iEvent.put(ecalEnergy, "ecalEnergy");
       iEvent.put(full55SiEtaiEta , "full55SiEtaiEta");
-      iEvent.put(sce25max , "sce25max");
-      iEvent.put(sce55 , "sce55");
+     // iEvent.put(sce25max , "sce25max");
+     // iEvent.put(sce55 , "sce55");
       iEvent.put(sce25bye55 , "sce25bye55");
       iEvent.put(e15bye55 ,"e15bye55");
       iEvent.put(Fullsce25bye55 , "Fullsce25bye55");
       iEvent.put(Fulle15bye55 ,"Fulle15bye55");
 
-      iEvent.put(DeltaEtaSeedscandTrack , "DeltaEtaSeedscandTrack");
+      //iEvent.put(DeltaEtaSeedscandTrack , "DeltaEtaSeedscandTrack");
       iEvent.put(Phi , "Phi");
       iEvent.put(eEnergy ,"eEnergy");
       iEvent.put(dxy , "dxy");
       iEvent.put(losthits ,"losthits");
       iEvent.put(ePz, "ePz");
-      iEvent.put(eTheta ,"eTheta");
+     // iEvent.put(eTheta ,"eTheta");
       iEvent.put(ePx ,"ePx");
       iEvent.put(ePy ,"ePy");
-      iEvent.put(normalizedChi2, "normalizedChi2");
+     // iEvent.put(normalizedChi2, "normalizedChi2");
       iEvent.put(PDGID , "PDGID" );
       iEvent.put(gencharge , "gencharge" );
       iEvent.put(genPt, "genPt");
@@ -374,9 +525,20 @@ if(genParticles.isValid()) {//gen level stuff
       iEvent.put(motherPDGID, "motherPDGID");
       iEvent.put( elstatus, "elstatus");
       iEvent.put(PtHEEP, "PtHEEP");
-      iEvent.put(scEtaa, "scEtaa");
+     // iEvent.put(scEtaa, "scEtaa");
       iEvent.put(scEta, "scEta");
       iEvent.put(scEnergy, "scEnergy");
+      iEvent.put(heep70TrkIso, "heep70TrkIso");
+      /*iEvent.put(passShowerShape, "passShowerShape");                   
+      iEvent.put(passDeltaEta, "passDeltaEta");      
+      iEvent.put(passDeltaPhi, "passDeltaPhi");*/      
+      iEvent.put(passEMHD1iso, "passEMHD1iso");      
+      /*iEvent.put(passHoverE, "passHoverE");      
+      iEvent.put(passDXY, "passDXY");      
+      iEvent.put(passMissingHits, "passMissingHits");*/      
+      iEvent.put(passEcaldriven, "passEcaldriven");      
+      iEvent.put(passN1TrkIso, "passN1TrkIso");      
+
 
 
 
