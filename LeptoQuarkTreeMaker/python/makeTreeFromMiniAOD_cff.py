@@ -20,6 +20,7 @@ pufile="",
 doPDFs=False,
 fastsim=False,
 signal=False,
+scenario=""
 ):
 
     ## ----------------------------------------------------------------------------------------------
@@ -149,7 +150,7 @@ signal=False,
     JetTag = cms.InputTag('slimmedJets')
     JetAK8Tag = cms.InputTag('slimmedJetsAK8')
     METTag = cms.InputTag('slimmedMETs')
-    
+    if scenario=="2016ReMiniAOD03Feb": METTag = cms.InputTag('slimmedMETsMuEGClean') 
     # get the JECs (disabled by default)
     # this requires the user to download the .db file from this twiki
     # https://twiki.cern.ch/twiki/bin/viewauth/CMS/JECDataMC
@@ -336,7 +337,47 @@ signal=False,
 
 
 
-    
+    from EgammaAnalysis.ElectronTools.regressionWeights_cfi import regressionWeights
+    process = regressionWeights(process) 
+    '''
+    process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
+                  calibratedPatElectrons  = cms.PSet( initialSeed = cms.untracked.uint32(8675389),
+                                                      engineName = cms.untracked.string('TRandom3'),
+                                                      ),
+                  calibratedPatPhotons    = cms.PSet( initialSeed = cms.untracked.uint32(8675389),
+                                                      engineName = cms.untracked.string('TRandom3'),
+                                                      ),
+                                                   )
+    '''
+    process.load('Configuration.StandardSequences.Services_cff')
+    process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
+                                                   calibratedPatElectrons  = cms.PSet( 
+                                                     initialSeed = cms.untracked.uint32(81),
+                                                     engineName = cms.untracked.string('TRandom3'),
+                                                     ),
+                                                   calibratedPatPhotons  = cms.PSet( 
+                                                     initialSeed = cms.untracked.uint32(81),
+                                                     engineName = cms.untracked.string('TRandom3'),
+                                                     ),
+                                                   )
+
+    process.load('EgammaAnalysis.ElectronTools.regressionApplication_cff')
+    process.load('EgammaAnalysis.ElectronTools.calibratedPatElectronsRun2_cfi')
+    process.calibratedPatElectrons.isMC =  cms.bool(False)
+    process.selectedElectrons = cms.EDFilter(
+                                "PATElectronSelector",
+        src = cms.InputTag("slimmedElectrons"),
+        cut = cms.string("pt > 5 && abs(eta)<2.5")
+    )
+    process.calibratedPatElectrons.electrons = cms.InputTag('selectedElectrons')
+    process.calibratedPatElectrons.isMC =  cms.bool(False)
+
+    #process.EGMRegression =cms.Path(process.regressionApplication)
+   # process.EGMSmearerElectrons = cms.Path(process.calibratedPatElectrons)
+   # process.EGMSmearerElectrons.isMC = cms.bool(False)
+
+    #process.schedule = cms.Schedule(process.EGMRegression,process.EGMSmearerElectrons,process.analysis)
+    '''
     process.load('Configuration.StandardSequences.Services_cff')
     process.RandomNumberGeneratorService = cms.Service("RandomNumberGeneratorService",
                                                    calibratedPatElectrons  = cms.PSet( 
@@ -366,6 +407,7 @@ signal=False,
 
                                         correctionFile = cms.string("Moriond2017_JEC ")
                                         )   
+    '''
     #process.Baseline += process.calibratedPatElectrons
     from PhysicsTools.SelectorUtils.tools.vid_id_tools import *
     switchOnVIDElectronIdProducer(process, DataFormat.MiniAOD)
