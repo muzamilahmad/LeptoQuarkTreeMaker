@@ -85,6 +85,7 @@ def getWeightProducer(fileName,fastsim=False, pmssm=False):
         MCSample("WJetsToLNu_HT-2500ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2", "Constant", 0.03891, 2637821), # subtotal = 2384260
         MCSample("WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 61526.7, 29705748),
         # QCD: extensions included
+        MCSample("QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2","Constant", 27540000, 80684349),
         MCSample("QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 1717000, 57580393), # subtotal = 18722416
         MCSample("QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2", "Constant", 1717000, 57580393), # subtotal = 38857977
         MCSample("QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 351300, 54537903), # subtotal = 17035891
@@ -106,11 +107,27 @@ def getWeightProducer(fileName,fastsim=False, pmssm=False):
         MCSample("DYJetsToLL_M-50_HT-200to400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2", "Constant", 50.4177, 9653731), # subtotal = 8691536
         MCSample("DYJetsToLL_M-50_HT-400to600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 6.98394, 10008776), # subtotal = 1070454
         MCSample("DYJetsToLL_M-50_HT-400to600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2", "Constant", 6.98394, 10008776), # subtotal = 8938322
+        MCSample("TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 831.76, 10139950),
         MCSample("DYJetsToLL_M-50_HT-600to800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v2", "RunIISummer16MiniAODv2", "Constant", 1.68141, 8292957),
         MCSample("DYJetsToLL_M-50_HT-800to1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 0.775392, 2668730),
         MCSample("DYJetsToLL_M-50_HT-1200to2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 0.186222, 596079),
         MCSample("DYJetsToLL_M-50_HT-2500toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 0.00438495, 399492),
         MCSample("DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v2", "RunIISummer16MiniAODv2", "Constant", 6025.2, 49144274),
+
+        MCSample("DYJetsToLL_Pt-100to250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8","PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2",  "Constant", 83.12, 2950812),
+        MCSample("DYJetsToLL_Pt-250to400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8","PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2",  "Constant", 3.047, 590806),
+        MCSample("DYJetsToLL_Pt-400to650_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8","PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2",  "Constant", 0.3921, 589842),
+        MCSample("DYJetsToLL_Pt-650toInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8","PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2",  "Constant", 0.03636, 599665),
+        MCSample("DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext2-v1", "RunIISummer16MiniAODv2",  "Constant", 5765.4, 122055388),
+
+        MCSample("WJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2",  "Constant",61256.7, 24120319),
+        MCSample("WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2",  "Constant", 630.6, 10088599),
+        MCSample("WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2",  "Constant", 22.1, 1000132),
+        MCSample("WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2",  "Constant", 2.67, 988234),
+        MCSample("WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2",  "Constant", 0.4168, 985127),
+
+
+
         MCSample("ZJetsToNuNu_HT-100To200_13TeV-madgraph", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 344.8305, 24272858), # subtotal = 5246318
         MCSample("ZJetsToNuNu_HT-100To200_13TeV-madgraph", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1", "RunIISummer16MiniAODv2", "Constant", 344.8305, 24272858), # subtotal = 19026540
         MCSample("ZJetsToNuNu_HT-200To400_13TeV-madgraph", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1", "RunIISummer16MiniAODv2", "Constant", 95.5341, 24744916), # subtotal = 5132650
@@ -223,6 +240,43 @@ def getWeightProducer(fileName,fastsim=False, pmssm=False):
         MCSample("LQToUE_M-1900_BetaOne_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0000262, 49111),
         MCSample("LQToUE_M-1950_BetaOne_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00000201, 50000),
         MCSample("LQToUE_M-2000_BetaOne_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00000155, 49881),
+        MCSample("LQToUE_ENuJJFilter_M-200_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 60.6, 49745),
+        MCSample("LQToUE_ENuJJFilter_M-250_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 20.3, 49183),
+        MCSample("LQToUE_ENuJJFilter_M-300_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 8.04, 49889),
+        MCSample("LQToUE_ENuJJFilter_M-350_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 3.59, 50009),
+        MCSample("LQToUE_ENuJJFilter_M-400_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 1.74, 49578),
+        MCSample("LQToUE_ENuJJFilter_M-450_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.906, 50244),
+        MCSample("LQToUE_ENuJJFilter_M-500_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.496, 49908),
+        MCSample("LQToUE_ENuJJFilter_M-550_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.284, 49850),
+        MCSample("LQToUE_ENuJJFilter_M-600_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.169, 49793),
+        MCSample("LQToUE_ENuJJFilter_M-650_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.103, 50059),
+        MCSample("LQToUE_ENuJJFilter_M-700_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0648, 49876),
+        MCSample("LQToUE_ENuJJFilter_M-750_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0416, 49865),
+        MCSample("LQToUE_ENuJJFilter_M-800_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0273, 50059),
+        MCSample("LQToUE_ENuJJFilter_M-850_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0182, 50003),
+        MCSample("LQToUE_ENuJJFilter_M-900_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0123, 50099),
+        MCSample("LQToUE_ENuJJFilter_M-950_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00845, 49556),
+        MCSample("LQToUE_ENuJJFilter_M-1000_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00586, 49574),
+        MCSample("LQToUE_ENuJJFilter_M-1050_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00411, 50222),
+        MCSample("LQToUE_ENuJJFilter_M-1100_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00291, 49579),
+        MCSample("LQToUE_ENuJJFilter_M-1150_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00208, 49369),
+        MCSample("LQToUE_ENuJJFilter_M-1200_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00150, 50229),
+        MCSample("LQToUE_ENuJJFilter_M-1250_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00109, 50017),
+        MCSample("LQToUE_ENuJJFilter_M-1300_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.000795, 49807),
+        MCSample("LQToUE_ENuJJFilter_M-1350_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.000585, 49806),
+        MCSample("LQToUE_ENuJJFilter_M-1400_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.000433, 49315),
+        MCSample("LQToUE_ENuJJFilter_M-1450_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.000321, 48988),
+        MCSample("LQToUE_ENuJJFilter_M-1500_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.000240, 49730),
+        MCSample("LQToUE_ENuJJFilter_M-1550_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.000180, 48783),
+        MCSample("LQToUE_ENuJJFilter_M-1600_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.000135, 49900),
+        MCSample("LQToUE_ENuJJFilter_M-1650_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.000102, 49891),
+        MCSample("LQToUE_ENuJJFilter_M-1700_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0000774, 48730),
+        MCSample("LQToUE_ENuJJFilter_M-1750_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0000588, 49619),
+        MCSample("LQToUE_ENuJJFilter_M-1800_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0000448, 49694),
+        MCSample("LQToUE_ENuJJFilter_M-1850_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0000343, 48965),
+        MCSample("LQToUE_ENuJJFilter_M-1900_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.0000262, 50003),
+        MCSample("LQToUE_ENuJJFilter_M-1950_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00000201, 49843),
+        MCSample("LQToUE_ENuJJFilter_M-2000_BetaHalf_TuneCUETP8M1_13TeV-pythia8", "PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1","RunIISummer16MiniAODv2", "Constant", 0.00000155, 49284),
 
     ]
     
