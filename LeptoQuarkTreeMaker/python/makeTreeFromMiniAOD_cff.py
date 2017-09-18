@@ -17,7 +17,7 @@ jecfile="",
 residual=False,
 jerfile="",
 pufile="",
-doPDFs=False,
+doPDFs=True,
 fastsim=False,
 signal=False,
 scenario=""
@@ -104,12 +104,94 @@ scenario=""
 
     ## ----------------------------------------------------------------------------------------------
     ## PDF weights for PDF systematics
-    ## ----------------------------------------------------------------------------------------------
+    ## ---------------------------------------------------------------------------------------------
     if geninfo and doPDFs:
-        process.PDFWeights = cms.EDProducer('PDFWeightProducer')
-        VectorDouble.extend(['PDFWeights:PDFweights','PDFWeights:ScaleWeights'])
-        VectorInt.extend(['PDFWeights:PDFids'])
+        process.pdfWeights = cms.EDProducer("PdfWeightProducer",
+                PdfInfoTag = cms.untracked.InputTag("generator"),
+                PdfSetNames = cms.untracked.vstring(
+                        "CT10.LHgrid" ,
+                        "MMHT2014nlo68cl.LHgrid",
+                        "NNPDF30_nlo_as_0118.LHgrid",),
 
+        )
+ 
+    if geninfo and doPDFs:
+        process.PDFWeights = cms.EDProducer('PDFWeightProducer',
+        GenEventInfoInputTag = cms.InputTag('generator'),
+        StorePDFWeights      = cms.bool(True),
+        PDFCTEQWeightsInputTag   = cms.InputTag('pdfWeights','CT10nlo'),
+        #PDFPDF4LHCWeightsInputTag   = cms.InputTag('pdfWeights','PDF4LHC15'),
+        PDFMMTHWeightsInputTag   = cms.InputTag('pdfWeights','MMHT2014lo68cl'),
+        PDFNNPDFWeightsInputTag   = cms.InputTag('pdfWeights','NNPDF30'),
+        pileupInfo           = cms.InputTag('slimmedAddPileupInfo'),
+        LHEEventProductInputTag   = cms.InputTag('externalLHEProducer'),
+        LHERunInfoProductInputTag = cms.InputTag('externalLHEProducer'),
+
+         )
+        VectorDouble.extend(['PDFWeights:PDFCTEQWeights(PDFCTEQWeights)'])
+        VectorDouble.extend(['PDFWeights:PDFMMTHWeights(PDFMMTHWeights)'])
+        VectorDouble.extend(['PDFWeights:PDFNNPDFWeights(PDFweights)'])
+        VectorDouble.extend(['PDFWeights:ScaleWeights(ScaleWeights)'])
+        #VectorDouble.extend(['PDFWeights:PDFweights(PDFweights)'])
+        VarsDouble.extend(['PDFWeights:genWeight'])
+        #VectorInt.extend(['PDFWeights:PDFids'])
+    
+    '''
+    if geninfo and doPDFs:
+        process.pdfWeights = cms.EDProducer("PdfWeightProducer",
+                PdfInfoTag = cms.untracked.InputTag("generator"),
+                PdfSetNames = cms.untracked.vstring(
+                        "CT10.LHgrid" ,
+                        "MMHT2014nlo68cl.LHgrid",
+                        "NNPDF30_nlo_as_0118.LHgrid",),
+
+        )
+    
+    if geninfo and doPDFs:
+        process.PDFWeights = cms.EDProducer('PDFWeightProducer',
+        GenEventInfoInputTag = cms.InputTag('generator'),
+        StorePDFWeights      = cms.bool(True),
+        PDFCTEQWeightsInputTag   = cms.InputTag('pdfWeights','CT10nlo'),
+        #PDFPDF4LHCWeightsInputTag   = cms.InputTag('pdfWeights','PDF4LHC15'),
+        PDFMMTHWeightsInputTag   = cms.InputTag('pdfWeights','MMHT2014lo68cl'),
+        PDFNNPDFWeightsInputTag   = cms.InputTag('pdfWeights','NNPDF30'),
+        pileupInfo           = cms.InputTag('slimmedAddPileupInfo'),
+        LHEEventProductInputTag   = cms.InputTag('externalLHEProducer'),
+        LHERunInfoProductInputTag = cms.InputTag('externalLHEProducer')
+        )
+        VectorDouble.extend(['PDFWeights:PDFCTEQWeights(PDFCTEQWeights)'])
+    '''
+    '''
+    if geninfo and doPDFs:
+        process.pdfWeights = cms.EDProducer("PdfWeightProducer",
+                PdfInfoTag = cms.untracked.InputTag("generator"),
+                PdfSetNames = cms.untracked.vstring(
+                        "CT10.LHgrid" ,
+                        "MMHT2014nlo68cl.LHgrid",
+                        "NNPDF30_nlo_as_0118.LHgrid",),
+
+        )
+
+
+    if doPDFs:
+        from LeptoQuarkTreeMaker.Utils.PDFWeightProducer_cfi import PDFWeightProducer
+        process.PDFWeightProducer = PDFWeightProducer.clone(
+           GenEventInfoInputTag = cms.InputTag('generator'),
+           StorePDFWeights      = cms.bool(True),
+           PDFCTEQWeightsInputTag   = cms.InputTag('pdfWeights:CT10nlo'),
+           #PDFCTEQWeightsInputTag   = cms.InputTag('pdfWeights','PDF4LHC15_nlo_100'),
+           PDFMMTHWeightsInputTag   = cms.InputTag('pdfWeights:MMHT2014lo68cl'),
+           PDFNNPDFWeightsInputTag   = cms.InputTag('pdfWeights:NNPDF30'),
+           pileupInfo           = cms.InputTag('slimmedAddPileupInfo'),
+           LHEEventProductInputTag   = cms.InputTag('externalLHEProducer'),
+           LHERunInfoProductInputTag = cms.InputTag('externalLHEProducer')
+        )
+        VectorDouble.extend(['PDFWeightProducer:PDFCTEQWeights(PDFCTEQWeights)'])
+        VectorDouble.extend(['PDFWeightProducer:PDFMMTHWeights(PDFMMTHWeights)'])
+        VectorDouble.extend(['PDFWeightProducer:PDFNNPDFWeights(PDFNNPDFWeights)'])
+        VectorDouble.extend(['PDFWeightProducer:ScaleWeights(ScaleWeights)'])
+        VectorDouble.extend(['PDFWeightProducer:PDFweights(PDFweights)'])
+    '''
     ## ----------------------------------------------------------------------------------------------
     ## GenHT for stitching together MC samples
     ## ----------------------------------------------------------------------------------------------
@@ -363,14 +445,14 @@ scenario=""
 
     process.load('EgammaAnalysis.ElectronTools.regressionApplication_cff')
     process.load('EgammaAnalysis.ElectronTools.calibratedPatElectronsRun2_cfi')
-    process.calibratedPatElectrons.isMC =  cms.bool(False)
+    process.calibratedPatElectrons.isMC =  cms.bool(True)
     process.selectedElectrons = cms.EDFilter(
                                 "PATElectronSelector",
         src = cms.InputTag("slimmedElectrons"),
         cut = cms.string("pt > 5 && abs(eta)<2.5")
     )
     process.calibratedPatElectrons.electrons = cms.InputTag('selectedElectrons')
-    process.calibratedPatElectrons.isMC =  cms.bool(False)
+    process.calibratedPatElectrons.isMC =  cms.bool(True)
 
     #process.EGMRegression =cms.Path(process.regressionApplication)
    # process.EGMSmearerElectrons = cms.Path(process.calibratedPatElectrons)
@@ -494,12 +576,41 @@ scenario=""
     '''
     VectorBool.extend(['HEEPProducer:passEcaldriven(Electron_passEcaldriven)'])
     VectorBool.extend(['HEEPProducer:passN1TrkIso(Electron_passN1TrkIso)'])
+    VectorDouble.extend(['HEEPProducer:worzsystempt(worzsystempt)']) 
+    VarsDouble.extend(['HEEPProducer:topptweight(topptweight)'])
+
+    '''
+    if geninfo and doPDFs:
+        process.pdfWeights = cms.EDProducer("PdfWeightProducer",
+                PdfInfoTag = cms.untracked.InputTag("generator"),
+                PdfSetNames = cms.untracked.vstring(
+                        "CT10.LHgrid" ,
+                        "MMHT2014nlo68cl.LHgrid",
+                        "NNPDF30_nlo_as_0118.LHgrid",),
+
+        )
+
     
+    if doPDFs:
+        from LeptoQuarkTreeMaker.Utils.PDFWeightProducer_cfi import PDFWeightProducer
+        process.PDFWeightProducer = PDFWeightProducer.clone(
+           GenEventInfoInputTag = cms.InputTag('generator'),
+           StorePDFWeights      = cms.bool(True),
+           PDFCTEQWeightsInputTag   = cms.InputTag('pdfWeights:CT10nlo'),
+           #PDFCTEQWeightsInputTag   = cms.InputTag('pdfWeights','PDF4LHC15_nlo_100'),
+           PDFMMTHWeightsInputTag   = cms.InputTag('pdfWeights:MMHT2014lo68cl'),
+           PDFNNPDFWeightsInputTag   = cms.InputTag('pdfWeights:NNPDF30'),
+           pileupInfo           = cms.InputTag('slimmedAddPileupInfo'),
+           LHEEventProductInputTag   = cms.InputTag('externalLHEProducer'),
+           LHERunInfoProductInputTag = cms.InputTag('externalLHEProducer')
+        )
+        VectorDouble.extend(['PDFWeightProducer:PDFCTEQWeights(PDFCTEQWeights)'])
+        VectorDouble.extend(['PDFWeightProducer:PDFMMTHWeights(PDFMMTHWeights)'])
+        VectorDouble.extend(['PDFWeightProducer:PDFNNPDFWeights(PDFNNPDFWeights)'])
+        VectorDouble.extend(['PDFWeightProducer:ScaleWeights(ScaleWeights)'])
+        VectorDouble.extend(['PDFWeightProducer:PDFweights(PDFweights)'])
 
-
-
-
-
+    '''
 
 
 
@@ -907,7 +1018,8 @@ scenario=""
     ## Final steps
     ## ----------------------------------------------------------------------------------------------
     ## ----------------------------------------------------------------------------------------------
-
+    process.load('FWCore.Modules.printContent_cfi')
+    process.printContent
     # create the process path
     process.dump = cms.EDAnalyzer("EventContentAnalyzer")
     process.WriteTree = cms.Path(
