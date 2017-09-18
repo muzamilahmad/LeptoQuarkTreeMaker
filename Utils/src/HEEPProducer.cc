@@ -53,14 +53,16 @@
 //#include "LeptoQuarkTreeMaker/Utils/interface/VIDCutCodes.h"
 #include "HEEP/VID/interface/CutNrs.h"
 #include "HEEP/VID/interface/VIDCutCodes.h"
-
+#include "TMath.h"
 #include "TVector2.h"
+#include "TLorentzVector.h"
+
 class HEEPProducer : public edm::EDProducer {
    public:
       explicit HEEPProducer(const edm::ParameterSet&);
   //    ~TrackAndPointsProducer()
          ~HEEPProducer();
-
+      bool isTop(const reco::GenParticle*);
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
 
@@ -124,7 +126,8 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
  vidBitmapToken_   (consumes<edm::ValueMap<unsigned int> >(iConfig.getParameter<edm::InputTag>("vidBitmap")))
 
 
-{ 
+{
+//std::cout<<"hi"<<std::endl; 
     eletag_  = iConfig.getParameter<edm::InputTag>( "eletag" );
    
     vtxtag_  = iConfig.getParameter<edm::InputTag>( "vtxtag" );
@@ -181,6 +184,8 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
     produces< std::vector< int > >("PDGID");
     produces< std::vector< int > >("gencharge");
     produces< std::vector< double > >("genPt");
+    produces< std::vector< double > >("genPx");
+    produces< std::vector< double > >("genPy");
     produces< std::vector< double > >("genEta");
     produces< std::vector< double > >("genPhi");
     produces< std::vector< double > >("genEnergy");
@@ -217,7 +222,9 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
     produces<std::vector<bool>>( "passMissingHits");
     produces<std::vector<bool>>( "passEcaldriven");
     produces<std::vector<bool>>( "passN1TrkIso");
-
+//    produces <float>            ("WorZSystemPt");
+produces <std::vector<double> > ("worzsystempt");
+produces <std::vector<double> > ("topptweight");
 }
 
 
@@ -228,6 +235,7 @@ HEEPProducer::~HEEPProducer()
 
 void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+//std::cout<<"hi I am In HEEP producer "<<std::endl;
     using namespace edm; 
     using namespace reco; 
     using namespace std;
@@ -322,6 +330,8 @@ iEvent.getByToken(heep70trkIsolMapToken_,heep70trkIsolMapHandle);
     std::auto_ptr< std::vector< int > > PDGID( new std::vector< int > () );
     std::auto_ptr< std::vector< int > >gencharge( new std::vector< int > () );
     std::auto_ptr<std::vector<double > >genPt (new std::vector<double>());
+    std::auto_ptr<std::vector<double > >genPx (new std::vector<double>());
+    std::auto_ptr<std::vector<double > >genPy (new std::vector<double>());
     std::auto_ptr<std::vector<double > >genEta (new std::vector<double>());
     std::auto_ptr<std::vector<double > >genPhi (new std::vector<double>());
     std::auto_ptr<std::vector<double > >genEnergy (new std::vector<double>());
@@ -344,13 +354,16 @@ std::auto_ptr<std::vector<bool> > passMissingHits ( new std::vector<bool>() );
 std::auto_ptr<std::vector<bool> > passEcaldriven ( new std::vector<bool>() );
 std::auto_ptr<std::vector<bool> > passN1TrkIso ( new std::vector<bool>() );
 
-
-
+//std::auto_ptr<float >               worzsystempt ( new float() );
+// *worzsystempt.get() = -999;
+  std::auto_ptr<std::vector<double> > worzsystempt ( new std::vector<double>() );
+  std::auto_ptr<double > topptweight ( new double() );
+*topptweight.get() = 1.0;
 
 
     for(edm::View<pat::Electron>::const_iterator elect=electron->begin(); elect!=electron->end(); ++elect){
 
-//if(elect->pt() > 0.0){//pt cut
+if((elect->caloEnergy()*sin(elect->p4().theta())) > 50.0 && (elect->superCluster()->eta()) < 2.5){//pt cut
 
      Eta->push_back(elect->eta());
      Et->push_back(elect->caloEnergy()*sin(elect->p4().theta()));
@@ -432,7 +445,7 @@ passN1TrkIso->push_back(passN1TrkIso1);
       
                      // std::cout<<"valus is       :"<<(*heep70trkIsolMapHandle)[ elPtr ]<<std::endl;
 
-//}//pt cut
+}//pt cut
 }
 
      rho->push_back(rh);  
@@ -449,35 +462,76 @@ passN1TrkIso->push_back(passN1TrkIso1);
 
 
 if(genParticles.isValid()) {//gen level stuff
+ //  std::vector<TLorentzVector> hardProcessLeptonLorentzVectors;
+
+int nTops = 0;
+double topPt1 = -1;
+double topPt2 = -1;
+
+
 
      for(reco::GenParticleCollection::const_iterator iPart = genParticles->begin();
          iPart != genParticles->end();
          ++iPart){
    
 
-    if( fabs(iPart->pdgId()) == 11){// && iPart->status() == 1 ){
-      
+
+
+if(isTop(&(*iPart)) && iPart->status()==62){
+nTops++;
+if(topPt1<0)
+  topPt1 = iPart->pt();
+else
+  topPt2 = iPart->pt();
+ }
+
+
+//    if(iPart->isHardProcess()) {
+/////////    if( fabs(iPart->pdgId()) >= 11 && fabs(iPart->pdgId()) <= 18){// && iPart->status() == 1 ){
+//     hardProcessLeptonLorentzVectors.push_back(iPart->p4()); }
+ if( fabs(iPart->pdgId()) == 11){
     const Candidate * mom = iPart->mother();
     elstatus->push_back(iPart->status());
     PDGID->push_back( iPart->pdgId() );
     gencharge->push_back( iPart->charge() );
     genPt->push_back(iPart->pt());
+    genPx->push_back(iPart->px());
+    genPy->push_back(iPart->py()); 
     genEta->push_back(iPart->eta());
     genPhi->push_back(iPart->phi());
     genEnergy->push_back(iPart->energy());
     motherPDGID->push_back(mom->pdgId());
     //if(mom->pdgId() == 42)    
     //std::cout<<"mother charge is      "<<mom->threeCharge()<<"                                   "<<mom->pdgId()<<endl;
+    
+     //if(genPt->size()==2)
+      //  *worzsystempt.get() = (hardProcessLeptonLorentzVectors[0].pt()+hardProcessLeptonLorentzVectors[1].pt());
     }
+  //  }
+if(iPart->isHardProcess()) {
+if(genPt->size()==2)
+worzsystempt->push_back(sqrt(((genPx->at(0)+genPx->at(1))*(genPx->at(0)+genPx->at(1))) +((genPy->at(0)+genPy->at(1))*(genPy->at(0)+genPy->at(1)))));
+}
+
     }
+
+if(nTops==2)
+  *topptweight.get() = sqrt(exp(0.0615-0.0005*topPt1)*exp(0.0615-0.0005*topPt2));
+
+
+//if(genPt->size()==2)
+//       *worzsystempt.get() = (genPt->at(0)+genPt->at(1));
+//worzsystempt->push_back(sqrt(((genPx->at(0)+genPx->at(1))*(genPx->at(0)+genPx->at(1))) +((genPy->at(0)+genPy->at(1))*(genPy->at(0)+genPy->at(1)))));
+//std::cout<<"hi I am testing the Z and W system      "<<worzsystempt->at(0)<<std::endl;
+
 }//gen level stuff
     
 
 
 
 
-
-
+//std::cout<<"hi I am testing the Z and W system      "<<worzsystempt<<std::endl;
+iEvent.put( worzsystempt , "worzsystempt" );
      // iEvent.put(Eta , "Eta");
       iEvent.put(Et , "Et");
       iEvent.put(ecalDriven , "ecalDriven");
@@ -538,13 +592,17 @@ if(genParticles.isValid()) {//gen level stuff
       iEvent.put(passMissingHits, "passMissingHits");*/      
       iEvent.put(passEcaldriven, "passEcaldriven");      
       iEvent.put(passN1TrkIso, "passN1TrkIso");      
+      iEvent.put(topptweight, "topptweight");
 
 
 
 
 
 
+}
 
+bool HEEPProducer::isTop(const reco::GenParticle* particle){
+return (TMath::Abs(particle->pdgId())  ==6);
 }
 
 void
