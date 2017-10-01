@@ -6,7 +6,7 @@ class Scenario:
         elif sname == "Spring16Pmssm":
             self.set_vars("80X_mcRun2_asymptotic_2016_miniAODv2","PAT",True,True,True,True,"","data/jec/Spring16_25nsFastSimMC_V1",False,"data/jer/Spring16_25nsV6_MC","LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root","Run2_25ns")            
         elif sname == "Summer16":
-            self.set_vars("80X_mcRun2_asymptotic_2016_TrancheIV_v6","PAT",True,False,False,False,"","data/jec/Summer16_23Sep2016V3_MC",False,"data/jer/Spring16_25nsV6_MC","LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root","Run2_25ns")
+            self.set_vars("80X_mcRun2_asymptotic_2016_TrancheIV_v8","PAT",True,False,False,False,"","data/jec/Summer16_23Sep2016V3_MC",False,"data/jer/Spring16_25nsV6_MC","LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root","Run2_25ns")
         elif sname == "Summer16sig":
             self.set_vars("80X_mcRun2_asymptotic_2016_TrancheIV_v6","PAT",True,False,True,False,"","data/jec/Summer16_23Sep2016V3_MC",False,"data/jer/Spring16_25nsV6_MC","LeptoQuarkTreeMaker/Production/test/data/PileupHistograms_0721_63mb_pm5.root","Run2_25ns")
         elif sname == "2016H":
