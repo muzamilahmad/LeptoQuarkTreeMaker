@@ -231,17 +231,18 @@ void WeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) 
 
    //Option 3: weighting from lumi, xs, and num evts
    else if (_weightingMethod == Constant) {
-      resultWeight = _weightFactor;
+   resultWeight = _weightFactor;
       
       //account for negative weights
       edm::Handle<GenEventInfoProduct> genEvtInfoHandle;
       iEvent.getByToken(_genEvtTok, genEvtInfoHandle);
       if (genEvtInfoHandle.isValid()) {
         double genweight_ = genEvtInfoHandle->weight();
+//std::cout<<"genweight is    "<<genweight_<<std::endl;
         if(genweight_ < 0) resultWeight *= -1;
       }
    }
-   
+//  std::cout<<"weight is     "<<resultWeight<<std::endl; 
    //Option 4: get cross section from input file
    else if (_weightingMethod == FastSim) {
       _xs = 0;
@@ -253,6 +254,7 @@ void WeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup) 
       }
       resultWeight = _xs * _NumberEvents * _lumi;
    }
+  //std::cout<<"weight is     "<<resultWeight<<std::endl;
 
    // Optionally, include PU weight
    edm::Handle<std::vector<PileupSummaryInfo> > puInfo;
