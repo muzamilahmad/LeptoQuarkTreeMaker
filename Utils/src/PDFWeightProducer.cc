@@ -52,6 +52,8 @@ PDFWeightProducer::PDFWeightProducer(const edm::ParameterSet& iConfig) : getterO
   produces<std::vector<double> >("ScaleWeights");
   produces<std::vector<double> >("PDFweights");
   produces<std::vector<int> >("PDFids");
+  produces<std::vector<double> >("genWeight");
+
 }
 
 PDFWeightProducer::~PDFWeightProducer()
@@ -73,16 +75,39 @@ void PDFWeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetu
   std::vector<double> scaleweights;
   std::vector<double> pdfweights;
   std::vector<int> pdfids;
-  
+  std::vector<double> genWeight; 
   bool found_weights = false;
-  
+ 
+//....................this  is the new added part...
+//edm::Handle<LHEEventProduct> EvtHandle;
+//iEvent.getByToken("externalLHEProducer", EvtHandle );
+
+
+//edm::Handle<GenEventInfoProduct> genHandle;
+  //  iEvent.getByToken(genProductToken_, genHandle);
+
+
+
+//...................till here................
+
+ 
   if(!handles.empty()){
     edm::Handle<LHEEventProduct> LheInfo = handles[0];
+
+
     
     std::vector< gen::WeightsInfo > lheweights = LheInfo->weights();
     if(!lheweights.empty()){
       found_weights = true;
-      // these numbers are hard-coded by the LHEEventInfo
+//std::cout<<"event weight is      "<<lheweights[0].wgt<<std::endl;
+        
+      genWeight.push_back(lheweights[0].wgt < 0 ? -1 :1);    
+//std::cout<<genWeight.at(0); 
+//if(genHandle.isValid()){
+//std::cout<<"event weight is      "<<lheweights[0].wgt<<std::endl;
+//}
+//std::cout<<genWeight.at(0)<<std::endl;  
+// these numbers are hard-coded by the LHEEventInfo
       //renormalization/factorization scale weights
       for (unsigned int i = 0; i < 9; i++){
         scaleweights.push_back(lheweights[i].wgt/lheweights[0].wgt);
@@ -97,8 +122,9 @@ void PDFWeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetu
   
   //check GenEventInfoProduct if LHEEventProduct not found or empty
   if(!found_weights){
-    edm::Handle<GenEventInfoProduct> genHandle;
-    iEvent.getByToken(genProductToken_, genHandle);
+//std::cout<<"foundweight===    "<<found_weights<<std::endl;
+   edm::Handle<GenEventInfoProduct> genHandle;
+   iEvent.getByToken(genProductToken_, genHandle);
 	const std::vector<double>& genweights = genHandle->weights();
     // these numbers are hard-coded by the GenEventInfo (shifted by 1 wrt LHE)
     //renormalization/factorization scale weights
@@ -120,8 +146,11 @@ void PDFWeightProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetu
   iEvent.put(pdfweights_,"PDFweights");
   
   std::auto_ptr<std::vector<int> > pdfids_(new std::vector<int>(pdfids));
+
   iEvent.put(pdfids_,"PDFids");
-  
+
+  std::auto_ptr<std::vector<double> > genWeight_(new std::vector<double>(genWeight));
+    iEvent.put(genWeight_, "genWeight");
 }
 
 // ------------ method called once each job just before starting event loop  ------------
