@@ -107,7 +107,7 @@ scenario=""
     ## ----------------------------------------------------------------------------------------------
     if geninfo and doPDFs:
         process.PDFWeights = cms.EDProducer('PDFWeightProducer')
-        VectorDouble.extend(['PDFWeights:PDFweights','PDFWeights:ScaleWeights'])
+        VectorDouble.extend(['PDFWeights:PDFweights','PDFWeights:ScaleWeights','PDFWeights:genWeight'])
         VectorInt.extend(['PDFWeights:PDFids'])
 
     ## ----------------------------------------------------------------------------------------------
@@ -363,14 +363,14 @@ scenario=""
 
     process.load('EgammaAnalysis.ElectronTools.regressionApplication_cff')
     process.load('EgammaAnalysis.ElectronTools.calibratedPatElectronsRun2_cfi')
-    process.calibratedPatElectrons.isMC =  cms.bool(False)
+    process.calibratedPatElectrons.isMC =  cms.bool(True)
     process.selectedElectrons = cms.EDFilter(
                                 "PATElectronSelector",
         src = cms.InputTag("slimmedElectrons"),
         cut = cms.string("pt > 5 && abs(eta)<2.5")
     )
     process.calibratedPatElectrons.electrons = cms.InputTag('selectedElectrons')
-    process.calibratedPatElectrons.isMC =  cms.bool(False)
+    process.calibratedPatElectrons.isMC =  cms.bool(True)
 
     #process.EGMRegression =cms.Path(process.regressionApplication)
    # process.EGMSmearerElectrons = cms.Path(process.calibratedPatElectrons)
@@ -494,7 +494,7 @@ scenario=""
     '''
     VectorBool.extend(['HEEPProducer:passEcaldriven(Electron_passEcaldriven)'])
     VectorBool.extend(['HEEPProducer:passN1TrkIso(Electron_passN1TrkIso)'])
-    
+    VectorDouble.extend(['HEEPProducer:worzsystempt(worzsystempt)']) 
 
 
 
