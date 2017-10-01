@@ -251,18 +251,18 @@ if( !iEvent.isRealData() ) {
 	  thisWeight = theWeight * (EvtHandle->weights()[i].wgt/EvtHandle->originalXWGTUP()); 
 	  pdfNNPDFWeights->push_back(thisWeight);
 	  thisWeight = (EvtHandle->weights()[i].wgt/EvtHandle->originalXWGTUP()); //fixme todo: removed theWeight, was multiplying by a factor +-200000 in amc@NLO
-	std::cout<<thisWeight<<std::endl; 
+	//std::cout<<thisWeight<<std::endl; 
 	  pdfNNPDFWeightsAMCNLO->push_back(thisWeight);
 
 	}
 	
       	for (unsigned int i=315; i <= 365; i++) {
-	  thisWeight = theWeight * (EvtHandle->weights()[i].wgt/EvtHandle->originalXWGTUP()); 
-	  pdfMMTHWeights->push_back(thisWeight);
+	//  thisWeight = theWeight * (EvtHandle->weights()[i].wgt/EvtHandle->originalXWGTUP()); 
+	 // pdfMMTHWeights->push_back(thisWeight);
 	}
       	for (unsigned int i=392; i <= 444; i++) {
-	  thisWeight = theWeight * (EvtHandle->weights()[i].wgt/EvtHandle->originalXWGTUP()); 
-	  pdfCTEQWeights->push_back(thisWeight);
+	 // thisWeight = theWeight * (EvtHandle->weights()[i].wgt/EvtHandle->originalXWGTUP()); 
+	 // pdfCTEQWeights->push_back(thisWeight);
 	}
 	
     

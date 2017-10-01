@@ -160,16 +160,16 @@ METDouble::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    for(int i=0; i<3; ++i)dpnhat[i]=-999;
    reco::MET::LorentzVector metLorentz(0,0,0,0);
    if(MET.isValid() ){
-      
+   //std::cout<<" nominal met is   :  "<<MET->at(0).phi()<<std::endl;   
       metpt_=MET->at(0).pt();
       metphi_=MET->at(0).phi();
       metLorentz=MET->at(0).p4();
-      
+      //std::cout<<"shifted MET is   :    "<<MET->at(0).shiftedPhi(uncUpList[0], pat::MET::Type1Smear)<<std::endl; 
       for(unsigned u = 0; u < uncUpList.size(); ++u){
-        metPtUp_[u] = MET->at(0).shiftedPt(uncUpList[u], pat::MET::Type1);
-        metPtDown_[u] = MET->at(0).shiftedPt(uncDownList[u], pat::MET::Type1);
-        metPhiUp_[u] = MET->at(0).shiftedPhi(uncUpList[u], pat::MET::Type1);
-        metPhiDown_[u] = MET->at(0).shiftedPhi(uncDownList[u], pat::MET::Type1);
+        metPtUp_[u] = MET->at(0).shiftedPt(uncUpList[u], pat::MET::Type1Smear);
+        metPtDown_[u] = MET->at(0).shiftedPt(uncDownList[u], pat::MET::Type1Smear);
+        metPhiUp_[u] = MET->at(0).shiftedPhi(uncUpList[u], pat::MET::Type1Smear);
+        metPhiDown_[u] = MET->at(0).shiftedPhi(uncDownList[u], pat::MET::Type1Smear);
       }
    }
    else std::cout<<"METDouble::Invalid Tag: "<<metTag_.label()<<std::endl;

@@ -224,7 +224,7 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
     produces<std::vector<bool>>( "passN1TrkIso");
 //    produces <float>            ("WorZSystemPt");
 produces <std::vector<double> > ("worzsystempt");
-produces <std::vector<double> > ("topptweight");
+produces <double > ("topptweight");
 }
 
 
