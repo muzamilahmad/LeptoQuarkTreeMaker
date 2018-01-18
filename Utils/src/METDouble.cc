@@ -10,12 +10,7 @@
  * Implementation:
  *     [Notes on implementation]
  */
-//
-// Original Author:  Arne-Rasmus Draeger,68/111,4719,
-//         Created:  Fri Apr 11 16:35:33 CEST 2014
-// March 8, 2015: Making pt & eta cut on jets configurable and adding
-// the ability to pass a collection of reco::candidates to be removed
-// from the MET calculation -- Andrew Whitbeck.
+//Updated by Muzamil Ahmad Bhat
 //
 // $Id$
 //
@@ -160,11 +155,17 @@ METDouble::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
    for(int i=0; i<3; ++i)dpnhat[i]=-999;
    reco::MET::LorentzVector metLorentz(0,0,0,0);
    if(MET.isValid() ){
-      
-      metpt_=MET->at(0).pt();
+    
+      metpt_=MET->at(0).corPt(pat::MET::Type1XY);
+      metphi_=MET->at(0).corPhi(pat::MET::Type1XY);
+      metLorentz=MET->at(0).p4();
+
+std::cout<<MET->at(0).corPt(pat::MET::Type1XY)<<"             "<<MET->at(0).shiftedPt(pat::MET::NoShift, pat::MET::Type1XY)<<std::endl;
+  
+/*      metpt_=MET->at(0).pt();
       metphi_=MET->at(0).phi();
       metLorentz=MET->at(0).p4();
-      
+  */    
       for(unsigned u = 0; u < uncUpList.size(); ++u){
         metPtUp_[u] = MET->at(0).shiftedPt(uncUpList[u], pat::MET::Type1);
         metPtDown_[u] = MET->at(0).shiftedPt(uncDownList[u], pat::MET::Type1);
