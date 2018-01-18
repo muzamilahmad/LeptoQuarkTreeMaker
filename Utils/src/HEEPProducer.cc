@@ -62,7 +62,7 @@ class HEEPProducer : public edm::EDProducer {
       explicit HEEPProducer(const edm::ParameterSet&);
   //    ~TrackAndPointsProducer()
          ~HEEPProducer();
-
+      bool isTop(const reco::GenParticle*);
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
 
@@ -126,7 +126,8 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
  vidBitmapToken_   (consumes<edm::ValueMap<unsigned int> >(iConfig.getParameter<edm::InputTag>("vidBitmap")))
 
 
-{ 
+{
+//std::cout<<"hi"<<std::endl; 
     eletag_  = iConfig.getParameter<edm::InputTag>( "eletag" );
    
     vtxtag_  = iConfig.getParameter<edm::InputTag>( "vtxtag" );
@@ -223,7 +224,7 @@ HEEPProducer::HEEPProducer(const edm::ParameterSet& iConfig):
     produces<std::vector<bool>>( "passN1TrkIso");
 //    produces <float>            ("WorZSystemPt");
 produces <std::vector<double> > ("worzsystempt");
-
+produces <double > ("topptweight");
 }
 
 
@@ -234,6 +235,7 @@ HEEPProducer::~HEEPProducer()
 
 void HEEPProducer::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+//std::cout<<"hi I am In HEEP producer "<<std::endl;
     using namespace edm; 
     using namespace reco; 
     using namespace std;
@@ -355,12 +357,13 @@ std::auto_ptr<std::vector<bool> > passN1TrkIso ( new std::vector<bool>() );
 //std::auto_ptr<float >               worzsystempt ( new float() );
 // *worzsystempt.get() = -999;
   std::auto_ptr<std::vector<double> > worzsystempt ( new std::vector<double>() );
-
+  std::auto_ptr<double > topptweight ( new double() );
+*topptweight.get() = 1.0;
 
 
     for(edm::View<pat::Electron>::const_iterator elect=electron->begin(); elect!=electron->end(); ++elect){
 
-if((elect->caloEnergy()*sin(elect->p4().theta())) > 50.0 && (elect->superCluster()->eta()) < 2.5){//pt cut
+//if((elect->caloEnergy()*sin(elect->p4().theta())) > 50.0 && (elect->superCluster()->eta()) < 2.5){//pt cut
 
      Eta->push_back(elect->eta());
      Et->push_back(elect->caloEnergy()*sin(elect->p4().theta()));
@@ -442,7 +445,7 @@ passN1TrkIso->push_back(passN1TrkIso1);
       
                      // std::cout<<"valus is       :"<<(*heep70trkIsolMapHandle)[ elPtr ]<<std::endl;
 
-}//pt cut
+//}//pt cut
 }
 
      rho->push_back(rh);  
@@ -461,10 +464,28 @@ passN1TrkIso->push_back(passN1TrkIso1);
 if(genParticles.isValid()) {//gen level stuff
  //  std::vector<TLorentzVector> hardProcessLeptonLorentzVectors;
 
+int nTops = 0;
+double topPt1 = -1;
+double topPt2 = -1;
+
+
+
      for(reco::GenParticleCollection::const_iterator iPart = genParticles->begin();
          iPart != genParticles->end();
          ++iPart){
    
+
+
+
+if(isTop(&(*iPart)) && iPart->status()==62){
+nTops++;
+if(topPt1<0)
+  topPt1 = iPart->pt();
+else
+  topPt2 = iPart->pt();
+ }
+
+
 //    if(iPart->isHardProcess()) {
 /////////    if( fabs(iPart->pdgId()) >= 11 && fabs(iPart->pdgId()) <= 18){// && iPart->status() == 1 ){
 //     hardProcessLeptonLorentzVectors.push_back(iPart->p4()); }
@@ -493,6 +514,10 @@ worzsystempt->push_back(sqrt(((genPx->at(0)+genPx->at(1))*(genPx->at(0)+genPx->a
 }
 
     }
+
+if(nTops==2)
+  *topptweight.get() = sqrt(exp(0.0615-0.0005*topPt1)*exp(0.0615-0.0005*topPt2));
+
 
 //if(genPt->size()==2)
 //       *worzsystempt.get() = (genPt->at(0)+genPt->at(1));
@@ -558,22 +583,26 @@ iEvent.put( worzsystempt , "worzsystempt" );
       iEvent.put(scEta, "scEta");
       iEvent.put(scEnergy, "scEnergy");
       iEvent.put(heep70TrkIso, "heep70TrkIso");
-      /*iEvent.put(passShowerShape, "passShowerShape");                   
+      iEvent.put(passShowerShape, "passShowerShape");                   
       iEvent.put(passDeltaEta, "passDeltaEta");      
-      iEvent.put(passDeltaPhi, "passDeltaPhi");*/      
+      iEvent.put(passDeltaPhi, "passDeltaPhi");      
       iEvent.put(passEMHD1iso, "passEMHD1iso");      
-      /*iEvent.put(passHoverE, "passHoverE");      
+      iEvent.put(passHoverE, "passHoverE");      
       iEvent.put(passDXY, "passDXY");      
-      iEvent.put(passMissingHits, "passMissingHits");*/      
+      iEvent.put(passMissingHits, "passMissingHits");      
       iEvent.put(passEcaldriven, "passEcaldriven");      
       iEvent.put(passN1TrkIso, "passN1TrkIso");      
+      iEvent.put(topptweight, "topptweight");
 
 
 
 
 
 
+}
 
+bool HEEPProducer::isTop(const reco::GenParticle* particle){
+return (TMath::Abs(particle->pdgId())  ==6);
 }
 
 void
