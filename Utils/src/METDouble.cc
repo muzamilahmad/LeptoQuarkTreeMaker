@@ -160,17 +160,17 @@ METDouble::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
       metphi_=MET->at(0).corPhi(pat::MET::Type1XY);
       metLorentz=MET->at(0).p4();
 
-std::cout<<MET->at(0).corPt(pat::MET::Type1XY)<<"             "<<MET->at(0).shiftedPt(pat::MET::NoShift, pat::MET::Type1XY)<<std::endl;
+//std::cout<<MET->at(0).corPt(pat::MET::Type1XY)<<"             "<<MET->at(0).shiftedPt(pat::MET::NoShift, pat::MET::Type1XY)<<std::endl;
   
 /*      metpt_=MET->at(0).pt();
       metphi_=MET->at(0).phi();
       metLorentz=MET->at(0).p4();
   */    
       for(unsigned u = 0; u < uncUpList.size(); ++u){
-        metPtUp_[u] = MET->at(0).shiftedPt(uncUpList[u], pat::MET::Type1);
-        metPtDown_[u] = MET->at(0).shiftedPt(uncDownList[u], pat::MET::Type1);
-        metPhiUp_[u] = MET->at(0).shiftedPhi(uncUpList[u], pat::MET::Type1);
-        metPhiDown_[u] = MET->at(0).shiftedPhi(uncDownList[u], pat::MET::Type1);
+        metPtUp_[u] = MET->at(0).shiftedPt(uncUpList[u], pat::MET::Type1XY);
+        metPtDown_[u] = MET->at(0).shiftedPt(uncDownList[u], pat::MET::Type1XY);
+        metPhiUp_[u] = MET->at(0).shiftedPhi(uncUpList[u], pat::MET::Type1XY);
+        metPhiDown_[u] = MET->at(0).shiftedPhi(uncDownList[u], pat::MET::Type1XY);
       }
    }
    else std::cout<<"METDouble::Invalid Tag: "<<metTag_.label()<<std::endl;
