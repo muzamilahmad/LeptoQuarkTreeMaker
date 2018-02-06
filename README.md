@@ -23,6 +23,7 @@ For electron and photon energy regression for 80X click on the link below
 https://twiki.cern.ch/twiki/bin/viewauth/CMS/EGMRegression
 For HEEP ID follow the recipe from this twiki
 https://twiki.cern.ch/twiki/bin/view/CMS/HEEPElectronID
+For the MET follow this twiki: https://twiki.cern.ch/twiki/bin/view/CMSPublic/ReMiniAOD03Feb2017Notes#MET_Recipes
 
 ```
 
