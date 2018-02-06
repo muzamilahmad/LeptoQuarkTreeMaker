@@ -296,6 +296,54 @@ scenario=""
             process,
             isData=not geninfo, # controls gen met
         )
+        process.load('RecoMET.METFilters.badGlobalMuonTaggersMiniAOD_cff')
+        process.badGlobalMuonTaggerMAOD.taggingMode = cms.bool(True)
+        process.cloneGlobalMuonTaggerMAOD.taggingMode = cms.bool(True)
+        from PhysicsTools.PatUtils.tools.muonRecoMitigation import muonRecoMitigation
+        muonRecoMitigation(
+                          process = process,
+                          pfCandCollection = "packedPFCandidates", #input PF Candidate Collection
+                          runOnMiniAOD = True, #To determine if you are running on AOD or MiniAOD
+                          selection="", #You can use a custom selection for your bad muons. Leave empty if you would like to use the bad muon recipe definition.
+                          muonCollection="", #The muon collection name where your custom selection will be applied to. Leave empty if you would like to use the bad muon recipe definition.
+                          cleanCollName="cleanMuonsPFCandidates", #output pf candidate collection ame
+                          cleaningScheme="computeAllApplyClone", #Options are: "all", "computeAllApplyBad","computeAllApplyClone". Decides which (or both) bad muon collections to be used for MET cleaning coming from the bad muon recipe.
+                          postfix="" #Use if you would like to add a post fix to your muon / pf collections
+                       )
+        runMetCorAndUncFromMiniAOD(process,
+                                 isData=not geninfo,
+                                 pfCandColl="cleanMuonsPFCandidates",
+                                 recoMetFromPFCs=True,
+                                 postfix="MuClean"
+                           )
+        process.mucorMET = cms.Sequence(
+           process.badGlobalMuonTaggerMAOD *
+           process.cloneGlobalMuonTaggerMAOD *
+           #process.badMuons * # If you are using cleaning mode "all", uncomment this line
+           process.cleanMuonsPFCandidates *
+           process.fullPatMetSequenceMuClean
+           )
+
+        from PhysicsTools.PatUtils.tools.corMETFromMuonAndEG import corMETFromMuonAndEG
+        corMETFromMuonAndEG(process,
+                    pfCandCollection="", #not needed                                                                                                                                                                                                                                                                                                                      
+                    electronCollection="slimmedElectronsBeforeGSFix",
+                    photonCollection="slimmedPhotonsBeforeGSFix",
+                    corElectronCollection="slimmedElectrons",
+                    corPhotonCollection="slimmedPhotons",
+                    allMETEGCorrected=True,
+                    muCorrection=False,
+                    eGCorrection=True,
+                    runOnMiniAOD=True,
+                    postfix="MuEGClean"
+                    )
+
+        process.slimmedMETsMuEGClean = process.slimmedMETs.clone()
+        process.slimmedMETsMuEGClean.src = cms.InputTag("patPFMetT1MuEGClean")
+        process.slimmedMETsMuEGClean.rawVariation =  cms.InputTag("patPFMetRawMuEGClean")
+        process.slimmedMETsMuEGClean.t1Uncertainties = cms.InputTag("patPFMetT1%sMuEGClean")
+        del process.slimmedMETsMuEGClean.caloMET
+
         METTag = cms.InputTag('slimmedMETs','',process.name_())
     else:
         # pointless run of MET tool because it is barely functional
@@ -635,7 +683,7 @@ scenario=""
     #VectorDouble.extend(['MuonProducer:MuonGlobalChi2(MuonGlobalChi2)'])
     #VectorDouble.extend(['MuonProducer:MuonTrkPtError(MuonTrkPtError)'])
     #VectorInt.extend(['MuonProducer:MuonIsPF(MuonIsPF)'])
-    #VectorInt.extend(['MuonProducer:MuonCharge(MuonCharge)'])
+    VectorInt.extend(['MuonProducer:MuonCharge(MuonCharge)'])
     #VectorInt.extend(['MuonProducer:MuonGlobalTrkValidHits(MuonGlobalTrkValidHits)'])
     #VectorInt.extend(['MuonProducer:MuonTrkPixelHits(MuonTrkPixelHits)'])
     #VectorInt.extend(['MuonProducer:MuonStationMatches(MuonStationMatches)'])
